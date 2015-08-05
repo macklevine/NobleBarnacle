@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: space cat
-  - __Scrum Master__: space cat
-  - __Development Team Members__: space cat, space cat
+  - __Product Owner__: Trevor Hanus
+  - __Scrum Master__: Jimmy Williamson
+  - __Development Team Members__: Kyle Basu, Mack Levine, Trevor Hanus, Jimmy Williamson
 
 ## Table of Contents
 
