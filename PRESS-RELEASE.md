@@ -1,4 +1,4 @@
-# Project Name #
+# Start-up Financials #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -22,23 +22,40 @@ Once the project moves into development, the press release can be used as a touc
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
 
+  "For innovative individuals or teams looking to build an interactive financial model for their startup.
+  Lowers the barrier to entry into the venture capitalist world."
+
+  > Adam:
+    -has a rough product
+    -has been in contact with investors
+    -knows he needs a financial model
+    -doesn't know exactly how to build a financial model
+
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
+  "[Product name] guides users through the process of building a financial model with a series of questions, generating a customized financial model that the user can further tailor to reflect their start-up's financial needs."
+
 ## Problem ##
   > Describe the problem your product solves.
+  "Helps individuals or teams who may not have any experience creating financial models build an attractive and expressive financial model that can be used to help them vie for venture capital."
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  "[Product name] asks users through the process of building a financial model with a series of questions that prompt users to enter essential data. Then, it generates a customized financial model that the team can further customize to reflect the start-up's financial situation."
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "Yeah it's pretty OK"
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  "Just answer the Turbo Tax-like questions and [Product name] takes care of the rest."
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "It's the bee's knees."
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  "POP OFF!"
