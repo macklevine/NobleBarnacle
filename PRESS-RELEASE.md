@@ -1,4 +1,4 @@
-# Start-up Financials #
+# MIMO - Money In. Money Out. #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,44 +17,72 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  <!-- > Name the product in a way the reader (i.e. your target customers) will understand. -->
+
+  MIMO - Money In. Money Out.
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  <!-- > Describe who the market for the product is and what benefit they get. One sentence only underneath the title. -->
 
-  "For innovative individuals or teams looking to build an interactive financial model for their startup.
-  Lowers the barrier to entry into the venture capitalist world."
+  "For innovative individuals or teams looking to build an interactive financial model for their startup."
 
-  > Notes:
+<!--   > Notes:
     -has a rough product
     -has been in contact with investors
     -knows he needs a financial model
-    -doesn't know exactly how to build a financial model
+    -doesn't know exactly how to build a financial model -->
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  <!-- > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good. -->
 
-  "[Product name] guides users through the process of building a financial model with a series of questions, generating a customized financial model that the user can further tailor to reflect their start-up's financial needs."
+  MIMO works to lower the barrier to entry into the starup community by helping users build interactive financial models tailored to reflect their start-up-s monetary needs.
 
-## Problem ##
-  > Describe the problem your product solves.
-  
+  <!-- Lowers the barrier to entry into the venture capitalist world. -->
+
+  "MIMO guides users through the process of building a financial model with a series of questions, generating a customized financial model that the user can further tailor to reflect their start-up's financial needs."
+
   "Helps individuals or teams who may not have any experience creating financial models build an attractive and expressive financial model that can be used to help them vie for venture capital."
 
+## Problem ##
+  <!-- > Describe the problem your product solves. -->
+
+  Without prior knowledge of finance, the user will find the current model time consuming, unintuitive, and ambiguous because of assumptions built into the model, leading to a lack of insight and understanding of the analytics performed.
+  The combination of these factors complicates the process of getting a start-up off the ground. 
+
+
+<!--   The current tools used to build financial models suck:
+    time consuming
+      - should be able to do that in an hour.
+    clunky
+    takes forever to change anything
+    requires deep knowledge of financial models and statistics
+      - anyone with an idea should be able to express their financial prospectus with potential investors
+    ambiguous
+      - no insight into your data model
+      - build platform is intuitive
+    hidden assumptions
+      - the assumptions that the current models are based on are unclear or not explained. 
+      - models should offer insight on how they work and how they are construction the data visualizations
+      - should be able to understand the analytics being performed and explain the results to ivestors. 
+ -->
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+
+  Our product revolutionizes the process of creating a financial model by assuming no prior knowledge of the process on behalf of the user. MIMO guides users through building the essential components of viable balance sheets and cash flow statements—two essential components investors require from nascent start-ups.
   
-  "[Product name] asks users through the process of building a financial model with a series of questions that prompt users to enter essential data. Then, it generates a customized financial model that the team can further customize to reflect the start-up's financial situation."
+<!--   "MIMO asks users through the process of building a financial model with a series of questions that prompt users to enter essential data. Then, it generates a customized financial model that the team can further customize to reflect the start-up's financial situation." -->
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
   
-  "Yeah it's pretty OK"
+  "We found a conspicuous lack of viable alternatives to the clunky, Excel-based method of producing financial models. MIMO addresses
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
   
-  "Just answer the Turbo Tax-like questions and [Product name] takes care of the rest."
+  sign up for a personal account
+
+  <!-- "Just answer the Turbo Tax-like questions and [Product name] takes care of the rest." -->
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.

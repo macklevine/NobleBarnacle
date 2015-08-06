@@ -16,7 +16,7 @@ have a landing page
   -about us blurb
   -vision statement
 create a model by inputting information
-wizzard for model data input (prompts)
+wizard for model data input (prompts)
 database for storage of models
 database username/passwords
 encrypt passwords
