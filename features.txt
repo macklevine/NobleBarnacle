@@ -1,0 +1,31 @@
+server
+be able to login
+be able to sign up
+data visualization/display
+  -overall summary view
+  -descriptive stats
+  -catagory view
+    -general/admisitrative
+    -employee
+    -revenue
+    -startup costs
+    -debt & equity
+have profile page
+have a landing page
+  -sumary
+  -about us blurb
+  -vision statement
+create a model by inputting information
+wizzard for model data input (prompts)
+database for storage of models
+database username/passwords
+encrypt passwords
+edit/update the values in the model
+save updates to the model
+edit settings in model
+edit settings on the profile page
+establish a front end framework
+analytics to create the data model with user generated data
+
+MEAN stack.
+D3 for data visualization
