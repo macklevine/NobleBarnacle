@@ -26,6 +26,10 @@ edit settings in model
 edit settings on the profile page
 establish a front end framework
 analytics to create the data model with user generated data
+distinction between contract and full time employee
+  - will need to adjust data structure in DB
+allowing the user to have uncommitted changes 
+
 
 MEAN stack.
 D3 for data visualization
