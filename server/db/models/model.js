@@ -3,16 +3,35 @@ var bluebird = require('bluebird');
 
 var modelSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true }},
+  companyName: String,
+  startingCash: 0,
+  settings: {
+    benefits: [{type: Schema.Types.ObjectId, ref: 'Benefit'}],
+    taxes: [{type: Schema.Types.ObjectId, ref: 'Tax'}],
+  },
   expenses: {
     employees: [{type: Schema.Types.ObjectId, ref: 'Employee'}],
     startupCosts: [{type: Schema.Types.ObjectId, ref: 'StartupCost'}]
   }, //a schema can have nested keys like this.
   debtsAndEquities: [{type: Schema.Types.ObjectId, ref: 'DebtAndEquity'}],
   revenueSources: [{type: Schema.Types.ObjectId, ref: "RevenueSource"}]
+}); //This may need to be declared after all of the
+//component schemas. Check this.
+
+var benefitSchema = mongoose.Schema({
+  _parentModel: {type: String, ref: "Model"},
+  name: String,
+  dollarsPerMonth: Number, //each benefit has either a fixed dollars per month...
+  percentageOfPay: Number, //...or a percentage of pay.
+  increasePerYear: Number
 });
 
-//important questions: are objectIds generated automatically for every
-//instance of a mongoose model?
+var taxSchema = mongoose.Schema({
+  _parentModel: {type: String, ref: "Model"},
+  name: String,
+  percentageOfPay: Number,
+  upTo: Number,
+});
 
 var employeeSchema = mongoose.Schema({
   //Trevor wants to be able to fetch employees by an ID value;
@@ -66,7 +85,8 @@ var revenueSchema = mongoose.Schema({
 })
 
 //constructors below.
-
+var Benefit = mongoose.model("Benefit", benefitSchema);
+var Tax = mongoose.model("Tax", taxSchema);
 var Employee = mongoose.model("Employee", employeeSchema);
 var StartupCost = mongoose.model("StartupCost", startupCostSchema);
 var DebtAndEquity = mongoose.model("DebtAndEquity", debtAndEquitySchema);
@@ -131,9 +151,104 @@ var instantiateDefaultModel = function(username){
 
   var defaultModel = new Model({
     username: username,
+    startingCash: 0,
   }).save(function (err){
     if (err) {return err};
 
+    var healthCare = new Benefit({
+      _parentModel: defaultModel.id,
+      name: 'healthCare',
+      dollarsPerMonth: -200,
+      increasePerYear: .12
+    });
+
+    healthCare.save();
+
+    var dental = new Benefit({
+      _parentModel: defaultModel.id,
+      name: 'dental',
+      dollarsPerMonth: -25,
+      increasePerYear: .03
+    });
+
+    dental.save();
+
+    var shortTermDisability = new Benefit({
+      _parentModel: defaultModel.id,
+      name: 'shortTermDisability',
+      percentageOfPay: .014,
+      increasePerYear: .03
+    });
+
+    shortTermDisability.save();
+
+    var longTermDisability = new Benefit({
+      _parentModel: defaultModel.id,
+      name: 'longTermDisability',
+      percentageOfPay: .009,
+      increasePerYear: .03
+    });
+    
+    longTermDisability.save();
+
+    var lifeInsurance = new Benefit({
+      _parentModel: defaultModel.id,
+      name: 'lifeInsurance',
+      percentageOfPay: .005,
+      increasePerYear: .03
+    });
+
+    lifeInsurance.save();
+    //done with saved benefits.
+
+    //start taxes for the default model
+    var stateUnemploymentIns = new Tax({
+      _parentModel: defaultModel.id,
+      name: 'stateUnemploymentIns',
+      percentageOfPay: .002,
+      upTo: 14400
+    });
+
+    stateUnemploymentIns.save();
+
+    var employerFICA = new Tax({
+      _parentModel: defaultModel.id,
+      name: 'employerFICA',
+      percentageOfPay: .062,
+      upTo: 100000
+    });
+
+    employerFICA.save(),
+
+    var medicare = new Tax({
+      _parentModel: defaultModel.id,
+      name:             'medicare',
+      percentageOfPay:  .0145,
+      upTo:             999999
+    });
+
+    medicare.save();
+
+    var federalUnemploymentIns = new Tax({
+      _parentModel: defaultModel.id,
+      name:             'federalUnemploymentIns',
+      percentageOfPay:  .008,
+      upTo:             7400  
+    });
+
+    federalUnemploymentIns.save();
+
+    var workersComp = new Tax({
+      _parentModel: defaultModel.id,
+      name:             'workersComp',
+      percentageOfPay:  .0032,
+      upTo:             999999
+    });
+
+    workersComp.save();
+
+
+    //the initial employee on the default model
     var CEO = new Employee({
       _parentModel: defaultModel.id
       title: "CEO",
