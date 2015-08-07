@@ -68,6 +68,7 @@ window.dataFromServerToClient = md = {
   },
 
   //a collection of year objects
+  //year objects hold finacial information about one specfic year
   years: [
     { year: 2015,
       //an object that holds the expenses: gAndA, employees, and startup costs
@@ -373,57 +374,57 @@ window.dataFromServerToClient = md = {
               sum: 120000
             },
             benefits: {
-              jan: 
-              feb: 
-              mar:
-              apr:
-              may:
-              jun:
-              jul:
-              aug:
-              sep:
-              oct:
-              nov:
-              dec:
-              sum:
+              jan: 100,
+              feb: 100,
+              mar: 100,
+              apr: 100,
+              may: 100,
+              jun: 100,
+              jul: 100,
+              aug: 100,
+              sep: 100,
+              oct: 100,
+              nov: 100,
+              dec: 100,
+              sum: 1200
             },
             taxes: {
-              jan: 
-              feb: 
-              mar:
-              apr:
-              may:
-              jun:
-              jul:
-              aug:
-              sep:
-              oct:
-              nov:
-              dec:
-              sum:
+              jan: 100,
+              feb: 100,
+              mar: 100,
+              apr: 100,
+              may: 100,
+              jun: 100,
+              jul: 100,
+              aug: 100,
+              sep: 100,
+              oct: 100,
+              nov: 100,
+              dec: 100,
+              sum: 1200
             },
             total: {
-              jan: 
-              feb: 
-              mar:
-              apr:
-              may:
-              jun:
-              jul:
-              aug:
-              sep:
-              oct:
-              nov:
-              dec:
-              sum:
+              jan: 10200,
+              feb: 10200, 
+              mar: 10200,
+              apr: 10200,
+              may: 10200,
+              jun: 10200,
+              jul: 10200,
+              aug: 10200,
+              sep: 10200,
+              oct: 10200,
+              nov: 10200,
+              dec: 10200,
+              sum: 130000
             }
           }
         ],
         startupCosts: [
           {
-            name: 'purchase equipment'
-            cost: 10000
-            month: 'feb'
+            name: 'purchase equipment',
+            cost: 10000,
+            month: 'feb',
           }
         ]
       },
@@ -490,167 +491,70 @@ window.dataFromServerToClient = md = {
           endMonth: 'aug'
         }
       ],
-      revenue: 
-
-        //Expenses - General and Administrative - Marketing
+      revenue: [
         {
-          category:   'GAndA',
-          sscategory:  'Marketing',
-          title:        'Radio Ad',
-          description:  'We plan to run a radio add in April to boost sales.',
-          money:        [ 0, 0, -1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-        },
-        {
-          category:   'GAndA',
-          sscategory:  'Cell Phones',
-          title:        'Google Ad Campaign',
-          description:  'We are running a google ad campaign, to boost page views.',
-          money:        [ 0, 0, 0, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500 ] 
-        },
-        //Expenses - General and Administrative - Facilities and Equipment
-        {
-          category:   'GAndA',
-          sscategory:  'Rent',
-          title:        'Rent',
-          description:  'Rent and utilites for office space.',
-          money:        [ -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500 ]
-        },
-        { 
-          category:    'expenses',
-          scategory:   'GAndA',
-          sscategory:  'Facilities and Equipment',
-          title:        'Cell Phone',
-          description:  'Cell phone policy for employees.',
-          money:        [ 0, 0, 0, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500, -500 ]
-        },
-        //Expenses - General and Administrative - Insurance
-        { 
-          category:    'expenses',
-          scategory:   'GAndA',
-          sscategory:  'Legal Fees',
-          title:        'General Liability',
-          description:  'Cell phone policy for employees.',
-          money:        [ 0, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700, -700 ]
-        },
-        //Expenses - General and Administrative - Supplies
-        { 
-          category:    'expenses',
-          scategory:   'GAndA',
-          sscategory:  'SEO Optimization',
-          title:        'General Liability',
-          description:  'Cell phone policy for employees.',
-          money:        [ -600, -600, -600, -600, -600, -600, -600, -600, -600, -600, -600, -600, -600, -600, -600, -600, 0, 0, 0, 0, 0, 0, 0, 0 ]
-        },
-        { 
-          category:    'expenses',
-          scategory:   'GAndA',
-          sscategory:  'Computers',
-          title:        'Office Furniture',
-          description:  'Purchasing desks and chairs for employees.',
-          money:        [ -3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-        },
-        { 
-          category:    'expenses',
-          scategory:   'GAndA',
-          sscategory:  'Printer',
-          title:        'Printer',
-          description:  'Purchasing desks and chairs for employees.',
-          money:        [ 0, 0, 0, 0, 0, 0, -1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-        },
-        //Expenses - General and Administrative - Legal
-        { 
-          category:    'expenses',
-          scategory:   'GAndA',
-          sscategory:  'Accounting Fees',
-          title:        'Organisation Docs',
-          description:  'Create the legal docmentation for the company.',
-          money:        [ 0, 0, 0, 0, 0, 0, -1000, -1000, -1000, -1000, -1000, -1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-        },
-        { 
-          category:    'expenses',
-          scategory:   'GAndA',
-          sscategory:  'Entertainment',
-          title:        'Legal Fees',
-          description:  'Legal Consulation.',
-          money:        [ -1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-        },
-        //Expenses - Employees
-        { 
-          category:    'expenses',
-          scategory:   'Employees',
-          sscategory:  'CEO',
-          title:        null,
-          description:  'Fearless leader of Calc-Hub.',
-          salary:       42000,
-          raise:        0,
-          taxes:        [ -314, -314, -345, -345, -367, -367, -367, -367, -367, -367, -367, -367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          benefits:     [ -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          money:        [ -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500]
-        },
-        { 
-          category:    'expenses',
-          scategory:   'Employees',
-          sscategory:  'CTO',
-          title:        null,
-          description:  'Knows the tech.',
-          salary:       42000,
-          raise:        0,
-          taxes:        [ -314, -314, -345, -345, -367, -367, -367, -367, -367, -367, -367, -367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          benefits:     [ -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          money:        [ -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000, -3000 ]
-        },
-        { 
-          category:    'expenses',
-          scategory:   'Employees',
-          sscategory:  'Frontend Developer',
-          title:        null,
-          description:  'Really good at making things look pretty.',
-          salary:       42000,
-          raise:        0,
-          taxes:        [ -314, -314, -345, -345, -367, -367, -367, -367, -367, -367, -367, -367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          benefits:     [ -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          money:        [ 0, 0, 0, 0, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500, -2500 ]
-        },
-        { 
-          category:    'expenses',
-          scategory:   'Employees',
-          sscategory:  'Backend Developer',
-          title:        null,
-          description:  'The reason everything works.',
-          salary:       42000,
-          raise:        0,
-          taxes:        [ -314, -314, -345, -345, -367, -367, -367, -367, -367, -367, -367, -367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          benefits:     [ -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          money:        [ 0, 0, 0, 0, 0, 0, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400, -2400 ]
-        },
-        { 
-          category:    'expenses',
-          scategory:   'Employees',
-          sscategory:  'VP Marketing',
-          title:        null,
-          description:  'Knows how people think.',
-          salary:       42000,
-          raise:        0,
-          taxes:        [ -314, -314, -345, -345, -367, -367, -367, -367, -367, -367, -367, -367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          benefits:     [ -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          money:        [ 0, 0, 0, 0, 0, 0, 0, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000, -2000 ]
-        },
-        { 
-          category:    'expenses',
-          scategory:   'Employees',
-          sscategory:  'VP Sales',
-          title:        null,
-          description:  'Could sell a cow to a vegan.',
-          salary:       42000,
-          raise:        0,
-          taxes:        [ -314, -314, -345, -345, -367, -367, -367, -367, -367, -367, -367, -367, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          benefits:     [ -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-          money:        [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500, -3500 ]
-        },
-      ],
-    },
-    { year: 2016,
-    
+          name: 'Product One',
+          price: 10,
+          cog: 3,
+          commission: .1,
+          unitsSold: {
+            jan: 100,
+            feb: 150,
+            mar: 200,
+            apr: 250,
+            may: 300,
+            jun: 350,
+            jul: 400,
+            aug: 450,
+            sep: 500,
+            oct: 550,
+            nov: 600,
+            dec: 650
+          },
+          commissions: {
+            jan: 100,
+            feb: 150,
+            mar: 200,
+            apr: 250,
+            may: 300,
+            jun: 350,
+            jul: 400,
+            aug: 450,
+            sep: 500,
+            oct: 550,
+            nov: 600,
+            dec: 650
+          },
+          cogs: {
+            jan: 100,
+            feb: 150,
+            mar: 200,
+            apr: 250,
+            may: 300,
+            jun: 350,
+            jul: 400,
+            aug: 450,
+            sep: 500,
+            oct: 550,
+            nov: 600,
+            dec: 650
+          },
+          grossProfits: {
+            jan: 100,
+            feb: 150,
+            mar: 200,
+            apr: 250,
+            may: 300,
+            jun: 350,
+            jul: 400,
+            aug: 450,
+            sep: 500,
+            oct: 550,
+            nov: 600,
+            dec: 650
+          }
+        }
+      ]
     }
   ] //end of years
 } //end of dataFromServerToClient
