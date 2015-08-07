@@ -164,8 +164,6 @@ STARTUP COST SCHEMA
 
 */
 
-
-
 /*
 EMPLOYEE SCHEMA
   - the keys for describing the data associated with individual employee expenses
