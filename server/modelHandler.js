@@ -8,10 +8,10 @@ module.exports = {
   getExpenses: function(req, res) {
     var expenses = {};
     //get the all gAndA expenses 
-    db.getExpenses(function(err, expenses) {
-      if (err) //throw error
+    db.getExpenses()
+      .then(function(expenses) {
 
-    });
+      });
     //do some stuff with the expenses
     res.end(expenses);
     //expenses: {
