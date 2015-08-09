@@ -15,6 +15,26 @@ var generals = [
                 feb: 2000,
                 apr: 1000
               }
+          },
+          {
+            itemId: 10402,
+            name: 'Branding',
+            money:
+              {
+                feb: 1000,
+                mar: 1000,
+                apr: 1000,
+                may: 1000
+              }
+          },
+          {
+            itemId: 10502,
+            name: 'Conference',
+            money:
+              {
+                nov: 1000,
+                dec: 1000
+              }
           }
         ]
       },
@@ -22,13 +42,31 @@ var generals = [
         category: 'Facilities and Maintenance',
         items: [
           {
-            itemId: 10302,
-            name: 'Radio Ad',
+            itemId: 20302,
+            name: 'Rent',
             money:
               {
                 jan: 2000,
                 feb: 2000,
-                mar: 0
+                mar: 2000,
+                apr: 2000,
+                may: 2000,
+                jun: 2000, 
+                jul: 2000,
+                aug: 2000,
+                sep: 2000, 
+                oct: 2000,
+                nov: 2000,
+                dec: 2000
+              }
+          },
+          {
+            itemId: 20402,
+            name: 'Supplies',
+            money:
+              {
+                jan: 1000,
+                feb: 1000,
               }
           }
         ]
