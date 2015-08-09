@@ -1,17 +1,22 @@
 angular.module('mimo.general', [])
   .controller('generalController', function ($scope, generalFactory) {
-  $scope.message = 'General Controller';
-  generalFactory.getGeneral();
+  $scope.message = [];
+  // $scope.message = generalFactory.getGeneral();
+  $scope.getGeneral = function(){
+    generalFactory.getGeneral().then(function(resp){
+      $scope.message = resp.gAndA;
+    })
+  }
 })
-
-  .service('generalFactory', function ($http) {
-    this.getGeneral = function(){
+  .factory('generalFactory', function ($http) {
+    var factory = {};
+    factory.getGeneral = function(){
       return $http({
         method:'GET',
-        url:'/model'
+        url:'/general'
       }).then(function(results){
-        console.log(results);
-        return results;
+        return results.data[0];
       });
     }
+    return factory;
   })

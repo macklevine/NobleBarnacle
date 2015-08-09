@@ -4,7 +4,7 @@ var modelHandler = require('./modelHandler.js');
 
 var app = express();
 // app.set('views', __dirname + '/views');
-app.use(express.static(__dirname + '/../client/public'));
+app.use(express.static('../client'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -15,7 +15,7 @@ var server = app.listen(3000, function () {
 });
 
 app.get('/', function (req, res) {
-  res.send('index');
+  res.send('homePage');
 });
 
 app.get('/model', function (req, res) {
