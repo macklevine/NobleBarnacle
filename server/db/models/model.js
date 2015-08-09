@@ -3,8 +3,17 @@ var bluebird = require('bluebird');
 
 //NOTES:
 
-//the schema 
+/* the schema differs from Trevor's spec in the following
+ways:
 
+-"Years" is no longer a top-level key in the model object; it is now a property
+on gAndA objects, employee objects, startup cost objects, debt and equity objects,
+and revenue source objects. This is because the nesting of properties was getting
+out of control. You can find the key 'years' on each of these items as an array of numbers.
+
+-The same is also true of gAndA expenses. They're no longer nested like they were
+in Trevor's example JSON object--they're individual objects with a "category" property.
+*/
 var modelSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true }},
   companyName: String,
@@ -177,7 +186,7 @@ var instantiateDefaultModel = function(username){
 
     var healthCare = new Benefit({
       _parentModel: defaultModel.id,
-      name: 'healthCare',
+      name: 'Health Care',
       dollarsPerMonth: -200,
       increasePerYear: .12
     });
@@ -195,7 +204,7 @@ var instantiateDefaultModel = function(username){
 
     var shortTermDisability = new Benefit({
       _parentModel: defaultModel.id,
-      name: 'shortTermDisability',
+      name: 'Short Term Disability',
       percentageOfPay: .014,
       increasePerYear: .03
     });
@@ -204,7 +213,7 @@ var instantiateDefaultModel = function(username){
 
     var longTermDisability = new Benefit({
       _parentModel: defaultModel.id,
-      name: 'longTermDisability',
+      name: 'Long Term Disability',
       percentageOfPay: .009,
       increasePerYear: .03
     });
@@ -213,7 +222,7 @@ var instantiateDefaultModel = function(username){
 
     var lifeInsurance = new Benefit({
       _parentModel: defaultModel.id,
-      name: 'lifeInsurance',
+      name: 'Life Insurance',
       percentageOfPay: .005,
       increasePerYear: .03
     });
@@ -224,7 +233,7 @@ var instantiateDefaultModel = function(username){
     //start taxes for the default model
     var stateUnemploymentIns = new Tax({
       _parentModel: defaultModel.id,
-      name: 'stateUnemploymentIns',
+      name: 'Statue Unemployment Insurance',
       percentageOfPay: .002,
       upTo: 14400
     });
@@ -233,7 +242,7 @@ var instantiateDefaultModel = function(username){
 
     var employerFICA = new Tax({
       _parentModel: defaultModel.id,
-      name: 'employerFICA',
+      name: 'Employer FICA',
       percentageOfPay: .062,
       upTo: 100000
     });
@@ -242,7 +251,7 @@ var instantiateDefaultModel = function(username){
 
     var medicare = new Tax({
       _parentModel: defaultModel.id,
-      name:             'medicare',
+      name:             'Medicare',
       percentageOfPay:  .0145,
       upTo:             999999
     });
@@ -251,22 +260,126 @@ var instantiateDefaultModel = function(username){
 
     var federalUnemploymentIns = new Tax({
       _parentModel: defaultModel.id,
-      name:             'federalUnemploymentIns',
+      name:             'Federal Unemployment Insurance',
       percentageOfPay:  .008,
       upTo:             7400  
     });
+
 
     federalUnemploymentIns.save();
 
     var workersComp = new Tax({
       _parentModel: defaultModel.id,
-      name:             'workersComp',
+      name:             'Worker\'s Compensation',
       percentageOfPay:  .0032,
       upTo:             999999
     });
 
     workersComp.save();
 
+    var radioAd = new GAndA({
+      _parentModel: defaultModel.id,
+      years: [2015],
+      category: 'Marketing',
+      name: 'Radio Ad',
+      description: 'We plan to purchase a radio ad to increase awareness',
+      cost: 2000,
+      money: ["jan", "feb", "apr", "jul", "aug", "sep"]
+    });
+
+    radioAd.save();
+
+    var brandingDesign = new GAndA({
+      _parentModel: defaultModel.id,
+      years: [2015],
+      category: 'Marketing',
+      name: 'Branding Design',
+      description: 'Payment for logo design',
+      cost: 200,
+      money: ["aug"]
+    });
+
+    brandingDesign.save(); //maybe consider turning these into promises w/ bluebird.
+
+    var tradeShow = new GAndA({
+      _parentModel: defaultModel.id,
+      years: [2015],
+      category: 'Marketing',
+      name: 'Trade Show',
+      description: 'Traveling to a trade show in Las Vegas',
+      cost: 3000,
+      money: ["dec"]
+    });
+
+    tradeShow.save();
+
+    var cellPhones = new GAndA({
+      _parentModel: defaultModel.id,
+      years: [2015],
+      category: 'Facilities and Equipment',
+      name: 'Cell Phones',
+      description: 'communication costs for the team',
+      cost: 500,
+      money: ["apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    });
+
+    cellPhones.save();
+
+    var rent = new GAndA({
+      _parentModel: defaultModel.id,
+      years: [2015],
+      category: "Facilities and Equipment",
+      name: "Rent",
+      description: 'Rent for office space',
+      cost: 2500,
+      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    });
+
+    rent.save();
+
+    var cleaning = new GAndA({
+      _parentModel: defaultModel.id,
+      years: [2015],
+      category: "Facilities and Equipment",
+      name: "Cleaning",
+      description: "Cleaning service for the office space",
+      cost: 300,
+      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    });
+
+    cleaning.save();
+
+    var insurance = new GAndA({
+      _parentModel: defaultModel.id,
+      years: [2015],
+      category: "Insurance",
+      name: "General Liability",
+      description: "General liability insurance",
+      cost: 400,
+      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    });
+
+    insurance.save();
+
+    var propertyInsurance = new GAndA({
+      _parentModel: defaultModel.id,
+      years: [2015],
+      category: "Insurance",
+      name: 'Property Insurance',
+      description: 'Property Insurance',
+      cost: 300,
+      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    });
+
+    propertyInsurance.save();
+
+  //     _parentModel: {type: String, ref: "Model"},
+  // years: [Number], //an array of numbers representing each year.
+  // category: String,
+  // name: String,
+  // description: String,
+  // cost: Number,
+  // months: [String] //an array of strings.
 
     //the initial employee on the default model
     var CEO = new Employee({
