@@ -1,3 +1,42 @@
+//imitation general data that would be returned from the db
+var generals = [
+  {
+    year: 2015,
+    gAndA: [
+      {
+        category: 'Marketing',
+        items: [
+          {
+            itemId: 10302,
+            name: 'Radio Ad',
+            money:
+              {
+                jan: 2000,
+                feb: 2000,
+                apr: 1000
+              }
+          }
+        ]
+      },
+      {
+        category: 'Facilities and Maintenance',
+        items: [
+          {
+            itemId: 10302,
+            name: 'Radio Ad',
+            money:
+              {
+                jan: 2000,
+                feb: 2000,
+                mar: 0
+              }
+          }
+        ]
+      }
+    ]
+  }
+];
+
 module.exports = {
 
   //******************************
@@ -8,17 +47,16 @@ module.exports = {
   getExpenses: function(req, res) {
     var expenses = {};
     //get the all gAndA expenses 
-    db.getExpenses(function(err, expenses) {
-      if (err) //throw error
+    db.getExpenses()
+      .then(function(expenses) {
 
-    });
+      });
     //do some stuff with the expenses
     res.end(expenses);
     //expenses: {
     //  gAndA: [],
     //   
-    }
-  },
+    },
 
   //get all employees
   getEmployees: function(req, res) {
@@ -29,19 +67,20 @@ module.exports = {
 
   //get employee by id
   getEmployeeById: function(req, res) {
-    var id = req.; //figure out how to get the employee id
+    var id = req.data; //figure out how to get the employee id
     var employee = db.getEmployee(id);
     //do some stuff with the employee
     res.end(employee);
   },
 
   //get all G&A's
-  getGAndAs: function(req, res) {
+  getGenerals: function(req, res) {
     var userId = req.body.id;
-    db.getGAndAs(userId, function (err, gAndAs) {
-      if (err) throw new err;
-      res.end(gAndAs);
-    });
+    // db.getGAndAs(userId, function (err, gAndAs) {
+    //   if (err) throw new err;
+    //   res.end(gAndAs);
+    // });
+    res.end(JSON.stringify(generals));
   },
 
   //get g&a by id
@@ -59,11 +98,9 @@ module.exports = {
   //******************************
 
   updateEmployee: function(req, res) {
-    var id = req.stuff?; 
-    var updates = req.data?;
+    var id = req.data;
+    var updates = req.data;
 
-    db.
   }
-
 
 }

@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var modelHandler = require('modelHandler');
+var modelHandler = require('./modelHandler.js');
 
 var app = express();
 // app.set('views', __dirname + '/views');
@@ -28,9 +28,9 @@ app.get('/expenses', function (req, res) {
   modelHandler.getExpenses(req, res);
 });
 
-app.get('/gAndA', function (req, res) {
-  //get all gAndA's from database
-  modelHandler.getGAndAs(req, res);
+app.get('/general', function (req, res) {
+  //get all general's from database
+  modelHandler.getGenerals(req, res);
 });
 
 //routes from client
