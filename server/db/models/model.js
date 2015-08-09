@@ -1,22 +1,27 @@
 var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 
+//NOTES:
+
+//the schema 
+
 var modelSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true }},
   companyName: String,
   startingCash: 0,
   settings: {
     benefits: [{type: Schema.Types.ObjectId, ref: 'Benefit'}],
-    taxes: [{type: Schema.Types.ObjectId, ref: 'Tax'}],
+    taxes: [{type: Schema.Types.ObjectId, ref: 'Tax'}]
   },
+  //wrap expenses in a key with array value of objects called 'years'
   expenses: {
+    gAndA: [{type: Schema.TypesObjectId, ref: 'GAndA'}],
     employees: [{type: Schema.Types.ObjectId, ref: 'Employee'}],
     startupCosts: [{type: Schema.Types.ObjectId, ref: 'StartupCost'}]
-  }, //a schema can have nested keys like this.
+  },
   debtsAndEquities: [{type: Schema.Types.ObjectId, ref: 'DebtAndEquity'}],
   revenueSources: [{type: Schema.Types.ObjectId, ref: "RevenueSource"}]
-}); //This may need to be declared after all of the
-//component schemas. Check this.
+});
 
 var benefitSchema = mongoose.Schema({
   _parentModel: {type: String, ref: "Model"},
@@ -33,11 +38,22 @@ var taxSchema = mongoose.Schema({
   upTo: Number,
 });
 
+var gAndASchema = mongoose.Schema({
+  _parentModel: {type: String, ref: "Model"},
+  years: [Number], //an array of numbers representing each year.
+  category: String,
+  name: String,
+  description: String,
+  cost: Number,
+  months: [String] //an array of strings.
+});
+
 var employeeSchema = mongoose.Schema({
   //Trevor wants to be able to fetch employees by an ID value;
   //this will not be the same as the big hash string Mongo automatically
   //assigns to the invisible _id field.
   _parentModel: {type: String, ref: "Model"},
+  years: [Number], //an array of numbers representing eaach year.
   title: String,
   yearlySalary: Number,
   startDate: String
@@ -46,6 +62,7 @@ var employeeSchema = mongoose.Schema({
 
 var startupCostSchema = mongoose.Schema({
   _parentModel: {type: String, ref: "Model"},
+  years: [Number], //an array of numbers representing eaach year.
   type: String,
   cost: Number,
   month: String
@@ -53,6 +70,7 @@ var startupCostSchema = mongoose.Schema({
 
 var debtAndEquitySchema = mongoose.Schema({ //need to find an actual example from Trevor's data.
   _parentModel: {type: String, ref: "Model"},
+  years: [Number], //an array of numbers representing eaach year.
   name: String,
   type: String, //'loan' or 'equity'
   principle: Number,
@@ -63,6 +81,7 @@ var debtAndEquitySchema = mongoose.Schema({ //need to find an actual example fro
 
 var revenueSchema = mongoose.Schema({
   _parentModel: {type: String, ref: "Model"},
+  years: [Number], //an array of numbers representing eaach year.
   productName: String,
   pricePerUnit: Number,
   costOfProductionPerUnit: Number,
@@ -87,6 +106,7 @@ var revenueSchema = mongoose.Schema({
 //constructors below.
 var Benefit = mongoose.model("Benefit", benefitSchema);
 var Tax = mongoose.model("Tax", taxSchema);
+var GAndA = mongoose.model("GAndA", gAndASchema);
 var Employee = mongoose.model("Employee", employeeSchema);
 var StartupCost = mongoose.model("StartupCost", startupCostSchema);
 var DebtAndEquity = mongoose.model("DebtAndEquity", debtAndEquitySchema);
@@ -250,7 +270,8 @@ var instantiateDefaultModel = function(username){
 
     //the initial employee on the default model
     var CEO = new Employee({
-      _parentModel: defaultModel.id
+      _parentModel: defaultModel.id,
+      years: [2015], 
       title: "CEO",
       yearlySalary: 150000,
       startDate: 'feb'
