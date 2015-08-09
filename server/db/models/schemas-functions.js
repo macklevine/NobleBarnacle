@@ -13,6 +13,7 @@ out of control. You can find the key 'years' on each of these items as an array 
 
 -The same is also true of gAndA expenses. They're no longer nested like they were
 in Trevor's example JSON object--they're individual objects with a "category" property.
+
 */
 var modelSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true }},
@@ -72,7 +73,7 @@ var employeeSchema = mongoose.Schema({
 var startupCostSchema = mongoose.Schema({
   _parentModel: {type: String, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
-  type: String,
+  name: String,
   cost: Number,
   month: String
 });
@@ -82,7 +83,7 @@ var debtAndEquitySchema = mongoose.Schema({ //need to find an actual example fro
   years: [Number], //an array of numbers representing eaach year.
   name: String,
   type: String, //'loan' or 'equity'
-  principle: Number,
+  principal: Number,
   startMonth: String,
   months: String,//maybe an array of strings?
   interest: Number
@@ -154,7 +155,7 @@ var addRevenueSource = function(username){
 
 var deleteRevenueSource = function(username){
 
-}
+};
 
 //Trevor's requested functions are below:
 
@@ -168,237 +169,24 @@ var getExpenses = function(username){
     }
   });
   //check if Trevor wants this in a specific format.
-}
+};
+
+exports.Benefit = Benefit;
+exports.Tax = Tax;
+exports.GAndA = GAndA;
+exports.Employee = Employee;
+exports.StartupCost = StartupCost;
+exports.DebtAndEquity = DebtAndEquity;
+exports.RevenueSource = RevenueSource;
+exports.Model = Model;
+
 
 //add more of Trevor's functions:
 
 
 //the function for creating each user's default model is below.
 
-var instantiateDefaultModel = function(username){
-  //validate the username first.
 
-  var defaultModel = new Model({
-    username: username,
-    startingCash: 0,
-  }).save(function (err){
-    if (err) {return err};
-
-    var healthCare = new Benefit({
-      _parentModel: defaultModel.id,
-      name: 'Health Care',
-      dollarsPerMonth: -200,
-      increasePerYear: .12
-    });
-
-    healthCare.save();
-
-    var dental = new Benefit({
-      _parentModel: defaultModel.id,
-      name: 'dental',
-      dollarsPerMonth: -25,
-      increasePerYear: .03
-    });
-
-    dental.save();
-
-    var shortTermDisability = new Benefit({
-      _parentModel: defaultModel.id,
-      name: 'Short Term Disability',
-      percentageOfPay: .014,
-      increasePerYear: .03
-    });
-
-    shortTermDisability.save();
-
-    var longTermDisability = new Benefit({
-      _parentModel: defaultModel.id,
-      name: 'Long Term Disability',
-      percentageOfPay: .009,
-      increasePerYear: .03
-    });
-    
-    longTermDisability.save();
-
-    var lifeInsurance = new Benefit({
-      _parentModel: defaultModel.id,
-      name: 'Life Insurance',
-      percentageOfPay: .005,
-      increasePerYear: .03
-    });
-
-    lifeInsurance.save();
-    //done with saved benefits.
-
-    //start taxes for the default model
-    var stateUnemploymentIns = new Tax({
-      _parentModel: defaultModel.id,
-      name: 'Statue Unemployment Insurance',
-      percentageOfPay: .002,
-      upTo: 14400
-    });
-
-    stateUnemploymentIns.save();
-
-    var employerFICA = new Tax({
-      _parentModel: defaultModel.id,
-      name: 'Employer FICA',
-      percentageOfPay: .062,
-      upTo: 100000
-    });
-
-    employerFICA.save(),
-
-    var medicare = new Tax({
-      _parentModel: defaultModel.id,
-      name:             'Medicare',
-      percentageOfPay:  .0145,
-      upTo:             999999
-    });
-
-    medicare.save();
-
-    var federalUnemploymentIns = new Tax({
-      _parentModel: defaultModel.id,
-      name:             'Federal Unemployment Insurance',
-      percentageOfPay:  .008,
-      upTo:             7400  
-    });
-
-
-    federalUnemploymentIns.save();
-
-    var workersComp = new Tax({
-      _parentModel: defaultModel.id,
-      name:             'Worker\'s Compensation',
-      percentageOfPay:  .0032,
-      upTo:             999999
-    });
-
-    workersComp.save();
-
-    var radioAd = new GAndA({
-      _parentModel: defaultModel.id,
-      years: [2015],
-      category: 'Marketing',
-      name: 'Radio Ad',
-      description: 'We plan to purchase a radio ad to increase awareness',
-      cost: 2000,
-      money: ["jan", "feb", "apr", "jul", "aug", "sep"]
-    });
-
-    radioAd.save();
-
-    var brandingDesign = new GAndA({
-      _parentModel: defaultModel.id,
-      years: [2015],
-      category: 'Marketing',
-      name: 'Branding Design',
-      description: 'Payment for logo design',
-      cost: 200,
-      money: ["aug"]
-    });
-
-    brandingDesign.save(); //maybe consider turning these into promises w/ bluebird.
-
-    var tradeShow = new GAndA({
-      _parentModel: defaultModel.id,
-      years: [2015],
-      category: 'Marketing',
-      name: 'Trade Show',
-      description: 'Traveling to a trade show in Las Vegas',
-      cost: 3000,
-      money: ["dec"]
-    });
-
-    tradeShow.save();
-
-    var cellPhones = new GAndA({
-      _parentModel: defaultModel.id,
-      years: [2015],
-      category: 'Facilities and Equipment',
-      name: 'Cell Phones',
-      description: 'communication costs for the team',
-      cost: 500,
-      money: ["apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-    });
-
-    cellPhones.save();
-
-    var rent = new GAndA({
-      _parentModel: defaultModel.id,
-      years: [2015],
-      category: "Facilities and Equipment",
-      name: "Rent",
-      description: 'Rent for office space',
-      cost: 2500,
-      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-    });
-
-    rent.save();
-
-    var cleaning = new GAndA({
-      _parentModel: defaultModel.id,
-      years: [2015],
-      category: "Facilities and Equipment",
-      name: "Cleaning",
-      description: "Cleaning service for the office space",
-      cost: 300,
-      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-    });
-
-    cleaning.save();
-
-    var insurance = new GAndA({
-      _parentModel: defaultModel.id,
-      years: [2015],
-      category: "Insurance",
-      name: "General Liability",
-      description: "General liability insurance",
-      cost: 400,
-      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-    });
-
-    insurance.save();
-
-    var propertyInsurance = new GAndA({
-      _parentModel: defaultModel.id,
-      years: [2015],
-      category: "Insurance",
-      name: 'Property Insurance',
-      description: 'Property Insurance',
-      cost: 300,
-      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-    });
-
-    propertyInsurance.save();
-
-  //     _parentModel: {type: String, ref: "Model"},
-  // years: [Number], //an array of numbers representing each year.
-  // category: String,
-  // name: String,
-  // description: String,
-  // cost: Number,
-  // months: [String] //an array of strings.
-
-    //the initial employee on the default model
-    var CEO = new Employee({
-      _parentModel: defaultModel.id,
-      years: [2015], 
-      title: "CEO",
-      yearlySalary: 150000,
-      startDate: 'feb'
-    });
-
-    CEO.save(); //maybe do some error handling for each one of these?
-
-    //TODO: populate the rest of this constructor function with shit
-    //from dataFromServerToClient.js.
-
-
-  })
-  return defaultModel;
-}
 
 
 //start defining exports here.
