@@ -12,27 +12,27 @@ mimo.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/home', {
-        templateUrl: '/model/model.html',
+        templateUrl: 'app/views/model.html',
         controller: 'modelController'
       }).
       when('/employee', {
-        templateUrl: '/employee/employee.html',
+        templateUrl: 'app/views/employee.html',
         controller: 'employeeController'
       }).
       when('/expenses', {
-        templateUrl: '/expenses/expenses.html',
+        templateUrl: 'app/views/expenses.html',
         controller: 'expensesController'
       }).
       when('/equity', {
-        templateUrl: '/debtAndEquity/debtAndEquity.html',
+        templateUrl: 'app/views/debtAndEquity.html',
         controller: 'debtAndEquityController'
       }).
       when('/general', {
-        templateUrl: '/general/general.html',
+        templateUrl: 'app/views/general.html',
         controller: 'generalController'
       }).
       when('/revenue', {
-        templateUrl: '/revenue/revenue.html',
+        templateUrl: 'app/views/revenue.html',
         controller: 'revenueController'
       })
   }])
