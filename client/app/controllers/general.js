@@ -1,7 +1,6 @@
 angular.module('mimo.general', [])
   .controller('generalController', function ($scope, generalFactory) {
   $scope.message = [];
-  // $scope.message = generalFactory.getGeneral();
   $scope.getGeneral = function(){
     generalFactory.getGeneral().then(function(resp){
       $scope.message = resp.gAndA;
