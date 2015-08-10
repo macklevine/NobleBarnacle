@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bluebird = require('bluebird');
+var Schema = mongoose.Schema;
 
 //NOTES:
 
@@ -25,7 +26,7 @@ var modelSchema = mongoose.Schema({
   },
   //wrap expenses in a key with array value of objects called 'years'
   expenses: {
-    gAndA: [{type: Schema.TypesObjectId, ref: 'GAndA'}],
+    gAndA: [{type: Schema.Types.ObjectId, ref: 'GAndA'}],
     employees: [{type: Schema.Types.ObjectId, ref: 'Employee'}],
     startupCosts: [{type: Schema.Types.ObjectId, ref: 'StartupCost'}]
   },

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 var constructor = require('./schemas-functions.js');
 
-var instantiateDefaultModel = function(username){
+var instantiateDefaultModel = function(username, callback){
   //validate the username first.
 
   var defaultModel = new constructor.Model({
@@ -207,7 +207,18 @@ var instantiateDefaultModel = function(username){
       startYear: 2015,
     });
 
-    healthCare.save();
+    healthCare.save(function(err){
+      if (err){return err};
+      dental.save(function(err){
+        if(err){return err};
+        shortTermDisability.save(function(err){
+          if(err){return err};
+          longTermDisability.save(function(err){
+
+          })
+        })
+      });
+    });
     dental.save();
     shortTermDisability.save();
     longTermDisability.save();
@@ -231,23 +242,9 @@ var instantiateDefaultModel = function(username){
     purchaseEquipment.save();
     loan1.save();
 
-  //TODO: finish loans
-
-  //     _parentModel: {type: String, ref: "Model"},
-  // years: [Number], //an array of numbers representing eaach year.
-  // name: String,
-  // type: String, //'loan' or 'equity'
-  // principle: Number,
-  // startMonth: String,
-  // months: String,//maybe an array of strings?
-  // interest: Number
-
-    //TODO: populate the rest of this constructor function with shit
-    //from dataFromServerToClient.js.
-
-
-  })
-  return defaultModel;  //do so ONLY after all the other objects have been saved.
+  });
+  callback();
+  // return defaultModel;  //do so ONLY after all the other objects have been saved.
 }
 
 exports.instantiateDefaultModel = instantiateDefaultModel;
