@@ -1,79 +1,196 @@
 //imitation general data that would be returned from the db
-var generals = [
-  {
-    year: 2015,
-    gAndA: [
+var model = {
+    username: "mack",
+    companyName: "My Company",
+    startingCash: 0,
+    settings: {
+      benefits: [
+        {
+          name: 'Health Care',
+          dollarsPerMonth: -200,
+          increasePerYear: .12
+        },
+        {
+          name: 'dental',
+          dollarsPerMonth: -25,
+          increasePerYear: .03
+        },
+        {
+          name: 'Short Term Disability',
+          percentageOfPay: .014,
+          increasePerYear: .03
+        },
+        {
+          name: 'Long Term Disability',
+          percentageOfPay: .009,
+          increasePerYear: .03
+        },
+        {
+          name: 'Life Insurance',
+          percentageOfPay: .005,
+          increasePerYear: .03
+        }
+      ],
+      taxes: [
+        {
+          name: 'Statue Unemployment Insurance',
+          percentageOfPay: .002,
+          upTo: 14400
+        },
+        {
+          name: 'Employer FICA',
+          percentageOfPay: .062,
+          upTo: 100000
+        },
+        {
+          name:             'Medicare',
+          percentageOfPay:  .0145,
+          upTo:             999999
+        },
+        {
+          name:             'Federal Unemployment Insurance',
+          percentageOfPay:  .008,
+          upTo:             7400  
+        },
+        {
+          name:             'Worker\'s Compensation',
+          percentageOfPay:  .0032,
+          upTo:             999999
+        },
+      ]
+    },
+    //wrap expenses in a key with array value of objects called 'years'
+    expenses: {
+      gAndA: [
+        {
+          years: [2015],
+          category: 'Marketing',
+          name: 'Radio Ad',
+          description: 'We plan to purchase a radio ad to increase awareness',
+          cost: 2000,
+          money: ["jan", "feb", "apr", "jul", "aug", "sep"]
+        },
+        {
+          years: [2015],
+          category: 'Marketing',
+          name: 'Branding Design',
+          description: 'Payment for logo design',
+          cost: 200,
+          money: ["aug"]
+        },
+        {
+          years: [2015],
+          category: 'Marketing',
+          name: 'Trade Show',
+          description: 'Traveling to a trade show in Las Vegas',
+          cost: 3000,
+          money: ["dec"]
+        },
+        {
+          years: [2015],
+          category: 'Facilities and Equipment',
+          name: 'Cell Phones',
+          description: 'communication costs for the team',
+          cost: 500,
+          money: ["apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+        },
+        {
+          years: [2015],
+          category: "Facilities and Equipment",
+          name: "Rent",
+          description: 'Rent for office space',
+          cost: 2500,
+          money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+        },
+        {
+          years: [2015],
+          category: "Facilities and Equipment",
+          name: "Cleaning",
+          description: "Cleaning service for the office space",
+          cost: 300,
+          money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+        },
+        {
+          years: [2015],
+          category: "Insurance",
+          name: "General Liability",
+          description: "General liability insurance",
+          cost: 400,
+          money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+        },
+        {
+          years: [2015],
+          category: "Insurance",
+          name: 'Property Insurance',
+          description: 'Property Insurance',
+          cost: 300,
+          money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+        },
+        {
+          years: [2015],
+          category: "Supplies",
+          name: "Computers",
+          description: "Laptops for new employees",
+          cost: 4000,
+          money: ["sep"]
+        },
+        {
+          years: [2015],
+          category: "Supplies",
+          name: "Servers",
+          description: "Server stack for deployment",
+          cost: 3000,
+          money: ["dec"]
+        }
+      ],
+      employees: [
+        {
+          years: [2015], 
+          title: "CEO",
+          yearlySalary: 150000,
+          startDate: 'feb'
+        }
+      ],
+      startupCosts: [
+        {
+          years: [2015],
+          name: "Purchase Equipment",
+          cost: 10000,
+          month: ['feb']
+        }
+      ]
+    },
+    debtsAndEquities: [
       {
-        category: 'Marketing',
-        items: [
-          {
-            itemId: 10302,
-            name: 'Radio Ad',
-            money:
-              {
-                jan: 2000,
-                feb: 2000,
-                apr: 1000
-              }
-          },
-          {
-            itemId: 10402,
-            name: 'Branding',
-            money:
-              {
-                feb: 1000,
-                mar: 1000,
-                apr: 1000,
-                may: 1000
-              }
-          },
-          {
-            itemId: 10502,
-            name: 'Conference',
-            money:
-              {
-                nov: 1000,
-                dec: 1000
-              }
-          }
-        ]
-      },
-      {
-        category: 'Facilities and Maintenance',
-        items: [
-          {
-            itemId: 20302,
-            name: 'Rent',
-            money:
-              {
-                jan: 2000,
-                feb: 2000,
-                mar: 2000,
-                apr: 2000,
-                may: 2000,
-                jun: 2000, 
-                jul: 2000,
-                aug: 2000,
-                sep: 2000, 
-                oct: 2000,
-                nov: 2000,
-                dec: 2000
-              }
-          },
-          {
-            itemId: 20402,
-            name: 'Supplies',
-            money:
-              {
-                jan: 1000,
-                feb: 1000,
-              }
-          }
-        ]
+        years: [2015],
+        name: "Loan 1",
+        type: "loan",
+        principal: 160000,
+        startYear: 2015,
       }
-    ]
-  }
-];
+    ],
+    revenueSources: [{
+      years: [2015],
+      productName: "Product 1",
+      pricePerUnit: 10,
+      costOfProductionPerUnit: 3,
+      commission: .1,
+      monthlyUnitSales: {
+        jan: 100,
+        feb: 150,
+        mar: 200,
+        apr: 250,
+        may: 300,
+        jun: 350,
+        jul: 400,
+        aug: 450,
+        sep: 500,
+        oct: 550,
+        nov: 600,
+        dec: 650
+      }
+    }]
+  };
 
 module.exports = {
 
@@ -112,13 +229,13 @@ module.exports = {
   },
 
   //get all G&A's
-  getGenerals: function(req, res) {
+  getModel: function(req, res) {
     var userId = req.body.id;
     // db.getGAndAs(userId, function (err, gAndAs) {
     //   if (err) throw new err;
     //   res.end(gAndAs);
     // });
-    res.end(JSON.stringify(generals));
+    res.end(JSON.stringify(model));
   },
 
   //get g&a by id

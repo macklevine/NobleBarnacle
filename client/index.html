@@ -10,6 +10,7 @@
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-route/angular-route.min.js"></script>
     <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/interact/interact.min.js"></script>
     <script src="app/styles/scripts/scripts.js"></script>
     <link href="app/styles/css/main.css" rel="stylesheet">
     <!-- Angular views -->
@@ -23,7 +24,7 @@
     <!-- jQuery -->
     <!-- /#wrapper -->
 </head>
-<body ng-app='mimo'>
+<body ng-app='mimo' ng-controller='modelController' ng-init='getModel()'>
     <div id="wrapper" class="toggled">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
