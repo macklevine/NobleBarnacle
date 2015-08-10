@@ -59,9 +59,6 @@ var gAndASchema = mongoose.Schema({
 });
 
 var employeeSchema = mongoose.Schema({
-  //Trevor wants to be able to fetch employees by an ID value;
-  //this will not be the same as the big hash string Mongo automatically
-  //assigns to the invisible _id field.
   _parentModel: {type: String, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
   title: String,
@@ -78,14 +75,14 @@ var startupCostSchema = mongoose.Schema({
   month: String
 });
 
-var debtAndEquitySchema = mongoose.Schema({ //need to find an actual example from Trevor's data.
+var debtAndEquitySchema = mongoose.Schema({
   _parentModel: {type: String, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
   name: String,
   type: String, //'loan' or 'equity'
   principal: Number,
   startMonth: String,
-  months: String,//maybe an array of strings?
+  months: String, //maybe an array of strings?
   interest: Number
 });
 
@@ -125,51 +122,14 @@ var Model = mongoose.model("Model", modelSchema);
 
 //Functions to add and delete items from an existing financial model are declared below (scaffolding)
 
-var addEmployee = function(username){
-
-};
-
-var deleteEmployee = function(username){
-
-};
-
-var addStartupCost = function(username){
-
-};
-
-var deleteStartupCost = function(username){
-
-};
-
-var addDebtAndEquity = function(username){
-
-};
-
-var deleteDebtAndEquity = function(username){
-
-};
-
-var addRevenueSource = function(username){
-
-};
-
-var deleteRevenueSource = function(username){
-
+var getModel = function(req, res){
+  username = req.body.username;
+  Model.findOne({username: username}).exec(function(err, model) {
+    res.send(200, model);
+  });
 };
 
 //Trevor's requested functions are below:
-
-var getExpenses = function(username){
-  //return all expenses for a given model/username as an array.
-  return Model.findOne({username: username}).exec(function(err, model){
-    if (err){
-      //handle an error somehow.
-    } else {
-      return model.expenses;
-    }
-  });
-  //check if Trevor wants this in a specific format.
-};
 
 exports.Benefit = Benefit;
 exports.Tax = Tax;
@@ -179,6 +139,8 @@ exports.StartupCost = StartupCost;
 exports.DebtAndEquity = DebtAndEquity;
 exports.RevenueSource = RevenueSource;
 exports.Model = Model;
+
+exports.getModel = getModel;
 
 
 //add more of Trevor's functions:

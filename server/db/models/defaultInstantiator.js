@@ -17,17 +17,13 @@ var instantiateDefaultModel = function(username){
       dollarsPerMonth: -200,
       increasePerYear: .12
     });
-
-    healthCare.save();
-
+    
     var dental = new constructor.Benefit({
       _parentModel: defaultModel.id,
       name: 'dental',
       dollarsPerMonth: -25,
       increasePerYear: .03
     });
-
-    dental.save();
 
     var shortTermDisability = new constructor.Benefit({
       _parentModel: defaultModel.id,
@@ -36,8 +32,6 @@ var instantiateDefaultModel = function(username){
       increasePerYear: .03
     });
 
-    shortTermDisability.save();
-
     var longTermDisability = new constructor.Benefit({
       _parentModel: defaultModel.id,
       name: 'Long Term Disability',
@@ -45,19 +39,13 @@ var instantiateDefaultModel = function(username){
       increasePerYear: .03
     });
     
-    longTermDisability.save();
-
     var lifeInsurance = new constructor.Benefit({
       _parentModel: defaultModel.id,
       name: 'Life Insurance',
       percentageOfPay: .005,
       increasePerYear: .03
     });
-
-    lifeInsurance.save();
-    //done with saved benefits.
-
-    //start taxes for the default model
+    
     var stateUnemploymentIns = new constructor.Tax({
       _parentModel: defaultModel.id,
       name: 'Statue Unemployment Insurance',
@@ -65,26 +53,20 @@ var instantiateDefaultModel = function(username){
       upTo: 14400
     });
 
-    stateUnemploymentIns.save();
-
     var employerFICA = new constructor.Tax({
       _parentModel: defaultModel.id,
       name: 'Employer FICA',
       percentageOfPay: .062,
       upTo: 100000
     });
-
-    employerFICA.save(),
-
+    
     var medicare = new constructor.Tax({
       _parentModel: defaultModel.id,
       name:             'Medicare',
       percentageOfPay:  .0145,
       upTo:             999999
     });
-
-    medicare.save();
-
+    
     var federalUnemploymentIns = new constructor.Tax({
       _parentModel: defaultModel.id,
       name:             'Federal Unemployment Insurance',
@@ -92,18 +74,13 @@ var instantiateDefaultModel = function(username){
       upTo:             7400  
     });
 
-
-    federalUnemploymentIns.save();
-
     var workersComp = new constructor.Tax({
       _parentModel: defaultModel.id,
       name:             'Worker\'s Compensation',
       percentageOfPay:  .0032,
       upTo:             999999
     });
-
-    workersComp.save();
-
+    
     var radioAd = new constructor.GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -113,9 +90,7 @@ var instantiateDefaultModel = function(username){
       cost: 2000,
       money: ["jan", "feb", "apr", "jul", "aug", "sep"]
     });
-
-    radioAd.save();
-
+    
     var brandingDesign = new constructor.GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -125,9 +100,7 @@ var instantiateDefaultModel = function(username){
       cost: 200,
       money: ["aug"]
     });
-
-    brandingDesign.save(); //maybe consider turning these into promises w/ bluebird.
-
+    
     var tradeShow = new constructor.GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -137,9 +110,7 @@ var instantiateDefaultModel = function(username){
       cost: 3000,
       money: ["dec"]
     });
-
-    tradeShow.save();
-
+    
     var cellPhones = new constructor.GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -149,9 +120,7 @@ var instantiateDefaultModel = function(username){
       cost: 500,
       money: ["apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
     });
-
-    cellPhones.save();
-
+    
     var rent = new constructor.GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -161,9 +130,7 @@ var instantiateDefaultModel = function(username){
       cost: 2500,
       money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
     });
-
-    rent.save();
-
+    
     var cleaning = new GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -173,9 +140,7 @@ var instantiateDefaultModel = function(username){
       cost: 300,
       money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
     });
-
-    cleaning.save();
-
+    
     var insurance = new constructor.GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -185,9 +150,7 @@ var instantiateDefaultModel = function(username){
       cost: 400,
       money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
     });
-
-    insurance.save();
-
+    
     var propertyInsurance = new constructor.GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -197,9 +160,7 @@ var instantiateDefaultModel = function(username){
       cost: 300,
       money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
     });
-
-    propertyInsurance.save();
-
+    
     var computers = new constructor.GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -210,8 +171,6 @@ var instantiateDefaultModel = function(username){
       money: ["sep"]
     });
 
-    computers.save();
-
     var servers = new constructor.GAndA({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -221,10 +180,7 @@ var instantiateDefaultModel = function(username){
       cost: 3000,
       money: ["dec"]
     });
-
-    servers.save();
-
-    //the initial employee on the default model
+    
     var CEO = new constructor.Employee({
       _parentModel: defaultModel.id,
       years: [2015], 
@@ -232,8 +188,6 @@ var instantiateDefaultModel = function(username){
       yearlySalary: 150000,
       startDate: 'feb'
     });
-
-    CEO.save(); //maybe do some error handling for each one of these?
 
     var purchaseEquipment = new constructor.StartupCost({
       _parentModel: defaultModel.id,
@@ -244,8 +198,6 @@ var instantiateDefaultModel = function(username){
       //look up property...
     });
 
-    purchaseEquipment.save();
-
     var loan1 = new constructor.DebtAndEquity({
       _parentModel: defaultModel.id,
       years: [2015],
@@ -253,9 +205,30 @@ var instantiateDefaultModel = function(username){
       type: "loan",
       principal: 160000,
       startYear: 2015,
-      
     });
 
+    healthCare.save();
+    dental.save();
+    shortTermDisability.save();
+    longTermDisability.save();
+    lifeInsurance.save();
+    stateUnemploymentIns.save();
+    employerFICA.save(),
+    medicare.save();
+    federalUnemploymentIns.save();
+    workersComp.save();
+    radioAd.save();
+    brandingDesign.save(); //maybe consider turning these into promises w/ bluebird.
+    tradeShow.save();
+    cellPhones.save();
+    rent.save();
+    cleaning.save();
+    insurance.save();
+    propertyInsurance.save();
+    computers.save();
+    servers.save();
+    CEO.save();
+    purchaseEquipment.save();
     loan1.save();
 
   //TODO: finish loans
@@ -276,3 +249,10 @@ var instantiateDefaultModel = function(username){
   })
   return defaultModel;  //do so ONLY after all the other objects have been saved.
 }
+
+exports.instantiateDefaultModel = instantiateDefaultModel;
+
+
+
+
+
