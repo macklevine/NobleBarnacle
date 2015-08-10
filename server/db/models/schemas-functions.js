@@ -1,24 +1,69 @@
 var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 
+//NOTES:
+
+/* the schema differs from Trevor's spec in the following
+ways:
+
+-"Years" is no longer a top-level key in the model object; it is now a property
+on gAndA objects, employee objects, startup cost objects, debt and equity objects,
+and revenue source objects. This is because the nesting of properties was getting
+out of control. You can find the key 'years' on each of these items as an array of numbers.
+
+-The same is also true of gAndA expenses. They're no longer nested like they were
+in Trevor's example JSON object--they're individual objects with a "category" property.
+
+*/
 var modelSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true }},
+  companyName: String,
+  startingCash: 0,
+  settings: {
+    benefits: [{type: Schema.Types.ObjectId, ref: 'Benefit'}],
+    taxes: [{type: Schema.Types.ObjectId, ref: 'Tax'}]
+  },
+  //wrap expenses in a key with array value of objects called 'years'
   expenses: {
+    gAndA: [{type: Schema.TypesObjectId, ref: 'GAndA'}],
     employees: [{type: Schema.Types.ObjectId, ref: 'Employee'}],
     startupCosts: [{type: Schema.Types.ObjectId, ref: 'StartupCost'}]
-  }, //a schema can have nested keys like this.
+  },
   debtsAndEquities: [{type: Schema.Types.ObjectId, ref: 'DebtAndEquity'}],
   revenueSources: [{type: Schema.Types.ObjectId, ref: "RevenueSource"}]
 });
 
-//important questions: are objectIds generated automatically for every
-//instance of a mongoose model?
+var benefitSchema = mongoose.Schema({
+  _parentModel: {type: String, ref: "Model"},
+  name: String,
+  dollarsPerMonth: Number, //each benefit has either a fixed dollars per month...
+  percentageOfPay: Number, //...or a percentage of pay.
+  increasePerYear: Number
+});
+
+var taxSchema = mongoose.Schema({
+  _parentModel: {type: String, ref: "Model"},
+  name: String,
+  percentageOfPay: Number,
+  upTo: Number,
+});
+
+var gAndASchema = mongoose.Schema({
+  _parentModel: {type: String, ref: "Model"},
+  years: [Number], //an array of numbers representing each year.
+  category: String,
+  name: String,
+  description: String,
+  cost: Number,
+  months: [String] //an array of strings.
+});
 
 var employeeSchema = mongoose.Schema({
   //Trevor wants to be able to fetch employees by an ID value;
   //this will not be the same as the big hash string Mongo automatically
   //assigns to the invisible _id field.
   _parentModel: {type: String, ref: "Model"},
+  years: [Number], //an array of numbers representing eaach year.
   title: String,
   yearlySalary: Number,
   startDate: String
@@ -27,16 +72,18 @@ var employeeSchema = mongoose.Schema({
 
 var startupCostSchema = mongoose.Schema({
   _parentModel: {type: String, ref: "Model"},
-  type: String,
+  years: [Number], //an array of numbers representing eaach year.
+  name: String,
   cost: Number,
   month: String
 });
 
 var debtAndEquitySchema = mongoose.Schema({ //need to find an actual example from Trevor's data.
   _parentModel: {type: String, ref: "Model"},
+  years: [Number], //an array of numbers representing eaach year.
   name: String,
   type: String, //'loan' or 'equity'
-  principle: Number,
+  principal: Number,
   startMonth: String,
   months: String,//maybe an array of strings?
   interest: Number
@@ -44,6 +91,7 @@ var debtAndEquitySchema = mongoose.Schema({ //need to find an actual example fro
 
 var revenueSchema = mongoose.Schema({
   _parentModel: {type: String, ref: "Model"},
+  years: [Number], //an array of numbers representing eaach year.
   productName: String,
   pricePerUnit: Number,
   costOfProductionPerUnit: Number,
@@ -66,7 +114,9 @@ var revenueSchema = mongoose.Schema({
 })
 
 //constructors below.
-
+var Benefit = mongoose.model("Benefit", benefitSchema);
+var Tax = mongoose.model("Tax", taxSchema);
+var GAndA = mongoose.model("GAndA", gAndASchema);
 var Employee = mongoose.model("Employee", employeeSchema);
 var StartupCost = mongoose.model("StartupCost", startupCostSchema);
 var DebtAndEquity = mongoose.model("DebtAndEquity", debtAndEquitySchema);
@@ -105,7 +155,7 @@ var addRevenueSource = function(username){
 
 var deleteRevenueSource = function(username){
 
-}
+};
 
 //Trevor's requested functions are below:
 
@@ -119,37 +169,24 @@ var getExpenses = function(username){
     }
   });
   //check if Trevor wants this in a specific format.
-}
+};
+
+exports.Benefit = Benefit;
+exports.Tax = Tax;
+exports.GAndA = GAndA;
+exports.Employee = Employee;
+exports.StartupCost = StartupCost;
+exports.DebtAndEquity = DebtAndEquity;
+exports.RevenueSource = RevenueSource;
+exports.Model = Model;
+
 
 //add more of Trevor's functions:
 
 
 //the function for creating each user's default model is below.
 
-var instantiateDefaultModel = function(username){
-  //validate the username first.
 
-  var defaultModel = new Model({
-    username: username,
-  }).save(function (err){
-    if (err) {return err};
-
-    var CEO = new Employee({
-      _parentModel: defaultModel.id
-      title: "CEO",
-      yearlySalary: 150000,
-      startDate: 'feb'
-    });
-
-    CEO.save(); //maybe do some error handling for each one of these?
-
-    //TODO: populate the rest of this constructor function with shit
-    //from dataFromServerToClient.js.
-
-
-  })
-  return defaultModel;
-}
 
 
 //start defining exports here.
