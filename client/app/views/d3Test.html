@@ -1,0 +1,41 @@
+<!-- This file is just here so you can view the d3 graph -->
+
+
+<meta charset="utf-8">
+<style>
+
+.chart rect {
+  fill: red;
+}
+
+rect:hover {
+  fill: steelblue;
+}
+
+
+.chart text {
+  fill: white;
+  font: 35px sans-serif;
+  text-anchor: middle;
+}
+
+.axis text {
+  fill: black;
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.tick{
+	fill:black ;
+}
+
+</style>
+<svg class="chart"></svg>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src='d3Logic.js'></script>
