@@ -1,4 +1,4 @@
 angular.module('mimo.debtAndEquity', [])
-  .controller('debtAndEquityController', function($scope){
-  $scope.message = 'Debt and Equity Controller';
-})
+  .controller('debtAndEquityController', function ($scope, modelFactory){
+  $scope.debtAndEquity = modelFactory.model.debtsAndEquities;
+});

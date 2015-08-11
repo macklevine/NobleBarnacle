@@ -11,16 +11,18 @@
     <script src="../bower_components/angular-route/angular-route.min.js"></script>
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/interact/interact.min.js"></script>
+    <!-- // <script scr="../bower_components/d3/d3.min.js"></script> -->
     <script src="app/styles/scripts/scripts.js"></script>
     <link href="app/styles/css/main.css" rel="stylesheet">
     <!-- Angular views -->
     <script src="app/controllers/mimoAngularConfig.js"></script>
     <script src="app/controllers/model.js"></script>
     <script src="app/controllers/employee.js"></script>
-    <script src="app/controllers/expenses.js"></script>
+    <script src="app/controllers/startup.js"></script>
     <script src="app/controllers/debtAndEquity.js"></script>
     <script src="app/controllers/general.js"></script>
     <script src="app/controllers/revenue.js"></script>
+    <script src="app/controllers/products.js"></script>
     <!-- jQuery -->
     <!-- /#wrapper -->
 </head>
@@ -41,13 +43,16 @@
                     <a href="#/employee">Employees</a>
                 </li>
                 <li>
-                    <a href="#/expenses">Expenses</a>
-                </li>
-                <li>
-                    <a href="#/equity">Equity</a>
+                    <a href="#/equity">Debt & Equity</a>
                 </li>
                 <li>
                     <a href="#/revenue">Revenue</a>
+                </li>
+                <li>
+                    <a href="#/startup">Start Up Costs</a>
+                </li>
+                <li>
+                    <a href="#/products">Products</a>
                 </li>
             </ul>
         </div>
@@ -59,6 +64,7 @@
                     <div class="col-lg-12">
                         <a href="" id="menu-toggle"><img class="menu-image" src="app/styles/img/data-icon.png" height='57px'></a>
                         <div class="image"></div>
+                        <!-- original placement -->
                         <div ng-view id="main-angular-view"></div>
                     </div>
                 </div>

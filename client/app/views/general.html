@@ -1,4 +1,12 @@
-<!-- <h1 ng-click="getGeneral()">Displaying G&A</h1> -->
-<!-- <h1 ng-init="showModel()">Displaying G&A</h1> -->
 <h1>Displaying G&A</h1>
-<div>{{general.expenses.gAndA}}</div>
+<!-- <div>{{general}}</div> -->
+<table>
+  <tr ng-repeat="cost in general">
+    <td>{{cost.years[0]}}</td>
+    <td>{{cost.category}}</td>
+    <td>{{cost.name}}</td>
+    <td>{{cost.description}}</td>
+    <td>{{cost.cost}}</td>
+    <td>{{cost.money}}</td>
+  </tr>
+</table>
