@@ -15,18 +15,76 @@ var instantiateDefaultModel = function(username){
 
     console.log("shit got saved!");
 
+    //TODO: revise startDate, endDate. review schemas...
+
     var ceo = new constructor.Employee({
       _parentModel: model._id,
-      years: [2015], 
       title: "CEO",
       yearlySalary: 150000,
-      startDate: 'feb'
+      startDate: {
+        year: 2015,
+        month: 'jan'
+      },
+      endDate: {
+        year: 2016,
+        month: 'dec'
+      }
     }).save(function(err, employee){
-      console.log(model.expenses["employees"].push(employee));
+      model.expenses["employees"].push(employee);
       model.save();
-      console.log("employee should be saved");
-      console.log(employee);
     });
+
+    var cto = new constructor.Employee({
+      _parentModel: model._id,
+      title: "CTO",
+      yearlySalary: 140000,
+      startDate: {
+        year: 2015,
+        month: 'apr'
+      },
+      endDate: {
+        year: 2016,
+        month: 'dec'
+      }
+    }).save(function(err, employee){
+      model.expenses["employees"].push(employee);
+      model.save();
+    });
+
+    var frontendDev = new constructor.Employee({
+      _parentModel: model._id,
+      title: "Frontend Developer";
+      yearlySalary: 100000,
+      startDate: {
+        year: 2016,
+        month: 'apr'
+      },
+      endDate: {
+        year: 2016,
+        month: 'dec'
+      }
+    }).save(function(err, employee){
+      model.expenses["employees"].push(employee);
+      model.save();
+    })
+
+    var backendDev = new constructor.Employee({
+      _parentModel: model._id,
+      title: "Backend Developer",
+      yearlySalary: 90000,
+      startDate: {
+        year: 2015,
+        month: 'may'
+      },
+      endDate: {
+        year: 2016,
+        month: 'dec'
+      }
+    }).save(function(err, employee){
+      model.expenses["employees"].push(employee);
+      model.save();
+    });
+
 
     var healthCare = new constructor.Benefit({
       _parentModel: model._id,
@@ -232,7 +290,7 @@ var instantiateDefaultModel = function(username){
       category: "Supplies",
       name: "Servers",
       description: "Server stack for deployment",
-      money: ['{year: 2015, months:{"jan": 2000, "feb": 2000, "apr": 2000}}']//need a string
+      money: ['{year: 2015, months:{"jan": 2000, "feb": 2000, "apr": 2000}}']
     }).save(function(err, ganda){
       model.expenses.gAndA.push(ganda);
       model.save();
@@ -241,7 +299,7 @@ var instantiateDefaultModel = function(username){
     var purchaseEquipment = new constructor.StartupCost({
       _parentModel: model._id,
       name: "Purchase Equipment",
-      money: '{2015: {"feb": 10000}}'//need a string
+      money: '{2015: {"feb": 10000}}'
     }).save(function(err, cost){
       model.expenses.startupCosts.push(cost);
       model.save();
@@ -250,7 +308,7 @@ var instantiateDefaultModel = function(username){
     var purchaseEquipment2 = new constructor.StartupCost({
       _parentModel: model._id,
       name: "Purchase Equipment",
-      money: '{2016: {"jun": 100000}}'//are these strings or arrays of strings?
+      money: '{2016: {"jun": 100000}}'
     }).save(function(err, cost){
       model.expenses.startupCosts.push(cost);
       model.save();
@@ -262,10 +320,35 @@ var instantiateDefaultModel = function(username){
       name: "Loan 1",
       type: "loan",
       principal: 160000,
-      startMonth: 'jan',
       startYear: 2015
     }).save(function(err, debt){
       model.debtsAndEquities.push(debt);
+      model.save();
+    });
+
+    var product1 = new constructor.RevenueSource({
+      _parendModel: model._id,
+      years: [2015],
+      productName: "Proudct 1",
+      pricePerUnit: 10,
+      costOfProductionPerUnit: 3,
+      commision: .1,
+      monthlyUnitSales: {
+        jan: 100,
+        feb: 150,
+        mar: 200,
+        apr: 250,
+        may: 300,
+        jun: 350,
+        jul: 400,
+        aug: 450,
+        sep: 500,
+        oct: 550,
+        nov: 600,
+        dec: 650
+      }
+    }).save(function(err, revenue){
+      model.revenueSources.push(revenue);
       model.save();
     });
 
