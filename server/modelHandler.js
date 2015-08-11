@@ -7,12 +7,12 @@ var model = {
       benefits: [
         {
           name: 'Health Care',
-          dollarsPerMonth: -200,
+          dollarsPerMonth: 200,
           increasePerYear: .12
         },
         {
           name: 'dental',
-          dollarsPerMonth: -25,
+          dollarsPerMonth: 25,
           increasePerYear: .03
         },
         {
@@ -182,22 +182,26 @@ var model = {
         {
           title: "CEO",
           yearlySalary: 150000,
-          startDate: {2015: 'jan'}
+          startDate: {year: 2015, month: 'jan'},
+          endDate: {year: 2016, month: 'dec'}
         },
         {
           title: "CTO",
           yearlySalary: 140000,
-          startDate: {2015: 'feb'}
+          startDate: {year: 2015, month: 'apr'},
+          endDate: {year: 2016, month: 'dec'}
         },
         {
           title: "Frontend Developer",
           yearlySalary: 100000,
-          startDate: {2015: 'apr'}
+          startDate: {year: 2016, month: 'apr'},
+          endDate: {year: 2016, month: 'dec'}
         },
         {
           title: "Backend Developer",
           yearlySalary: 90000,
-          startDate: {2015: 'may'}
+          startDate: {year: 2015, month: 'may'},
+          endDate: {year: 2016, month: 'dec'}
         }
       ],
       startupCosts: [
