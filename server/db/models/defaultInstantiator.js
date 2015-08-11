@@ -4,6 +4,7 @@ var constructor = require('./schemas-functions.js');
 
 var instantiateDefaultModel = function(username){
   //validate the username first.
+  //consider this: http://mongoosejs.com/docs/middleware.html
 
   var defaultModel = new constructor.Model({
     username: username,
@@ -13,6 +14,19 @@ var instantiateDefaultModel = function(username){
     if (err) {return err};
 
     console.log("shit got saved!");
+
+    var ceo = new constructor.Employee({
+      _parentModel: model._id,
+      years: [2015], 
+      title: "CEO",
+      yearlySalary: 150000,
+      startDate: 'feb'
+    }).save(function(err, employee){
+      console.log(model.expenses["employees"].push(employee));
+      model.save();
+      console.log("employee should be saved");
+      console.log(employee);
+    });
 
     var healthCare = new constructor.Benefit({
       _parentModel: model._id,
@@ -244,17 +258,6 @@ var instantiateDefaultModel = function(username){
       model.save();
     });
     
-    var ceo = new constructor.Employee({
-      _parentModel: model._id,
-      years: [2015], 
-      title: "CEO",
-      yearlySalary: 150000,
-      startDate: 'feb'
-    }).save(function(err, employee){
-      model.expenses.employees.push(employee);
-      model.save();
-      console.log("employee should be saved");
-    });
 
     var purchaseEquipment = new constructor.StartupCost({
       _parentModel: model._id,

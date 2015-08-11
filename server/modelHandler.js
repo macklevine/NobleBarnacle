@@ -76,6 +76,8 @@ var generals = [
 ];
 
 var defaultInstantiator = require('./db/models/defaultInstantiator.js');
+defaultInstantiator.instantiateDefaultModel("mack");
+var schemasFunctions = require('./db/models/schemas-functions.js')
 
 module.exports = {
 
@@ -85,20 +87,7 @@ module.exports = {
 
   //get entire model for a given username
   getModel: function(req, res) {
-    defaultInstantiator.instantiateDefaultModel('mack', function(){
-      db.getModel(req, res);
-    });
-  }
-
-
-  //******************************
-  //UPDATE's
-  //******************************
-
-  updateEmployee: function(req, res) {
-    var id = req.data;
-    var updates = req.data;
-
-  }
+    schemasFunctions.getModel(req, res);
+  },
 
 }

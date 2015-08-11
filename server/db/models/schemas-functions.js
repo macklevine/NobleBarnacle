@@ -2,20 +2,6 @@ var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 var Schema = mongoose.Schema;
 
-//NOTES:
-
-/* the schema differs from Trevor's spec in the following
-ways:
-
--"Years" is no longer a top-level key in the model object; it is now a property
-on gAndA objects, employee objects, startup cost objects, debt and equity objects,
-and revenue source objects. This is because the nesting of properties was getting
-out of control. You can find the key 'years' on each of these items as an array of numbers.
-
--The same is also true of gAndA expenses. They're no longer nested like they were
-in Trevor's example JSON object--they're individual objects with a "category" property.
-
-*/
 var modelSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true }},
   companyName: String,
