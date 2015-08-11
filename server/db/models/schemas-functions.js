@@ -35,7 +35,7 @@ var modelSchema = mongoose.Schema({
 });
 
 var benefitSchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   name: String,
   dollarsPerMonth: Number, //each benefit has either a fixed dollars per month...
   percentageOfPay: Number, //...or a percentage of pay.
@@ -43,14 +43,14 @@ var benefitSchema = mongoose.Schema({
 });
 
 var taxSchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   name: String,
   percentageOfPay: Number,
   upTo: Number,
 });
 
 var gAndASchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   years: [Number], //an array of numbers representing each year.
   category: String,
   name: String,
@@ -60,7 +60,7 @@ var gAndASchema = mongoose.Schema({
 });
 
 var employeeSchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
   title: String,
   yearlySalary: Number,
@@ -69,7 +69,7 @@ var employeeSchema = mongoose.Schema({
 
 
 var startupCostSchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
   name: String,
   cost: Number,
@@ -77,31 +77,31 @@ var startupCostSchema = mongoose.Schema({
 });
 
 var debtAndEquitySchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
-  years: [Number], //an array of numbers representing eaach year.
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   name: String,
   type: String, //'loan' or 'equity'
   principal: Number,
   startMonth: String,
-  months: String, //maybe an array of strings?
-  interest: Number
+  startYear: Number,
+  interest: Number,
+  months: Number,
+  payment: Number
 });
 
 var revenueSchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
   productName: String,
   pricePerUnit: Number,
   costOfProductionPerUnit: Number,
   comission: Number,
-  grossProfit: Number, //is this something that has to be stored, or calculated on the server/front end?
   monthlyUnitSales: {
     jan: Number,
     feb: Number,
     mar: Number,
     apr: Number,
     may: Number,
-    june: Number,
+    jun: Number,
     jul: Number,
     aug: Number,
     sep: Number,
@@ -109,7 +109,7 @@ var revenueSchema = mongoose.Schema({
     nov: Number,
     dec: Number
   }
-})
+});
 
 //constructors below.
 var Benefit = mongoose.model("Benefit", benefitSchema);
@@ -124,10 +124,11 @@ var Model = mongoose.model("Model", modelSchema);
 //Functions to add and delete items from an existing financial model are declared below (scaffolding)
 
 var getModel = function(req, res){
-  username = req.body.username;
-  Model.findOne({username: username}).exec(function(err, model) {
-    res.send(200, model);
-  });
+  // username = req.body.username;
+  Model.findOne({username: "mack"})
+    .exec(function(err, model) {
+      res.send(200, model);
+    });
 };
 
 //Trevor's requested functions are below:
