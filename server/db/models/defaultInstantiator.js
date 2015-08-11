@@ -163,10 +163,10 @@ var instantiateDefaultModel = function(username){
     
     var rent = new constructor.GAndA({
       _parentModel: model._id,
-      money: ['{year: 2015, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}', '{year: 2016, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}'],//need a string
       category: "Facilities and Equipment",
       name: "Rent",
       description: 'Rent for office space',
+      money: ['{year: 2015, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}', '{year: 2016, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}']//need a string
     }).save(function(err, ganda){
       model.expenses.gAndA.push(ganda);
       model.save();
@@ -174,12 +174,10 @@ var instantiateDefaultModel = function(username){
 
     var cellPhones = new constructor.GAndA({
       _parentModel: model._id,
-      money: [],//need a string
       category: 'Facilities and Equipment',
       name: 'Cell Phones',
       description: 'communication costs for the team',
-      cost: 500,
-      money: ["apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+      money: ['{year: 2015, months: {"jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300}}', '{year: 2016, months: {"jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300}}']//need a string
     }).save(function(err, ganda){
       model.expenses.gAndA.push(ganda);
       model.save();
@@ -187,12 +185,10 @@ var instantiateDefaultModel = function(username){
     
     var cleaning = new GAndA({
       _parentModel: model._id,
-      money: [],//need a string
       category: "Facilities and Equipment",
       name: "Cleaning",
       description: "Cleaning service for the office space",
-      cost: 300,
-      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+      money: []//need a string
     }).save(function(err, ganda){
       model.expenses.gAndA.push(ganda);
       model.save();
@@ -200,12 +196,10 @@ var instantiateDefaultModel = function(username){
     
     var insurance = new constructor.GAndA({
       _parentModel: model._id,
-      money: [],//need a string
       category: "Insurance",
       name: "General Liability",
       description: "General liability insurance",
-      cost: 400,
-      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+      money: []//need a string
     }).save(function(err, ganda){
       model.expenses.gAndA.push(ganda);
       model.save();
@@ -216,9 +210,7 @@ var instantiateDefaultModel = function(username){
       money: [],//need a string
       category: "Insurance",
       name: 'Property Insurance',
-      description: 'Property Insurance',
-      cost: 300,
-      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+      description: 'Property Insurance'
     }).save(function(err, ganda){
       model.expenses.gAndA.push(ganda);
       model.save();
@@ -226,12 +218,10 @@ var instantiateDefaultModel = function(username){
     
     var computers = new constructor.GAndA({
       _parentModel: model._id,
-      money: [],//need a string
       category: "Supplies",
       name: "Computers",
       description: "Laptops for new employees",
-      cost: 4000,
-      money: ["sep"]
+      money: []//need a string
     }).save(function(err, ganda){
       model.expenses.gAndA.push(ganda);
       model.save();
@@ -239,12 +229,10 @@ var instantiateDefaultModel = function(username){
 
     var servers = new constructor.GAndA({
       _parentModel: model._id,
-      money: [],//need a string
       category: "Supplies",
       name: "Servers",
       description: "Server stack for deployment",
-      cost: 3000,
-      money: ["dec"]
+      money: []//need a string
     }).save(function(err, ganda){
       model.expenses.gAndA.push(ganda);
       model.save();
@@ -253,7 +241,7 @@ var instantiateDefaultModel = function(username){
     var purchaseEquipment = new constructor.StartupCost({
       _parentModel: model._id,
       name: "Purchase Equipment",
-      money: [],//need a string
+      money: []//need a string
     }).save(function(err, cost){
       model.expenses.startupCosts.push(cost);
       model.save();
