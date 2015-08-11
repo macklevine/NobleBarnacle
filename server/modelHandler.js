@@ -63,100 +63,151 @@ var model = {
     expenses: {
       gAndA: [
         {
-          years: [2015],
           category: 'Marketing',
           name: 'Radio Ad',
           description: 'We plan to purchase a radio ad to increase awareness',
-          cost: 2000,
-          money: ["jan", "feb", "apr", "jul", "aug", "sep"]
+          money: {
+            2015: {
+              "jan": 2000, "feb": 1000, "apr": 1000, "jul": 1000, "aug": 1000, "sep": 1000
+            }
+          }
         },
         {
-          years: [2015],
           category: 'Marketing',
           name: 'Branding Design',
           description: 'Payment for logo design',
-          cost: 200,
-          money: ["aug"]
+          money: {
+            2015: {
+              "jan": 2000, "feb": 2000, "apr": 2000
+            }
+          }
         },
         {
-          years: [2015],
           category: 'Marketing',
           name: 'Trade Show',
           description: 'Traveling to a trade show in Las Vegas',
-          cost: 3000,
-          money: ["dec"]
+          money: {
+            2015: {
+              "jan": 2000, "feb": 2000, "apr": 2000
+            }
+          }
         },
         {
-          years: [2015],
           category: 'Facilities and Equipment',
-          name: 'Cell Phones',
+          name: 'Rent',
           description: 'communication costs for the team',
-          cost: 500,
-          money: ["apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+          money: {
+            2015: {
+              "jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000
+            },
+            2016: {
+              "jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000
+            }
+          }
         },
         {
-          years: [2015],
           category: "Facilities and Equipment",
-          name: "Rent",
+          name: "Cell Phone",
           description: 'Rent for office space',
-          cost: 2500,
-          money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+          money: {
+            2015: {
+              "jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300
+            },
+            2016: {
+              "jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300
+            }
+          }
         },
         {
-          years: [2015],
           category: "Facilities and Equipment",
           name: "Cleaning",
           description: "Cleaning service for the office space",
-          cost: 300,
-          money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+          money: {
+            2015: {
+              "jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150
+            },
+            2016: {
+              "jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150
+            }
+          }
         },
         {
-          years: [2015],
           category: "Insurance",
           name: "General Liability",
           description: "General liability insurance",
-          cost: 400,
-          money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+          money: {
+            2015: {
+              "jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150
+            },
+            2016: {
+              "jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150
+            }
+          }
         },
         {
-          years: [2015],
           category: "Insurance",
           name: 'Property Insurance',
           description: 'Property Insurance',
-          cost: 300,
-          money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+          money: {
+            2015: {
+              "jan": 200, "feb": 200, "mar": 200, "apr": 200, "may": 200, "jun": 200, "jul": 200, "aug": 200, "sep": 200, "oct": 200, "nov": 200, "dec": 200
+            },
+            2016: {
+              "jan": 200, "feb": 200, "mar": 200, "apr": 200, "may": 200, "jun": 200, "jul": 200, "aug": 200, "sep": 200, "oct": 200, "nov": 200, "dec": 200
+            }
+          }
         },
         {
-          years: [2015],
           category: "Supplies",
           name: "Computers",
           description: "Laptops for new employees",
-          cost: 4000,
-          money: ["sep"]
+          money: {
+            2015: {
+              "jan": 2000, "apr": 2000, "may": 2000
+            }
+          }
         },
         {
-          years: [2015],
           category: "Supplies",
           name: "Servers",
           description: "Server stack for deployment",
-          cost: 3000,
-          money: ["dec"]
+          money: {
+            2015: {
+              "nov": 4000, "dec": 5000
+            }
+          }
         }
       ],
       employees: [
         {
-          years: [2015], 
           title: "CEO",
           yearlySalary: 150000,
-          startDate: 'feb'
+          startDate: {2015: 'jan'}
+        },
+        {
+          title: "CTO",
+          yearlySalary: 140000,
+          startDate: {2015: 'feb'}
+        },
+        {
+          title: "Frontend Developer",
+          yearlySalary: 100000,
+          startDate: {2015: 'apr'}
+        },
+        {
+          title: "Backend Developer",
+          yearlySalary: 90000,
+          startDate: {2015: 'may'}
         }
       ],
       startupCosts: [
         {
-          years: [2015],
           name: "Purchase Equipment",
-          cost: 10000,
-          month: ['feb']
+          money: {2015: {'feb': 10000}}
+        },
+        {
+          name: "Purchase Equipment",
+          money: {2016: {'jun': 100000}}
         }
       ]
     },
