@@ -37,12 +37,10 @@ var taxSchema = mongoose.Schema({
 
 var gAndASchema = mongoose.Schema({
   _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
-  years: [Number], //an array of numbers representing each year.
   category: String,
   name: String,
   description: String,
-  cost: Number,
-  months: [String] //an array of strings.
+  money: [String], //JSON strings representing year objects.
 });
 
 var employeeSchema = mongoose.Schema({
@@ -50,7 +48,14 @@ var employeeSchema = mongoose.Schema({
   years: [Number], //an array of numbers representing eaach year.
   title: String,
   yearlySalary: Number,
-  startDate: String
+  startDate: {
+    year: Number, //YYYY
+    month: String, //'jan', 'feb', etc.
+  },
+  endDate: {
+    year: Number,
+    
+  }
 });
 
 
