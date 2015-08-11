@@ -1,20 +1,7 @@
 var mongoose = require('mongoose');
 var bluebird = require('bluebird');
+var Schema = mongoose.Schema;
 
-//NOTES:
-
-/* the schema differs from Trevor's spec in the following
-ways:
-
--"Years" is no longer a top-level key in the model object; it is now a property
-on gAndA objects, employee objects, startup cost objects, debt and equity objects,
-and revenue source objects. This is because the nesting of properties was getting
-out of control. You can find the key 'years' on each of these items as an array of numbers.
-
--The same is also true of gAndA expenses. They're no longer nested like they were
-in Trevor's example JSON object--they're individual objects with a "category" property.
-
-*/
 var modelSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true }},
   companyName: String,
@@ -25,7 +12,7 @@ var modelSchema = mongoose.Schema({
   },
   //wrap expenses in a key with array value of objects called 'years'
   expenses: {
-    gAndA: [{type: Schema.TypesObjectId, ref: 'GAndA'}],
+    gAndA: [{type: Schema.Types.ObjectId, ref: 'GAndA'}],
     employees: [{type: Schema.Types.ObjectId, ref: 'Employee'}],
     startupCosts: [{type: Schema.Types.ObjectId, ref: 'StartupCost'}]
   },
@@ -34,7 +21,7 @@ var modelSchema = mongoose.Schema({
 });
 
 var benefitSchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   name: String,
   dollarsPerMonth: Number, //each benefit has either a fixed dollars per month...
   percentageOfPay: Number, //...or a percentage of pay.
@@ -42,14 +29,14 @@ var benefitSchema = mongoose.Schema({
 });
 
 var taxSchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   name: String,
   percentageOfPay: Number,
   upTo: Number,
 });
 
 var gAndASchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   years: [Number], //an array of numbers representing each year.
   category: String,
   name: String,
@@ -59,10 +46,7 @@ var gAndASchema = mongoose.Schema({
 });
 
 var employeeSchema = mongoose.Schema({
-  //Trevor wants to be able to fetch employees by an ID value;
-  //this will not be the same as the big hash string Mongo automatically
-  //assigns to the invisible _id field.
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
   title: String,
   yearlySalary: Number,
@@ -71,39 +55,39 @@ var employeeSchema = mongoose.Schema({
 
 
 var startupCostSchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
   name: String,
   cost: Number,
   month: String
 });
 
-var debtAndEquitySchema = mongoose.Schema({ //need to find an actual example from Trevor's data.
-  _parentModel: {type: String, ref: "Model"},
-  years: [Number], //an array of numbers representing eaach year.
+var debtAndEquitySchema = mongoose.Schema({
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   name: String,
   type: String, //'loan' or 'equity'
   principal: Number,
   startMonth: String,
-  months: String,//maybe an array of strings?
-  interest: Number
+  startYear: Number,
+  interest: Number,
+  months: Number,
+  payment: Number
 });
 
 var revenueSchema = mongoose.Schema({
-  _parentModel: {type: String, ref: "Model"},
+  _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
   productName: String,
   pricePerUnit: Number,
   costOfProductionPerUnit: Number,
   comission: Number,
-  grossProfit: Number, //is this something that has to be stored, or calculated on the server/front end?
   monthlyUnitSales: {
     jan: Number,
     feb: Number,
     mar: Number,
     apr: Number,
     may: Number,
-    june: Number,
+    jun: Number,
     jul: Number,
     aug: Number,
     sep: Number,
@@ -111,7 +95,7 @@ var revenueSchema = mongoose.Schema({
     nov: Number,
     dec: Number
   }
-})
+});
 
 //constructors below.
 var Benefit = mongoose.model("Benefit", benefitSchema);
@@ -125,51 +109,15 @@ var Model = mongoose.model("Model", modelSchema);
 
 //Functions to add and delete items from an existing financial model are declared below (scaffolding)
 
-var addEmployee = function(username){
-
-};
-
-var deleteEmployee = function(username){
-
-};
-
-var addStartupCost = function(username){
-
-};
-
-var deleteStartupCost = function(username){
-
-};
-
-var addDebtAndEquity = function(username){
-
-};
-
-var deleteDebtAndEquity = function(username){
-
-};
-
-var addRevenueSource = function(username){
-
-};
-
-var deleteRevenueSource = function(username){
-
+var getModel = function(req, res){
+  // username = req.body.username;
+  Model.findOne({username: "mack"})
+    .exec(function(err, model) {
+      res.send(200, model);
+    });
 };
 
 //Trevor's requested functions are below:
-
-var getExpenses = function(username){
-  //return all expenses for a given model/username as an array.
-  return Model.findOne({username: username}).exec(function(err, model){
-    if (err){
-      //handle an error somehow.
-    } else {
-      return model.expenses;
-    }
-  });
-  //check if Trevor wants this in a specific format.
-};
 
 exports.Benefit = Benefit;
 exports.Tax = Tax;
@@ -179,6 +127,8 @@ exports.StartupCost = StartupCost;
 exports.DebtAndEquity = DebtAndEquity;
 exports.RevenueSource = RevenueSource;
 exports.Model = Model;
+
+exports.getModel = getModel;
 
 
 //add more of Trevor's functions:
