@@ -163,12 +163,10 @@ var instantiateDefaultModel = function(username){
     
     var rent = new constructor.GAndA({
       _parentModel: model._id,
-      money: [],//need a string
+      money: ['{year: 2015, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}', '{year: 2016, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}'],//need a string
       category: "Facilities and Equipment",
       name: "Rent",
       description: 'Rent for office space',
-      cost: 2500,
-      money: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
     }).save(function(err, ganda){
       model.expenses.gAndA.push(ganda);
       model.save();
