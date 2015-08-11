@@ -1,4 +1,4 @@
 angular.module('mimo.employee', [])
-  .controller('employeeController', function($scope){
-  $scope.message = 'Employee Controller';
+  .controller('employeeController', function ($scope, modelFactory){
+  $scope.employee = modelFactory.model.expenses.employees;
 })
