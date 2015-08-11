@@ -1,92 +1,5 @@
-var mimo = angular.module('mimo', [
-  'ngRoute',
-  'mimo.model',
-  'mimo.employee',
-  'mimo.startup',
-  'mimo.debtAndEquity',
-  'mimo.general',
-  'mimo.revenue',
-  'mimo.products',
-  'd3'
-]);
-
-mimo.config(['$routeProvider', 
-  function($routeProvider) {
-    $routeProvider.
-      when('/home', {
-        templateUrl: 'app/views/model.html',
-        controller: 'modelController'
-      }).
-      when('/employee', {
-        templateUrl: 'app/views/employee.html',
-        controller: 'employeeController'
-      }).
-      when('/startup', {
-        templateUrl: 'app/views/startup.html',
-        controller: 'startupController'
-      }).
-      when('/equity', {
-        templateUrl: 'app/views/debtAndEquity.html',
-        controller: 'debtAndEquityController'
-      }).
-      when('/general', {
-        templateUrl: 'app/views/general.html',
-        controller: 'generalController'
-      }).
-      when('/revenue', {
-        templateUrl: 'app/views/revenue.html',
-        controller: 'revenueController'
-      }).
-      when('/products', {
-        templateUrl: 'app/views/products.html',
-        controller: 'productsController'
-      })
-  }
-]);
-
-mimo.factory('modelFactory', function ($http) {
-  var modelFactory = {};
-  modelFactory.madeServerRequest = false;
-  modelFactory.getModel = function(){
-    console.log('made http request');
-    return $http({
-      method: 'GET',
-      url: '/model'
-    }).then(function(results){
-      modelFactory.madeServerRequest = true;
-      modelFactory.model = results.data;
-    });
-  }
-  return modelFactory;
-});
-
-mimo.factory('d3Service', ['$document', '$window', '$q', '$rootScope',
-  function($document, $window, $q, $rootScope) {
-    var d = $q.defer(),
-        d3service = {
-          d3: function() { return d.promise; }
-        };
-  function onScriptLoad() {
-    // Load client in the browser
-    $rootScope.$apply(function() { d.resolve($window.d3); });
-  }
-  var scriptTag = $document[0].createElement('script');
-  scriptTag.type = 'text/javascript'; 
-  scriptTag.async = true;
-  scriptTag.src = 'http://d3js.org/d3.v3.min.js';
-  scriptTag.onreadystatechange = function () {
-    if (this.readyState == 'complete') onScriptLoad();
-  }
-  scriptTag.onload = onScriptLoad;
-
-  var s = $document[0].getElementsByTagName('body')[0];
-  s.appendChild(scriptTag);
-
-  return d3service;
-}]);
-
-// angular.module('d3AngularApp', ['d3'])
-mimo.directive('d3Bars', ['$window', '$timeout', 'd3Service', 
+angular.module('d3AngularApp', ['d3'])
+.directive('d3Bars', ['$window', '$timeout', 'd3Service', 
   function($window, $timeout, d3Service) {
     return {
       restrict: 'A',
@@ -110,13 +23,6 @@ mimo.directive('d3Bars', ['$window', '$timeout', 'd3Service',
           $window.onresize = function() {
             scope.$apply();
           };
-
-          scope.data = [
-                 {name: "Greg", score: 98},
-                 {name: "Ari", score: 96},
-                 {name: 'Q', score: 75},
-                 {name: "Loser", score: 48}
-               ];
 
           scope.$watch(function() {
             return angular.element($window)[0].innerWidth;
