@@ -31,7 +31,7 @@ var instantiateDefaultModel = function(username){
     var healthCare = new constructor.Benefit({
       _parentModel: model._id,
       name: 'Health Care',
-      dollarsPerMonth: -200,
+      dollarsPerMonth: 200,
       increasePerYear: .12
     }).save(function(err, benefit){
       model.settings.benefits.push(benefit);
@@ -41,7 +41,7 @@ var instantiateDefaultModel = function(username){
     var dental = new constructor.Benefit({
       _parentModel: model._id,
       name: 'dental',
-      dollarsPerMonth: -25,
+      dollarsPerMonth: 25,
       increasePerYear: .03
     }).save(function(err, benefit){
       model.settings.benefits.push(benefit);
@@ -130,7 +130,7 @@ var instantiateDefaultModel = function(username){
     
     var radioAd = new constructor.GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: 'Marketing',
       name: 'Radio Ad',
       description: 'We plan to purchase a radio ad to increase awareness',
@@ -143,7 +143,7 @@ var instantiateDefaultModel = function(username){
     
     var brandingDesign = new constructor.GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: 'Marketing',
       name: 'Branding Design',
       description: 'Payment for logo design',
@@ -156,7 +156,7 @@ var instantiateDefaultModel = function(username){
     
     var tradeShow = new constructor.GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: 'Marketing',
       name: 'Trade Show',
       description: 'Traveling to a trade show in Las Vegas',
@@ -169,7 +169,7 @@ var instantiateDefaultModel = function(username){
     
     var cellPhones = new constructor.GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: 'Facilities and Equipment',
       name: 'Cell Phones',
       description: 'communication costs for the team',
@@ -182,7 +182,7 @@ var instantiateDefaultModel = function(username){
     
     var rent = new constructor.GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: "Facilities and Equipment",
       name: "Rent",
       description: 'Rent for office space',
@@ -195,7 +195,7 @@ var instantiateDefaultModel = function(username){
     
     var cleaning = new GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: "Facilities and Equipment",
       name: "Cleaning",
       description: "Cleaning service for the office space",
@@ -208,7 +208,7 @@ var instantiateDefaultModel = function(username){
     
     var insurance = new constructor.GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: "Insurance",
       name: "General Liability",
       description: "General liability insurance",
@@ -221,7 +221,7 @@ var instantiateDefaultModel = function(username){
     
     var propertyInsurance = new constructor.GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: "Insurance",
       name: 'Property Insurance',
       description: 'Property Insurance',
@@ -234,7 +234,7 @@ var instantiateDefaultModel = function(username){
     
     var computers = new constructor.GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: "Supplies",
       name: "Computers",
       description: "Laptops for new employees",
@@ -247,7 +247,7 @@ var instantiateDefaultModel = function(username){
 
     var servers = new constructor.GAndA({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       category: "Supplies",
       name: "Servers",
       description: "Server stack for deployment",
@@ -261,7 +261,7 @@ var instantiateDefaultModel = function(username){
 
     var purchaseEquipment = new constructor.StartupCost({
       _parentModel: model._id,
-      years: [2015],
+      money: //need a string
       name: "Purchase Equipment",
       cost: 10000,
       month: ['feb']

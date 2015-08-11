@@ -40,31 +40,28 @@ var gAndASchema = mongoose.Schema({
   category: String,
   name: String,
   description: String,
-  money: [String], //JSON strings representing year objects.
+  money: [String] //JSON strings representing year objects.
 });
 
 var employeeSchema = mongoose.Schema({
   _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
-  years: [Number], //an array of numbers representing eaach year.
   title: String,
   yearlySalary: Number,
   startDate: {
     year: Number, //YYYY
-    month: String, //'jan', 'feb', etc.
+    month: String //'jan', 'feb', etc.
   },
   endDate: {
     year: Number,
-    
+    month: String
   }
 });
 
 
 var startupCostSchema = mongoose.Schema({
   _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
-  years: [Number], //an array of numbers representing eaach year.
   name: String,
-  cost: Number,
-  month: String
+  money: String //A JSON string.
 });
 
 var debtAndEquitySchema = mongoose.Schema({
@@ -72,8 +69,8 @@ var debtAndEquitySchema = mongoose.Schema({
   name: String,
   type: String, //'loan' or 'equity'
   principal: Number,
-  startMonth: String,
   startYear: Number,
+  startMonth: String,
   interest: Number,
   months: Number,
   payment: Number
