@@ -370,14 +370,16 @@ function display () {
     .data(visItems, function (d) { return d.id; })
     .attr('x', function(d) { return x1(d.start); })
     .attr('width', function(d) { return x1(d.end) - x1(d.start); })
-    .attr('class', function(d) { return 'mainItem resizable ' + d.class;  });
+    .attr('class', function(d) { return 'mainItem resizable ' + classifier(d.propVal);  });
 
   rects.enter().append('rect')
     .attr('x', function(d) { return x1(d.start); })
     .attr('y', function(d) { return (y1(d.lane) + .1 * y1(1) + 0.5)+ (((.8 * y1(1))/d.categoryCount) * d.propVal); })
     .attr('width', function(d) { return x1(d.end) - x1(d.start); })
-    .attr('height', function(d) { return (.8 * y1(1))/d.categoryCount; }) // curently working on
-    .attr('class', function(d) { return 'mainItem resizable ' + d.class; })
+    .attr('height', function(d) { return (((.8 * y1(1))/d.categoryCount)) - 5; })
+    .attr('rx', '5px')
+    .attr('ry', '5px') // curently working on
+    .attr('class', function(d) { return 'mainItem resizable ' + classifier(d.propVal); })
     .on('click', editItem);
 
   rects.exit().remove();
@@ -388,7 +390,7 @@ function display () {
     .attr('x', function(d) { return x1(Math.max(d.start, minExtent)) + 2; });
         
   labels.enter().append('text')
-    .text(function (d) { return 'Item\n\n\n\n Id: ' + d.id; })
+    .text(function (d) { return 'Item\n\n\n\n Name: ' + d.id; })
     .attr('x', function(d) { return x1(Math.max(d.start, minExtent)) + 2; })
     .attr('y', function(d) { return (y1(d.lane) + .2 * y1(1) + 0.5) + (((.8 * y1(1))/d.categoryCount) * d.propVal); })
     .attr('text-anchor', 'start')
@@ -433,5 +435,16 @@ function getPaths(items) {
   return result;
 }
 
+function classifier (item){
+  if(item === 1){
+    return 'one';
+  }else if( item === 2){
+    return 'two';
+  }else if( item === 3){
+    return 'three';
+  }else if( item === 0){
+    return 'zero';
+  }
+}
 
 

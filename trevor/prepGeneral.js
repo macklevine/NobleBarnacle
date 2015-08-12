@@ -79,7 +79,7 @@ var buildItems = function(general, lanes){
 
     newItem.start = new Date(firstYear, firstMonth);
     newItem.end = new Date(lastYear, lastMonth);
-    newItem.id = id;
+    newItem.id = item.name;
     id++;
     newItem.category = item.category;
     newItem.categoryCount = obj[newItem.category];
