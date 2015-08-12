@@ -178,7 +178,7 @@ var general = [
             }
           ]
         }
-      ]
+      ];
 
 /*****************************************
 /* Helper Functions
@@ -245,9 +245,9 @@ var findLastMonth = function(item, year) {
 
 //Build the items
 
-var buildItems = function(general){
+var buildItems = function(general, lanes){
   var items = [];
-  
+  //console.log(lanes)
   var id = 0;
   general.forEach(function(item){
     var newItem = {};
@@ -261,9 +261,9 @@ var buildItems = function(general){
     newItem.end = new Date(lastYear, lastMonth);
     newItem.id = id;
     id++;
-    newItem.class = 'past';
+    newItem.class = 'past ' + item.name;
     newItem.desc = item.description;
-    newItem.lane = whichLane(item, )
+    newItem.lane = whichLane(item, lanes)
     items.push(newItem);
   });
   return items;
@@ -280,6 +280,17 @@ var buildLanes = function(general) {
     id++;
   });
   return lanes;
+}
+
+var whichLane = function(item, lanes){
+  // console.log(item)
+  // console.log(lanes)
+  for(var i = 0; i < lanes.length; i++){
+    if(lanes[i].label === item.category){
+      console.log(lanes[i].id);
+      return lanes[i].id;
+    }
+  }
 }
 
 

@@ -35,6 +35,7 @@
 .past {
   stroke: green;
   fill: lightgreen;
+  fill-opacity: .500;
 }
 
 .present {
@@ -46,4 +47,8 @@
   stroke: gray;
   fill: blue;
   fill-opacity: .165;
+}
+
+.Rent {
+  fill: steelblue;
 }
