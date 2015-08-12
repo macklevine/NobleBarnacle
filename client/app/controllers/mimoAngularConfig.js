@@ -60,28 +60,45 @@ mimo.config(['$routeProvider',
 HTTP rquest factory.
 
 Here is the logic for making a request to the express server for the entire
-financial model
+financial model.
+By storing the HTTP results on the modelFactory onbject we can access the entire 
+model in every controller without making extra HTTP requests to the server.
 */
 mimo.factory('modelFactory', function ($http) {
   var modelFactory = {};
-  modelFactory.madeServerRequest = false;
+  modelFactory.madeServerRequest = false; //set to false initially
   modelFactory.getModel = function(){
     console.log('made http request');
     return $http({
       method: 'GET',
-      url: '/model'
+      url: '/model' //end point in express server where the entire model is returned
     }).then(function(results){
-      modelFactory.madeServerRequest = true;
-      modelFactory.model = results.data;
+      modelFactory.madeServerRequest = true; //set to true so only one request is made
+      modelFactory.model = results.data; //return the entire model to the modelFacory object.
     });
   }
+  //don't forget to return the modelFactory object so that it can be accessed. 
+  //you could refactor this into a service if you want. Only minor nuances between
+  //the two in this application.
   return modelFactory;
 });
+/*
+D3 as a service to angular (really its a factory)
+This provides D3 as a factory to be used within custom built directives
+inside each controller. D3 and angular have some issues playing nicely together
+and there were performance issues loading it in the browser and have the D3 code
+run/render properly on the ng-views. This allows D3 code to be written directly in 
+a directive to render the visualizations seemlessly to the browser.
 
+To utilize this service you'll have to set a .then() after you call D3.
+
+ie: d3Service.d3().then(function(d3) { YOUR D3 CODE HERE });
+*/
 mimo.factory('d3Service', ['$document', '$window', '$q', '$rootScope',
   function($document, $window, $q, $rootScope) {
     var d = $q.defer(),
         d3service = {
+          //return as a promise so we wait for D3 to load and render our scripts
           d3: function() { return d.promise; }
         };
   function onScriptLoad() {
