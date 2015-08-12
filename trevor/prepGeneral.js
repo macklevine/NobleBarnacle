@@ -1,67 +1,4 @@
-//imitation general data that would be returned from the db
-var model = {
-    username: "mack",
-    companyName: "My Company",
-    startingCash: 0,
-    settings: {
-      benefits: [
-        {
-          name: 'Health Care',
-          dollarsPerMonth: 200,
-          increasePerYear: .12
-        },
-        {
-          name: 'dental',
-          dollarsPerMonth: 25,
-          increasePerYear: .03
-        },
-        {
-          name: 'Short Term Disability',
-          percentageOfPay: .014,
-          increasePerYear: .03
-        },
-        {
-          name: 'Long Term Disability',
-          percentageOfPay: .009,
-          increasePerYear: .03
-        },
-        {
-          name: 'Life Insurance',
-          percentageOfPay: .005,
-          increasePerYear: .03
-        }
-      ],
-      taxes: [
-        {
-          name: 'Statue Unemployment Insurance',
-          percentageOfPay: .002,
-          upTo: 14400
-        },
-        {
-          name: 'Employer FICA',
-          percentageOfPay: .062,
-          upTo: 100000
-        },
-        {
-          name:             'Medicare',
-          percentageOfPay:  .0145,
-          upTo:             999999
-        },
-        {
-          name:             'Federal Unemployment Insurance',
-          percentageOfPay:  .008,
-          upTo:             7400  
-        },
-        {
-          name:             'Worker\'s Compensation',
-          percentageOfPay:  .0032,
-          upTo:             999999
-        },
-      ]
-    },
-    //wrap expenses in a key with array value of objects called 'years'
-    expenses: {
-      gAndA: [
+var general = [
         {
           category: 'Marketing',
           name: 'Radio Ad',
@@ -122,6 +59,25 @@ var model = {
         },
         {
           category: "Facilities and Equipment",
+          name: "Cell Phone",
+          description: 'Rent for office space',
+          money: [
+            {
+              year: 2015,
+              months: {
+                "jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300
+              }
+            },
+            {
+              year: 2016,
+              months: {
+                "jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300
+              }
+            }
+          ]
+        },
+        {
+          category: "Facilities",
           name: "Cell Phone",
           description: 'Rent for office space',
           money: [
@@ -222,97 +178,108 @@ var model = {
             }
           ]
         }
-      ],
-      employees: [
-        {
-          title: "CEO",
-          yearlySalary: 150000,
-          startDate: {year: 2015, month: 'jan'},
-          endDate: {year: 2016, month: 'dec'}
-        },
-        {
-          title: "CTO",
-          yearlySalary: 140000,
-          startDate: {year: 2015, month: 'apr'},
-          endDate: {year: 2016, month: 'dec'}
-        },
-        {
-          title: "Frontend Developer",
-          yearlySalary: 100000,
-          startDate: {year: 2016, month: 'apr'},
-          endDate: {year: 2016, month: 'dec'}
-        },
-        {
-          title: "Backend Developer",
-          yearlySalary: 90000,
-          startDate: {year: 2015, month: 'may'},
-          endDate: {year: 2016, month: 'dec'}
-        }
-      ],
-      startupCosts: [
-        {
-          name: "Purchase Equipment",
-          money: {2015: {'feb': 10000}}
-        },
-        {
-          name: "Purchase Equipment",
-          money: {2016: {'jun': 100000}}
-        }
       ]
-    },
-    debtsAndEquities: [
-      {
-        years: [2015],
-        name: "Loan 1",
-        type: "loan",
-        principal: 160000,
-        startYear: 2015,
-      }
-    ],
-    products: [{
-      years: [2015],
-      productName: "Product 1",
-      pricePerUnit: 10,
-      costOfProductionPerUnit: 3,
-      commission: .1,
-      monthlyUnitSales: {
-        jan: 100,
-        feb: 150,
-        mar: 200,
-        apr: 250,
-        may: 300,
-        jun: 350,
-        jul: 400,
-        aug: 450,
-        sep: 500,
-        oct: 550,
-        nov: 600,
-        dec: 650
-      }
-    }]
-  };
 
-var db = require('./db/mongoSchema.js');
+/*****************************************
+/* Helper Functions
+/****************************************/
 
-
-module.exports = {
-
-  //******************************
-  //GET's
-  //******************************
-
-  //get all G&A's
-  getModel: function(req, res) {
-    console.log('In the modelHandler');
-    db.getModel(req, res);
-  },
-
-  //******************************
-  //UPDATE's
-  //******************************
-
-  updateEmployee: function(req, res) {
-    var id = req.data;
-    var updates = req.data;
-  }
+//filter keys
+//takes an array of objects and a key
+//returns a unique-sorted array of the values for that key
+var getKeysInArray = function(array, key) {
+  var keys = {};
+  array.forEach(function(obj){
+    keys[obj[key]] = true;
+  });
+  return Object.keys(keys);
 }
+
+//Find start Year
+//returns the numerical value of the first year
+var findFirstYear = function(item) {
+  return getKeysInArray(item.money, 'year').sort().shift();
+}
+
+//Find last Year
+//return the numerical value of the last year
+var findLastYear = function(item) {
+  return getKeysInArray(item.money, 'year').sort().pop();
+}
+
+//Find first month
+//return the index for the first month of the given year
+var findFirstMonth = function(item, year) {
+  var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+  for( var i = 0; i < item.money.length; i++) {
+    if( item.money[i].year === year ){
+      var monthsInYear = Object.keys(item.money[i].months);
+    }
+  }
+  var monthsAsIndices = monthsInYear.map(function(month){
+    return months.indexOf(month);
+  });
+
+  return monthsAsIndices.sort().shift();
+}
+
+//Find last month
+//return the index for the last month of the given year
+var findLastMonth = function(item, year) {
+  var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+  for( var i = 0; i < item.money.length; i++) {
+    if( item.money[i].year === year ){
+      var monthsInYear = Object.keys(item.money[i].months);
+    }
+  }
+  var monthsAsIndices = monthsInYear.map(function(month){
+    return months.indexOf(month);
+  });
+
+  return monthsAsIndices.sort().pop();
+}
+
+/*****************************************
+/* End Helper Functions
+/****************************************/
+
+//Build the items
+
+var buildItems = function(general){
+  var items = [];
+  
+  var id = 0;
+  general.forEach(function(item){
+    var newItem = {};
+    var firstYear = parseInt(findFirstYear(item));
+    var lastYear = parseInt(findLastYear(item));
+
+    var firstMonth = findFirstMonth(item, firstYear);
+    var lastMonth = findLastMonth(item, lastYear);
+
+    newItem.start = new Date(firstYear, firstMonth);
+    newItem.end = new Date(lastYear, lastMonth);
+    newItem.id = id;
+    id++;
+    newItem.class = 'past';
+    newItem.desc = item.description;
+    newItem.lane = whichLane(item, )
+    items.push(newItem);
+  });
+  return items;
+}
+
+//set up the lanes
+var buildLanes = function(general) {
+  var categories = getKeysInArray(general, 'category');
+  var lanes = [];
+  var id = 0;
+  categories.forEach(function(category){
+    var obj = {label: category, id: id}
+    lanes.push(obj);
+    id++;
+  });
+  return lanes;
+}
+
+
