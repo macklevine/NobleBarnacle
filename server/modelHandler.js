@@ -292,6 +292,9 @@ var model = {
     }]
   };
 
+var db = require('./db/mongoSchema.js');
+
+
 module.exports = {
 
   //******************************
@@ -300,12 +303,8 @@ module.exports = {
 
   //get all G&A's
   getModel: function(req, res) {
-    var userId = req.body.id;
-    // db.getGAndAs(userId, function (err, gAndAs) {
-    //   if (err) throw new err;
-    //   res.end(gAndAs);
-    // });
-    res.end(JSON.stringify(model));
+    console.log('In the modelHandler');
+    db.getModel(req, res);
   },
 
   //******************************

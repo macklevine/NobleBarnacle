@@ -116,6 +116,7 @@ var getModel = function(req, res){
   Model.findOne({username: "mack"})
     .populate("settings.benefits settings.taxes expenses.gAndA expenses.employees expenses.startupCosts debtsAndEquities revenueSources")
     .exec(function(err, model) {
+      console.log('Model from the database', model);
       res.send(200, model);
     });
 };
@@ -166,38 +167,3 @@ EMPLOYEE SCHEMA
     - using start date of employee, prorate emplyee salary for remaining year expenses
     - use actual date stamps for employee start date
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
