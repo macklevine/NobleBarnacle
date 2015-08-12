@@ -298,36 +298,6 @@ module.exports = {
   //GET's
   //******************************
 
-  //get all expenses
-  getExpenses: function(req, res) {
-    var expenses = {};
-    //get the all gAndA expenses 
-    db.getExpenses()
-      .then(function(expenses) {
-
-      });
-    //do some stuff with the expenses
-    res.end(expenses);
-    //expenses: {
-    //  gAndA: [],
-    //   
-    },
-
-  //get all employees
-  getEmployees: function(req, res) {
-    var employees = db.getEmployees();
-    //do some stuff with the employees
-    res.end(employees);
-  },
-
-  //get employee by id
-  getEmployeeById: function(req, res) {
-    var id = req.data; //figure out how to get the employee id
-    var employee = db.getEmployee(id);
-    //do some stuff with the employee
-    res.end(employee);
-  },
-
   //get all G&A's
   getModel: function(req, res) {
     var userId = req.body.id;
@@ -338,16 +308,6 @@ module.exports = {
     res.end(JSON.stringify(model));
   },
 
-  //get g&a by id
-  getgAndA: function(req, res) {
-    var id = 10; //figure out how to get the id
-    db.getGAndA(id, function(err, data) {
-
-    });
-    //do some stuff
-    res.end(gAndA);
-  },
-
   //******************************
   //UPDATE's
   //******************************
@@ -355,7 +315,6 @@ module.exports = {
   updateEmployee: function(req, res) {
     var id = req.data;
     var updates = req.data;
-
   }
 
 }
