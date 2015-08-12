@@ -60,6 +60,7 @@ mimo.config(['$routeProvider',
 HTTP rquest factory.
 
 Here is the logic for making a request to the express server for the entire
+<<<<<<< HEAD
 financial model.
 By storing the HTTP results on the dataFactory onbject we can access the entire 
 model in every controller without making extra HTTP requests to the server.
@@ -68,7 +69,6 @@ mimo.factory('dataFactory', function ($http) {
   var dataFactory = {};
   dataFactory.madeServerRequest = false; //set to false initially
   dataFactory.getModel = function(){
-    console.log('made http request');
     return $http({
       method: 'GET',
       url: '/model' //end point in express server where the entire model is returned
