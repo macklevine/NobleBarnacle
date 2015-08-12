@@ -30,8 +30,7 @@ var instantiateDefaultModel = function(username){
       }
     }).save(function(err, employee){
       model.expenses.employees.push(employee);
-      console.log("employee parent id: " + employee._parentModel);
-      return model.save();
+      console.log("employee parent id: " + employee._parentModel)
     }).then(function(){
 
       var cto = new constructor.Employee({
@@ -48,7 +47,6 @@ var instantiateDefaultModel = function(username){
         }
       }).save(function(err, employee){
         model.expenses.employees.push(employee);
-        return model.save();
       });
 
     }).then(function(){
@@ -67,7 +65,6 @@ var instantiateDefaultModel = function(username){
         }
       }).save(function(err, employee){
         model.expenses.employees.push(employee);
-        return model.save();
       })
 
     }).then(function(){
@@ -86,7 +83,6 @@ var instantiateDefaultModel = function(username){
         }
       }).save(function(err, employee){
         model.expenses.employees.push(employee);
-        return model.save();
       });
 
     }).then(function(){
@@ -98,7 +94,6 @@ var instantiateDefaultModel = function(username){
         increasePerYear: .12
       }).save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        return model.save();
       });
 
     }).then(function(){
@@ -110,7 +105,6 @@ var instantiateDefaultModel = function(username){
         increasePerYear: .03
       }).save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        return model.save();
       });
 
     }).then(function(){
@@ -122,7 +116,6 @@ var instantiateDefaultModel = function(username){
         increasePerYear: .03
       }).save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        return model.save();
       });
 
     }).then(function(){
@@ -134,7 +127,6 @@ var instantiateDefaultModel = function(username){
         increasePerYear: .03
       }).save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        return model.save();
       });
 
     }).then(function(){
@@ -146,7 +138,6 @@ var instantiateDefaultModel = function(username){
         increasePerYear: .03
       }).save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        return model.save();
       });
 
     }).then(function(){
@@ -158,7 +149,6 @@ var instantiateDefaultModel = function(username){
         upTo: 14400
       }).save(function(err, tax){
         model.settings.taxes.push(tax);
-        return model.save();
       });
 
     }).then(function(){
@@ -170,7 +160,6 @@ var instantiateDefaultModel = function(username){
         upTo: 100000
       }).save(function(err, tax){
         model.settings.taxes.push(tax);
-        return model.save();
       });
 
     }).then(function(){
@@ -182,7 +171,6 @@ var instantiateDefaultModel = function(username){
         upTo:             999999
       }).save(function(err, tax){
         model.settings.taxes.push(tax);
-        return model.save();
       });
 
     }).then(function(){
@@ -194,7 +182,6 @@ var instantiateDefaultModel = function(username){
         upTo:             7400  
       }).save(function(err, tax){
         model.settings.taxes.push(tax);
-        return model.save();
       });
 
     }).then(function(){
@@ -206,7 +193,6 @@ var instantiateDefaultModel = function(username){
         upTo:             999999
       }).save(function(err, tax){
         model.settings.taxes.push(tax);
-        return model.save();
       });
 
     }).then(function(){
@@ -219,7 +205,6 @@ var instantiateDefaultModel = function(username){
         money: ['{year: 2015, months: {"jan": 2000, "feb": 1000, "apr": 1000, "jul": 1000, "aug": 1000, "sep": 1000}}'],
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -232,7 +217,6 @@ var instantiateDefaultModel = function(username){
         description: 'Payment for logo design'
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -245,7 +229,6 @@ var instantiateDefaultModel = function(username){
         description: 'Traveling to a trade show in Las Vegas'
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -258,7 +241,6 @@ var instantiateDefaultModel = function(username){
         money: ['{year: 2015, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}', '{year: 2016, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}']//need a string
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -271,7 +253,6 @@ var instantiateDefaultModel = function(username){
         money: ['{year: 2015, months: {"jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300}}', '{year: 2016, months: {"jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300}}']//need a string
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -284,7 +265,6 @@ var instantiateDefaultModel = function(username){
         money: ['{year: 2015, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}', '{year: 2016, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}']//need a string
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -297,7 +277,6 @@ var instantiateDefaultModel = function(username){
         money: ['{year: 2015, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}', '{year: 2016, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}']//need a string
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -310,7 +289,6 @@ var instantiateDefaultModel = function(username){
         money: ['{year: 2015, months: {"jan": 200, "feb": 200, "mar": 200, "apr": 200, "may": 200, "jun": 200, "jul": 200, "aug": 200, "sep": 200, "oct": 200, "nov": 200, "dec": 200}}', '{year: 2016, months: {"jan": 200, "feb": 200, "mar": 200, "apr": 200, "may": 200, "jun": 200, "jul": 200, "aug": 200, "sep": 200, "oct": 200, "nov": 200, "dec": 200}}']//need a string
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -323,7 +301,6 @@ var instantiateDefaultModel = function(username){
         money: ['{year: 2015, months:{"jan": 2000, "feb": 2000, "apr": 2000}}', '{year: 2016, months:{"jan": 2000, "feb": 2000, "apr": 2000}}']//need a string
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -336,7 +313,6 @@ var instantiateDefaultModel = function(username){
         money: ['{year: 2015, months:{"jan": 2000, "feb": 2000, "apr": 2000}}']
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        return model.save();
       });
 
     }).then(function(){
@@ -347,7 +323,6 @@ var instantiateDefaultModel = function(username){
         money: '{2015: {"feb": 10000}}'
       }).save(function(err, cost){
         model.expenses.startupCosts.push(cost);
-        return model.save();
       });
 
     }).then(function(){
@@ -358,21 +333,19 @@ var instantiateDefaultModel = function(username){
         money: '{2016: {"jun": 100000}}'
       }).save(function(err, cost){
         model.expenses.startupCosts.push(cost);
-        return model.save();
       })
 
     }).then(function(){
 
       var loan1 = new constructor.DebtAndEquity({
         _parentModel: model._id,
-        // years: [2015],
+        years: [2015],
         name: "Loan 1",
         type: "loan",
         principal: 160000,
         startYear: 2015
       }).save(function(err, debt){
         model.debtsAndEquities.push(debt);
-        return model.save();
       });
 
     }).then(function(){
@@ -400,7 +373,7 @@ var instantiateDefaultModel = function(username){
         }
       }).save(function(err, revenue){
         model.revenueSources.push(revenue);
-        return model.save();
+        model.save();
       });
     });
   });
