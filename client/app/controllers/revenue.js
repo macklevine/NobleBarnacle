@@ -1,6 +1,6 @@
 angular.module('mimo.revenue', [])
-  .controller('revenueController', function ($scope, modelFactory){
-  $scope.revenue = modelFactory.model.revenueSources;
+  .controller('revenueController', function ($scope, dataFactory){
+  $scope.revenue = dataFactory.model.revenueSources;
 })
 //Uncomment below code for data manipulation factory
 /*
