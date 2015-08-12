@@ -186,7 +186,7 @@ var lanes = buildLanes(general);
 
 //set up the items
 var items = buildItems(general, lanes);
-console.log(items);
+//console.log(items);
 
 
 
@@ -359,7 +359,7 @@ function display () {
   var rects, labels
     , minExtent = d3.time.day(brush.extent()[0])
     , maxExtent = d3.time.day(brush.extent()[1])
-    , visItems = items.filter(function (d) { return d.start < maxExtent && d.end > minExtent});
+    , visItems = items/*.filter(function (d) { return d.start < maxExtent && d.end > minExtent});*/
 
   mini.select('.brush').call(brush.extent([minExtent, maxExtent]));   
 
@@ -395,7 +395,7 @@ function display () {
     .attr('x', function(d) { return x1(d.start); })
     .attr('y', function(d) { return y1(d.lane) + .1 * y1(1) + 0.5; })
     .attr('width', function(d) { return x1(d.end) - x1(d.start); })
-    .attr('height', function(d) { return .8 * y1(1); })
+    .attr('height', function(d) { console.log('data', d.lane); return (.8 * y1(1)); }) // curently working on
     .attr('class', function(d) { return 'mainItem resizable ' + d.class; })
     .on('click', editItem);
 
