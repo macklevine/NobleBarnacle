@@ -180,13 +180,14 @@ var general = [
         }
       ]
 
-//set up the items
-var items = buildItems(general);
-console.log(items);
-
 //set up the lanes
 var lanes = buildLanes(general);
-console.log(lanes);
+//console.log(lanes);
+
+//set up the items
+var items = buildItems(general, lanes);
+console.log(items);
+
 
 
 var now = new Date();
