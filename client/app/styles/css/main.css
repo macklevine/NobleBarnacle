@@ -91,11 +91,6 @@ body {
   fill: peru;
   fill-opacity: .500;
 }
-/*Base style for angular views*/
-/*#col-lg-12{
-  height:100%;
-  width: 100%;
-}*/
 #main-angular-view {
   /*background-color: #FFFFFF;*/
   /*height:10em;*/

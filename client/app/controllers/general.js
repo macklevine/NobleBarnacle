@@ -33,147 +33,133 @@ angular.module('mimo.general', [])
             //place your D3 code here
             //IMPORTANT...
             //remember your code needs to operate on the scope.data object
-      
-      /*****************************************
-      /* Helper Functions
-      /****************************************/
 
-      //filter keys
-      //takes an array of objects and a key
-      //returns a unique-sorted array of the values for that key
-      var getKeysInArray = function(array, key) {
-        var keys = {};
-        array.forEach(function(obj){
-          keys[obj[key]] = true;
-        });
-        return Object.keys(keys);
-      };
+                  /*****************************************
+                  /* Helper Functions
+                  /****************************************/
 
-      //Find start Year
-      //returns the numerical value of the first year
-      var findFirstYear = function(item) {
-        return getKeysInArray(item.money, 'year').sort().shift();
-      };
+                  //filter keys
+                  //takes an array of objects and a key
+                  //returns a unique-sorted array of the values for that key
+                  var getKeysInArray = function(array, key) {
+                    var keys = {};
+                    array.forEach(function(obj){
+                      keys[obj[key]] = true;
+                    });
+                    return Object.keys(keys);
+                  };
 
-      //Find last Year
-      //return the numerical value of the last year
-      var findLastYear = function(item) {
-        return getKeysInArray(item.money, 'year').sort().pop();
-      };
+                  //Find start Year
+                  //returns the numerical value of the first year
+                  var findFirstYear = function(item) {
+                    return getKeysInArray(item.money, 'year').sort().shift();
+                  };
 
-      //Find first month
-      //return the index for the first month of the given year
-      var findFirstMonth = function(item, year) {
-        var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-        for( var i = 0; i < item.money.length; i++) {
-          if( item.money[i].year === year ){
-            var monthsInYear = Object.keys(item.money[i].months);
-          }
-        }
-        var monthsAsIndices = monthsInYear.map(function(month){
-          return months.indexOf(month);
-        });
+                  //Find last Year
+                  //return the numerical value of the last year
+                  var findLastYear = function(item) {
+                    return getKeysInArray(item.money, 'year').sort().pop();
+                  };
 
-        return monthsAsIndices.sort().shift();
-      };
+                  //Find first month
+                  //return the index for the first month of the given year
+                  var findFirstMonth = function(item, year) {
+                    var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+                    for( var i = 0; i < item.money.length; i++) {
+                      if( item.money[i].year === year ){
+                        var monthsInYear = Object.keys(item.money[i].months);
+                      }
+                    }
+                    var monthsAsIndices = monthsInYear.map(function(month){
+                      return months.indexOf(month);
+                    });
 
-      //Find last month
-      //return the index for the last month of the given year
-      var findLastMonth = function(item, year) {
-        var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-        for( var i = 0; i < item.money.length; i++) {
-          if( item.money[i].year === year ){
-            var monthsInYear = Object.keys(item.money[i].months);
-          }
-        }
-        var monthsAsIndices = monthsInYear.map(function(month){
-          return months.indexOf(month);
-        });
+                    return monthsAsIndices.sort().shift();
+                  };
 
-        return monthsAsIndices.sort().pop();
-      };
+                  //Find last month
+                  //return the index for the last month of the given year
+                  var findLastMonth = function(item, year) {
+                    var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+                    for( var i = 0; i < item.money.length; i++) {
+                      if( item.money[i].year === year ){
+                        var monthsInYear = Object.keys(item.money[i].months);
+                      }
+                    }
+                    var monthsAsIndices = monthsInYear.map(function(month){
+                      return months.indexOf(month);
+                    });
 
+                    return monthsAsIndices.sort().pop();
+                  };
 
-      //Build the items
+                  /*****************************************
+                  /* End Helper Functions
+                  /****************************************/
 
-      var buildItems = function(general, lanes){
-        var items = [];
-        //console.log(lanes)
-        var obj = categoryCounter(general);
-        var id = 0;
-        general.forEach(function(item){
-          var newItem = {};
-          var firstYear = parseInt(findFirstYear(item));
-          var lastYear = parseInt(findLastYear(item));
+                  //Build the items
 
-          var firstMonth = findFirstMonth(item, firstYear);
-          var lastMonth = findLastMonth(item, lastYear);
+                  var buildItems = function(general, lanes){
+                    var items = [];
+                    var obj = categoryCounter(general);
+                    var id = 0;
+                    general.forEach(function(item){
+                      var newItem = {};
+                      var firstYear = parseInt(findFirstYear(item));
+                      var lastYear = parseInt(findLastYear(item));
 
-          newItem.start = new Date(firstYear, firstMonth);
-          newItem.end = new Date(lastYear, lastMonth);
-          newItem.id = item.name;
-          id++;
-          newItem.category = item.category;
-          newItem.categoryCount = obj[newItem.category];
-          newItem.propVal = obj[item.name] - 1;
-          newItem.class = 'past ' + item.name;
-          newItem.desc = item.description;
-          newItem.lane = whichLane(item, lanes);
-          items.push(newItem);
-        });
-        return items;
-      };
+                      var firstMonth = findFirstMonth(item, firstYear);
+                      var lastMonth = findLastMonth(item, lastYear);
 
-      //set up the lanes
-      var buildLanes = function(general) {
-        var categories = getKeysInArray(general, 'category');
-        var lanes = [];
-        var id = 0;
-        categories.forEach(function(category){
-          var obj = {label: category, id: id};
-          lanes.push(obj);
-          id++;
-        });
-        return lanes;
-      };
+                      newItem.start = new Date(firstYear, firstMonth);
+                      newItem.end = new Date(lastYear, lastMonth);
+                      newItem.id = id;
+                      id++;
+                      newItem.category = item.category;
+                      newItem.categoryCount = obj[newItem.category];
+                      newItem.propVal = obj[item.name] - 1;
+                      newItem.class = 'past ' + item.name;
+                      newItem.desc = item.description;
+                      newItem.lane = whichLane(item, lanes);
+                      items.push(newItem);
+                    });
+                    return items;
+                  };
 
-      var whichLane = function(item, lanes){
-        // console.log(item)
-        // console.log(lanes)
-        for(var i = 0; i < lanes.length; i++){
-          if(lanes[i].label === item.category){
-            console.log(lanes[i].id);
-            return lanes[i].id;
-          }
-        }
-      };
+                  //set up the lanes
+                  var buildLanes = function(general) {
+                    var categories = getKeysInArray(general, 'category');
+                    var lanes = [];
+                    var id = 0;
+                    categories.forEach(function(category){
+                      var obj = {label: category, id: id};
+                      lanes.push(obj);
+                      id++;
+                    });
+                    return lanes;
+                  };
 
-      var categoryCounter = function(general){
-        var obj = {};
-        for(var i = 0; i < general.length; i++){
-          if(obj[general[i].category] === undefined){
-            obj[general[i].category] = 1;
-            obj[general[i].name] = obj[general[i].category]
-          }else{
-            obj[general[i].category]++;
-            obj[general[i].name] = obj[general[i].category]
-          }
-        }
-        return obj;
-      };
+                  var whichLane = function(item, lanes){
+                    for(var i = 0; i < lanes.length; i++){
+                      if(lanes[i].label === item.category){
+                        return lanes[i].id;
+                      }
+                    }
+                  };
 
-      // var propNumber = function(general){
-      //   var obj = {};
-      //   for(var i = 0; i < general.length; i++){
-      //     obj[general[i].name] = 
-      //   }
-      // }
-      /*****************************************
-      /* End Helper Functions
-      /****************************************/
-
-
-
+                  var categoryCounter = function(general){
+                    var obj = {};
+                    for(var i = 0; i < general.length; i++){
+                      if(obj[general[i].category] === undefined){
+                        obj[general[i].category] = 1;
+                        obj[general[i].name] = obj[general[i].category]
+                      }else{
+                        obj[general[i].category]++;
+                        obj[general[i].name] = obj[general[i].category]
+                      }
+                    }
+                    return obj;
+                  };
 
            //set up the lanes
            var lanes = buildLanes(scope.data);
@@ -388,7 +374,6 @@ angular.module('mimo.general', [])
                .attr('x', function(d) { return x1(d.start); })
                .attr('width', function(d) { return x1(d.end) - x1(d.start); })
                .attr('class', function(d) { return 'mainItem resizable ' + classifier(d.propVal);  });
-
              rects.enter().append('rect')
                .attr('x', function(d) { return x1(d.start); })
                .attr('y', function(d) { return (y1(d.lane) + .1 * y1(1) + 0.5)+ (((.8 * y1(1))/d.categoryCount) * d.propVal); })
@@ -451,7 +436,6 @@ angular.module('mimo.general', [])
 
              return result;
            }
-
            function classifier (item){
              if(item === 1){
                return 'one';
@@ -463,8 +447,6 @@ angular.module('mimo.general', [])
                return 'zero';
              }
            }
-
-
           });
         }}
     }])
