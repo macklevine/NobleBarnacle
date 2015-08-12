@@ -77,25 +77,6 @@ var general = [
           ]
         },
         {
-          category: "Facilities",
-          name: "Cell Phone",
-          description: 'Rent for office space',
-          money: [
-            {
-              year: 2015,
-              months: {
-                "jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300
-              }
-            },
-            {
-              year: 2016,
-              months: {
-                "jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300
-              }
-            }
-          ]
-        },
-        {
           category: "Facilities and Equipment",
           name: "Cleaning",
           description: "Cleaning service for the office space",
@@ -393,9 +374,9 @@ function display () {
 
   rects.enter().append('rect')
     .attr('x', function(d) { return x1(d.start); })
-    .attr('y', function(d) { return y1(d.lane) + .1 * y1(1) + 0.5; })
+    .attr('y', function(d) { return (y1(d.lane) + .1 * y1(1) + 0.5)+ (((.8 * y1(1))/d.categoryCount) * d.propVal); })
     .attr('width', function(d) { return x1(d.end) - x1(d.start); })
-    .attr('height', function(d) { console.log('data', d.lane); return (.8 * y1(1)); }) // curently working on
+    .attr('height', function(d) { return (.8 * y1(1))/d.categoryCount; }) // curently working on
     .attr('class', function(d) { return 'mainItem resizable ' + d.class; })
     .on('click', editItem);
 
@@ -409,7 +390,7 @@ function display () {
   labels.enter().append('text')
     .text(function (d) { return 'Item\n\n\n\n Id: ' + d.id; })
     .attr('x', function(d) { return x1(Math.max(d.start, minExtent)) + 2; })
-    .attr('y', function(d) { return y1(d.lane) + .4 * y1(1) + 0.5; })
+    .attr('y', function(d) { return (y1(d.lane) + .2 * y1(1) + 0.5) + (((.8 * y1(1))/d.categoryCount) * d.propVal); })
     .attr('text-anchor', 'start')
     .attr('class', 'itemLabel');
 

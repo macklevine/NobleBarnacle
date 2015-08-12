@@ -1,3 +1,4 @@
+<<<<<<< HEAD:server/modelHandler.js
 //imitation general data that would be returned from the db
 var model = {
     username: "mack",
@@ -294,9 +295,7 @@ var model = {
 
 var db = require('./db/mongoSchema.js');
 
-
 module.exports = {
-
   //******************************
   //GET's
   //******************************
@@ -306,5 +305,7 @@ module.exports = {
     console.log('In the modelHandler');
     db.getModel(req, res);
   }
+
 }
+
 
