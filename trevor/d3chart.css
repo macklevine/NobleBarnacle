@@ -49,6 +49,20 @@
   fill-opacity: .165;
 }
 
-.Rent {
-  fill: steelblue;
+.zero {
+  stroke: green;
+  fill:lightgreen;
+  fill-opacity: .500;
+}
+
+.one {
+  stroke: blue;
+  fill:steelblue;
+  fill-opacity: .500;
+}
+
+.two{
+  stroke: orange;
+  fill: peru;
+  fill-opacity: .500;
 }
