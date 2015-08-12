@@ -193,19 +193,19 @@ var getKeysInArray = function(array, key) {
     keys[obj[key]] = true;
   });
   return Object.keys(keys);
-}
+};
 
 //Find start Year
 //returns the numerical value of the first year
 var findFirstYear = function(item) {
   return getKeysInArray(item.money, 'year').sort().shift();
-}
+};
 
 //Find last Year
 //return the numerical value of the last year
 var findLastYear = function(item) {
   return getKeysInArray(item.money, 'year').sort().pop();
-}
+};
 
 //Find first month
 //return the index for the first month of the given year
@@ -221,7 +221,7 @@ var findFirstMonth = function(item, year) {
   });
 
   return monthsAsIndices.sort().shift();
-}
+};
 
 //Find last month
 //return the index for the last month of the given year
@@ -237,7 +237,7 @@ var findLastMonth = function(item, year) {
   });
 
   return monthsAsIndices.sort().pop();
-}
+};
 
 /*****************************************
 /* End Helper Functions
@@ -263,11 +263,11 @@ var buildItems = function(general, lanes){
     id++;
     newItem.class = 'past ' + item.name;
     newItem.desc = item.description;
-    newItem.lane = whichLane(item, lanes)
+    newItem.lane = whichLane(item, lanes);
     items.push(newItem);
   });
   return items;
-}
+};
 
 //set up the lanes
 var buildLanes = function(general) {
@@ -275,12 +275,12 @@ var buildLanes = function(general) {
   var lanes = [];
   var id = 0;
   categories.forEach(function(category){
-    var obj = {label: category, id: id}
+    var obj = {label: category, id: id};
     lanes.push(obj);
     id++;
   });
   return lanes;
-}
+};
 
 var whichLane = function(item, lanes){
   // console.log(item)
@@ -291,6 +291,6 @@ var whichLane = function(item, lanes){
       return lanes[i].id;
     }
   }
-}
+};
 
 
