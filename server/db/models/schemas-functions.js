@@ -17,7 +17,7 @@ var modelSchema = mongoose.Schema({
     startupCosts: [{type: Schema.Types.ObjectId, ref: 'StartupCost'}]
   },
   debtsAndEquities: [{type: Schema.Types.ObjectId, ref: 'DebtAndEquity'}],
-  revenueSources: [{type: Schema.Types.ObjectId, ref: "RevenueSource"}]
+  revenueSources: [{type: Schema.Types.ObjectId, ref: 'RevenueSource'}]
 });
 
 var benefitSchema = mongoose.Schema({

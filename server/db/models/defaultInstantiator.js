@@ -3,6 +3,7 @@ var bluebird = require('bluebird');
 var constructor = require('./schemas-functions.js');
 
 var instantiateDefaultModel = function(username){
+  console.log("instantiate called");
   //validate the username first.
   //consider this: http://mongoosejs.com/docs/middleware.html
 
@@ -364,7 +365,7 @@ var instantiateDefaultModel = function(username){
 
       var loan1 = new constructor.DebtAndEquity({
         _parentModel: model._id,
-        years: [2015],
+        // years: [2015],
         name: "Loan 1",
         type: "loan",
         principal: 160000,
