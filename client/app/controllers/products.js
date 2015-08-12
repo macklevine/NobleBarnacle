@@ -1,6 +1,6 @@
 angular.module('mimo.products', [])
-  .controller('productsController', function ($scope, modelFactory){
-  // $scope.products = modelFactory.model.products;
+  .controller('productsController', function ($scope, dataFactory){
+  // $scope.products = dataFactory.model.products;
   $scope.products = "Products Controller";
 });
 //Uncomment below code for data manipulation factory

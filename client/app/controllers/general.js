@@ -1,5 +1,5 @@
 angular.module('mimo.general', [])
-  .controller('generalController', function ($scope, modelFactory, generalFactory){
+  .controller('generalController', function ($scope, dataFactory, generalFactory){
     $scope.data = [
            {name: "Greg", score: 98},
            {name: "Ari", score: 96},
@@ -9,7 +9,7 @@ angular.module('mimo.general', [])
            {name: "Loser", score: 48},
            {name: "Loser", score: 48}
          ];
-    $scope.general = modelFactory.model.expenses.gAndA;
+    $scope.general = dataFactory.model.expenses.gAndA;
     $scope.printSmile = function(){
       generalFactory.printSmile();
     }

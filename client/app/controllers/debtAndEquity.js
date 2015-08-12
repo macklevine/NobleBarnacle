@@ -2,16 +2,16 @@
 Angular module for debt & equity within the financial model
 
 $scope.debtAndEquity -> contains the debt and equity specific data for th
-                        financial model. Accessed from the modelFactory object
+                        financial model. Accessed from the dataFactory object
                         without an extra HTTP request.
 
-RECALL: Within modelFactory.model you have access to the entire model here if you need
+RECALL: Within dataFactory.model you have access to the entire model here if you need
         any of that information for analytics or visulaizations. We've only pulled in
         the specific information for display. 
 */
 angular.module('mimo.debtAndEquity', [])
-  .controller('debtAndEquityController', function ($scope, modelFactory){
-  $scope.debtAndEquity = modelFactory.model.debtsAndEquities;
+  .controller('debtAndEquityController', function ($scope, dataFactory){
+  $scope.debtAndEquity = dataFactory.model.debtsAndEquities;
   //store all the manipulated data on the $scope.data object
   //This is the object that the D3 directive will be looking for to manipulated
   //and create the visualization. 

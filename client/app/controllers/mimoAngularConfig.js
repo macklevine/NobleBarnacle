@@ -61,26 +61,26 @@ HTTP rquest factory.
 
 Here is the logic for making a request to the express server for the entire
 financial model.
-By storing the HTTP results on the modelFactory onbject we can access the entire 
+By storing the HTTP results on the dataFactory onbject we can access the entire 
 model in every controller without making extra HTTP requests to the server.
 */
-mimo.factory('modelFactory', function ($http) {
-  var modelFactory = {};
-  modelFactory.madeServerRequest = false; //set to false initially
-  modelFactory.getModel = function(){
+mimo.factory('dataFactory', function ($http) {
+  var dataFactory = {};
+  dataFactory.madeServerRequest = false; //set to false initially
+  dataFactory.getModel = function(){
     console.log('made http request');
     return $http({
       method: 'GET',
       url: '/model' //end point in express server where the entire model is returned
     }).then(function(results){
-      modelFactory.madeServerRequest = true; //set to true so only one request is made
-      modelFactory.model = results.data; //return the entire model to the modelFacory object.
+      dataFactory.madeServerRequest = true; //set to true so only one request is made
+      dataFactory.model = results.data; //return the entire model to the modelFacory object.
     });
   }
-  //don't forget to return the modelFactory object so that it can be accessed. 
+  //don't forget to return the dataFactory object so that it can be accessed. 
   //you could refactor this into a service if you want. Only minor nuances between
   //the two in this application.
-  return modelFactory;
+  return dataFactory;
 });
 /*
 D3 as a service to angular (really its a factory)

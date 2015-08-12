@@ -1,6 +1,6 @@
 angular.module('mimo.startup', [])
-  .controller('startupController', function ($scope, modelFactory){
-  $scope.startupCosts = modelFactory.model.expenses.startupCosts;
+  .controller('startupController', function ($scope, dataFactory){
+  $scope.startupCosts = dataFactory.model.expenses.startupCosts;
 })
   //Uncomment below code for data manipulation factory
 /*
