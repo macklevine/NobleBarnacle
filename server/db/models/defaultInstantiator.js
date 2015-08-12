@@ -353,7 +353,7 @@ var instantiateDefaultModel = function(username){
       var product1 = new constructor.Product({
         _parentModel: model._id,
         years: [2015],
-        productName: "Proudct 1",
+        productName: "Product 1",
         pricePerUnit: 10,
         costOfProductionPerUnit: 3,
         commision: .1,
@@ -372,7 +372,7 @@ var instantiateDefaultModel = function(username){
           dec: 650
         }
       }).save(function(err, product){
-        model.revenueSources.push(product);
+        model.products.push(product);
         model.save();
       });
     });
