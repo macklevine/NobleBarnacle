@@ -1,2 +1,61 @@
+<style>
+.chart {
+  shape-rendering: crispEdges;
+}
+
+.mini text {
+  font: 9px sans-serif; 
+}
+
+.main text {
+  font: 12px sans-serif;  
+}
+
+.month text {
+  text-anchor: start;
+}
+
+.todayLine {
+  stroke: blue;
+  stroke-width: 1.5;
+}
+
+.axis line, .axis path {
+  stroke: black;
+}
+
+.miniItem {
+  stroke-width: 6;  
+}
+
+.future {
+  stroke: gray;
+  fill: #ddd;
+}
+
+.past {
+  stroke: green;
+  fill: lightgreen;
+  fill-opacity: .500;
+}
+
+.present {
+  stroke: blue;
+  fill: lightblue;
+}
+
+.brush .extent {
+  stroke: gray;
+  fill: blue;
+  fill-opacity: .165;
+}
+
+.Rent {
+  fill: steelblue;
+}
+</style>
+
 <h1>Displaying Start Up Costs</h1>
-<div>{{ startupCosts }}</div>
+<!-- <div>{{ startupCosts }}</div> -->
+<!-- <div class="startup"></div> -->
+<div d3-startup></div>
