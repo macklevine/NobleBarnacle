@@ -55,7 +55,7 @@ var instantiateDefaultModel = function(username){
 
       var frontendDev = new constructor.Employee({
         _parentModel: model._id,
-        title: "Frontend Developer";
+        title: "Frontend Developer",
         yearlySalary: 100000,
         startDate: {
           year: 2016,
