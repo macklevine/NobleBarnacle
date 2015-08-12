@@ -1,6 +1,6 @@
-<h1>Displaying G&A</h1>
+<h1 ng-click="printSmile()">Displaying G&A</h1>
 <!-- <div>{{general}}</div> -->
-<table>
+<!-- <table>
   <tr ng-repeat="cost in general">
     <td>{{cost.years[0]}}</td>
     <td>{{cost.category}}</td>
@@ -9,4 +9,6 @@
     <td>{{cost.cost}}</td>
     <td>{{cost.money}}</td>
   </tr>
-</table>
+</table> -->
+<div d3-general bar-height="40" bar-padding="5" data='data'></div>
+<!-- <div d3-general data='data'></div> -->
