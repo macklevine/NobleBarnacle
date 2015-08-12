@@ -114,6 +114,7 @@ var Model = mongoose.model("Model", modelSchema);
 var getModel = function(req, res){
   // username = req.body.username;
   Model.findOne({username: "mack"})
+    .populate("settings.benefits settings.taxes expenses.gAndA expenses.employees expenses.startupCosts debtsAndEquities revenueSources")
     .exec(function(err, model) {
       res.send(200, model);
     });
