@@ -12,7 +12,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function(){
   console.log('Mongodb connection open!');
-  defaultModel.instantiateDefaultModel();
+  defaultModel.instantiateDefaultModel('mack');
 });
 
 db.getModel = funcs.getModel;

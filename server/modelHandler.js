@@ -269,7 +269,7 @@ var model = {
         startYear: 2015,
       }
     ],
-    revenueSources: [{
+    products: [{
       years: [2015],
       productName: "Product 1",
       pricePerUnit: 10,
@@ -315,5 +315,4 @@ module.exports = {
     var id = req.data;
     var updates = req.data;
   }
-
 }
