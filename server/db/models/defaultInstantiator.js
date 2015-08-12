@@ -351,7 +351,7 @@ var instantiateDefaultModel = function(username){
     }).then(function(){
 
       var product1 = new constructor.Product({
-        _parendModel: model._id,
+        _parentModel: model._id,
         years: [2015],
         productName: "Proudct 1",
         pricePerUnit: 10,
