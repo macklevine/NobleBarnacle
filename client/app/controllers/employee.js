@@ -8,7 +8,7 @@ angular.module('mimo.employee', [])
 
     return employeeFactory;
 })
-  .directive('d3employee', ['$window', '$timeout', 'd3Service', 
+  .directive('d3Employee', ['$window', '$timeout', 'd3Service', 
     function($window, $timeout, d3Service) {
       return {
         restrict: 'ACE',

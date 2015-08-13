@@ -1,30 +1,35 @@
 angular.module('mimo.model', [])
-  .controller('modelController', function ($scope, dataFactory){
-  $scope.model = dataFactory.model;
+  .controller('modelController', function ($scope, dataFactory, modelFactory){
+  $scope.data = dataFactory.model;
+  /*
+  getModel makes makes an http request to get the model data from the 
+  database. However, it only makes an http request one time on page
+  load. After that the data is stored within dataFactory and can be
+  called between an controller.
+
+  Other controllers could have similar functions if you wanted to make
+  specific http requests or POST data to the database. They would go here
+  in this current implementation
+  */
   $scope.getModel = function(){
     dataFactory.getModel().then(function(results){
       console.log('Recieved Model for user');
     })
   }
 })
-//Uncomment below code for data manipulation factory
-/*
-  .factory('modelDataFactory', function(){
-    modelDataFactory = {};
-      //place code for manipulation the model data here
+  .factory('modelFactory', function(){
+    modelFactory = {};
+      //place code for manipulation the employee data here
 
-    return modelDataFactory;
+    return modelFactory;
 })
-*/
-//Uncomment below code for custom D3 directive
-/*
-  .directive('d3Employee', ['$window', '$timeout', 'd3Service', 
+  .directive('d3Model', ['$window', '$timeout', 'd3Service', 
     function($window, $timeout, d3Service) {
       return {
         restrict: 'ACE',
-        //NOTE TO MYSELF: Replace this with the proper scoping to the data object..
-        // something like this... scope:{data:'='}
-        scope: true,
+        scope: {
+          data: "=" //this binds $scope.data to scope.data. Use scope.data inside D3
+        },
         //run as a link directive rather that the compile directive
         //this runs once the html/directives are compiiled and they will
         //be ready to go when the view is loaded.
@@ -36,4 +41,3 @@ angular.module('mimo.model', [])
           });
         }}
     }])
-*/

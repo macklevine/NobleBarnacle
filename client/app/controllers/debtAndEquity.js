@@ -22,7 +22,7 @@ angular.module('mimo.debtAndEquity', [])
 
     return debtAndEquityFactory;
 })
-  .directive('d3debt', ['$window', '$timeout', 'd3Service', 
+  .directive('d3Debt', ['$window', '$timeout', 'd3Service', 
     function($window, $timeout, d3Service) {
       return {
         restrict: 'ACE',
