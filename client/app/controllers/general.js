@@ -55,7 +55,7 @@ angular.module('mimo.general', [])
       //Find first month
       //return the index for the first month of the given year
       var findFirstMonth = function(item, year) {
-        console.log(item);
+
         var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
         for( var i = 0; i < item.money.length; i++) {
           if( item.money[i].year === year ){
