@@ -1,2 +1,18 @@
+<!-- 
+This is the G&debt and equity view.
+
+$scope.data holds the model data for expenses related to general and administrative costs
+
+the data="data" tag in the HTML creates a two way data binding
+between this view and the gernal.js conroller. You utilize it by binding the "data" variable to whatever object you want D3 to operate on. For example, if in the controller you want D3 to take in $scope.stuff and perform transformations to make it pretty and show up in the view then set the div below to the following...
+
+<div d3-general data="stuff"></div>
+
+Currently I've mapped the relevant data to $scope.data.
+The D3 svg will be nested inside the div tag. 
+ -->
+
 <h1>Displaying debt and equity</h1>
-<div>{{ debtAndEquity }}</div>
+<!-- comment the below div out when you have a d3 visual to go in. It's only there for testing purposes to make sure the data object has the proper structure you expect ont eh frontend -->
+<div>{{ data }}</div>
+<div d3-debt data="data"></div>

@@ -1,7 +1,7 @@
 /*
 Angular module for debt & equity within the financial model
 
-$scope.debtAndEquity -> contains the debt and equity specific data for th
+$scope.data -> contains the debt and equity specific data for th
                         financial model. Accessed from the dataFactory object
                         without an extra HTTP request.
 
@@ -11,30 +11,24 @@ RECALL: Within dataFactory.model you have access to the entire model here if you
 */
 angular.module('mimo.debtAndEquity', [])
   .controller('debtAndEquityController', function ($scope, dataFactory){
-  $scope.debtAndEquity = dataFactory.model.debtsAndEquities;
   //store all the manipulated data on the $scope.data object
-  //This is the object that the D3 directive will be looking for to manipulated
+  //This is the object that the D3 directive will be looking for to manipulate
   //and create the visualization. 
-  $scope.data = {}
+  $scope.data = dataFactory.model.debtsAndEquities;
 })
-//Uncomment below code for data manipulation factory
-/*
   .factory('debtAndEquityFactory', function(){
     debtAndEquityFactory = {};
       //place code for manipulation the debtAndEquity data here
 
     return debtAndEquityFactory;
 })
-*/
-//Uncomment below code for custom D3 directive
-/*
-  .directive('d3Employee', ['$window', '$timeout', 'd3Service', 
+  .directive('d3debt', ['$window', '$timeout', 'd3Service', 
     function($window, $timeout, d3Service) {
       return {
         restrict: 'ACE',
-        //NOTE TO MYSELF: Replace this with the proper scoping to the data object..
-        // something like this... scope:{data:'='}
-        scope: true,
+        scope: {
+          data: "=" //this binds $scope.data to scope.data. Use scope.data inside D3
+        },
         //run as a link directive rather that the compile directive
         //this runs once the html/directives are compiiled and they will
         //be ready to go when the view is loaded.
@@ -46,4 +40,3 @@ angular.module('mimo.debtAndEquity', [])
           });
         }}
     }])
-*/

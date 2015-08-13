@@ -1,5 +1,20 @@
+/*
+Angular module for general & administrative expenses within the financial model
+
+$scope.data -> contains the expenses related to general and administrative data for the
+                        financial model. Accessed from the dataFactory object
+                        without an extra HTTP request.
+
+RECALL: Within dataFactory.model you have access to the entire model here if you need
+        any of that information for analytics or visulaizations. We've only pulled in
+        the specific information for display. 
+*/
+
 angular.module('mimo.general', [])
   .controller('generalController', function ($scope, dataFactory, generalFactory){
+    //store all the manipulated data on the $scope.data object
+    //This is the object that the D3 directive will be looking for to manipulate
+    //and create the visualization. 
     $scope.data = dataFactory.model.expenses.gAndA;
   })
   .factory('generalFactory', function(){
