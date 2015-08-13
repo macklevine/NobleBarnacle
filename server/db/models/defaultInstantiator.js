@@ -348,7 +348,7 @@ var instantiateDefaultModel = function(username){
 
     }).then(function(){
 
-      var product1 = new constructor.RevenueSource({
+      var product1 = new constructor.Product({
         _parendModel: model._id,
         years: [2015],
         productName: "Proudct 1",
@@ -369,8 +369,8 @@ var instantiateDefaultModel = function(username){
           nov: 600,
           dec: 650
         }
-      }).save(function(err, revenue){
-        model.revenueSources.push(revenue);
+      }).save(function(err, product){
+        model.products.push(product);
         model.save();
       });
     });
