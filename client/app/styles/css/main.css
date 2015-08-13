@@ -1,23 +1,102 @@
+* { 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+    position: relative;
+    padding: 0; margin: 0;
+};
+
+html {
+    height: 100%; /* 01 */
+    /* tells html to go ahead and feel free to be 100% height */
+}; 
+
 body {
   background-color: #FFFFFF;
-  font-family: times, Times New Roman, times-roman, georgia, serif;
+  /*font-family: times, Times New Roman, times-roman, georgia, serif;*/
   margin: 0;
   padding: 0px 0px 6px 0px;
   font-size: 18px;
-  line-height: 44px;
-  letter-spacing: -1px;
+  /*line-height: 44px;*/
+  /*letter-spacing: -1px;*/
   font-weight: bold;
+  min-height: 100%;
 };
 
-/*Base style for angular views*/
-/*#col-lg-12{
-  height:100%;
-  width: 100%;
-}*/
+.chart {
+  shape-rendering: crispEdges;
+}
+
+.mini text {
+  font: 9px sans-serif; 
+}
+
+.main text {
+  font: 12px sans-serif;  
+}
+
+.month text {
+  text-anchor: start;
+}
+
+.todayLine {
+  stroke: blue;
+  stroke-width: 1.5;
+}
+
+.axis line, .axis path {
+  stroke: black;
+}
+
+.miniItem {
+  stroke-width: 6;  
+}
+
+.future {
+  stroke: gray;
+  fill: #ddd;
+}
+
+.past {
+  stroke: green;
+  fill: lightgreen;
+  fill-opacity: .500;
+}
+
+.present {
+  stroke: blue;
+  fill: lightblue;
+}
+
+.brush .extent {
+  stroke: gray;
+  fill: blue;
+  fill-opacity: .165;
+}
+
+.zero {
+  stroke: green;
+  fill:lightgreen;
+  fill-opacity: .500;
+}
+
+.one {
+  stroke: blue;
+  fill:steelblue;
+  fill-opacity: .500;
+}
+
+.two{
+  stroke: orange;
+  fill: peru;
+  fill-opacity: .500;
+}
+
 #main-angular-view {
   /*background-color: #FFFFFF;*/
   /*height:10em;*/
   /*width: 50em;*/
+  width: 100%;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;

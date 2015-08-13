@@ -40,7 +40,7 @@ var gAndASchema = mongoose.Schema({
   category: String,
   name: String,
   description: String,
-  money: [String] //JSON strings representing year objects.
+  money: [{}] //JSON strings representing year objects.
 });
 
 var employeeSchema = mongoose.Schema({

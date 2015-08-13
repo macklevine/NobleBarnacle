@@ -202,7 +202,7 @@ var instantiateDefaultModel = function(username){
         category: 'Marketing',
         name: 'Radio Ad',
         description: 'We plan to purchase a radio ad to increase awareness',
-        money: ['{year: 2015, months: {"jan": 2000, "feb": 1000, "apr": 1000, "jul": 1000, "aug": 1000, "sep": 1000}}'],
+        money: [{year: 2015, months: {"jan": 2000, "feb": 1000, "apr": 1000, "jul": 1000, "aug": 1000, "sep": 1000}}],
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
       });
@@ -211,7 +211,7 @@ var instantiateDefaultModel = function(username){
     
       var brandingDesign = new constructor.GAndA({
         _parentModel: model._id,
-        money: ['{year: 2015, months: {"jan": 2000, "feb": 2000, "apr": 2000}}'],//need a string
+        money: [{year: 2015, months: {"jan": 2000, "feb": 2000, "apr": 2000}}],
         category: 'Marketing',
         name: 'Branding Design',
         description: 'Payment for logo design'
@@ -221,38 +221,36 @@ var instantiateDefaultModel = function(username){
 
     }).then(function(){
     
-      var tradeShow = new constructor.GAndA({
-        _parentModel: model._id,
-        money: ['{year: 2015, months: {"jan": 2000, "feb": 2000, "apr": 2000}}'],//need a string
-        category: 'Marketing',
-        name: 'Trade Show',
-        description: 'Traveling to a trade show in Las Vegas'
-      }).save(function(err, ganda){
-        model.expenses.gAndA.push(ganda);
+      var tradeShow = new constructor.GAndA({   _parentModel: model._id,
+      money: [{year: 2015, months: {"jan": 2000, "feb": 2000, "apr":2000}}],
+      category: 'Marketing',   
+      name: 'Trade Show',
+      description: 'Traveling to a trade show in Las Vegas'
+      }).save(function(err, ganda){   
+        model.expenses.gAndA.push(ganda); 
       });
 
     }).then(function(){
     
-      var rent = new constructor.GAndA({
-        _parentModel: model._id,
-        category: "Facilities and Equipment",
-        name: "Rent",
-        description: 'Rent for office space',
-        money: ['{year: 2015, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}', '{year: 2016, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}']//need a string
-      }).save(function(err, ganda){
-        model.expenses.gAndA.push(ganda);
+      var rent = new constructor.GAndA({   _parentModel: model._id, 
+        category: "Facilities and Equipment",   
+        name:"Rent", 
+      description: 'Rent for office space',   
+      money: [{year: 2015, months: {"jan": 2000, "feb": 2000, "mar":2000, "apr": 2000, "may": 2000, "jun": 2000, "jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000,"dec": 2000}}, {year: 2016, months: {"jan": 2000, "feb": 2000, "mar": 2000, "apr": 2000, "may": 2000, "jun": 2000,"jul": 2000, "aug": 2000, "sep": 2000, "oct": 2000, "nov": 2000, "dec": 2000}}]
+      }).save(function(err, ganda){ 
+        model.expenses.gAndA.push(ganda); 
       });
 
     }).then(function(){
 
-      var cellPhones = new constructor.GAndA({
-        _parentModel: model._id,
-        category: 'Facilities and Equipment',
-        name: 'Cell Phones',
-        description: 'communication costs for the team',
-        money: ['{year: 2015, months: {"jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300}}', '{year: 2016, months: {"jan": 300, "feb": 300, "mar": 300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300, "nov": 300, "dec": 300}}']//need a string
-      }).save(function(err, ganda){
-        model.expenses.gAndA.push(ganda);
+      var cellPhones = new constructor.GAndA({   _parentModel:
+      model._id,   
+      category: 'Facilities and Equipment',   
+      name: 'Cell Phones',   
+      description: 'communication costs for the team',
+      money: [{year: 2015, months: {"jan": 300, "feb": 300, "mar":300, "apr": 300, "may": 300, "jun": 300, "jul": 300, "aug": 300,"sep": 300, "oct": 300, "nov": 300, "dec": 300}}, {year: 2016,months: {"jan": 300, "feb": 300, "mar": 300, "apr": 300, "may":300, "jun": 300, "jul": 300, "aug": 300, "sep": 300, "oct": 300,"nov": 300, "dec": 300}}] 
+      }).save(function(err, ganda){   
+        model.expenses.gAndA.push(ganda); 
       });
 
     }).then(function(){
@@ -262,7 +260,7 @@ var instantiateDefaultModel = function(username){
         category: "Facilities and Equipment",
         name: "Cleaning",
         description: "Cleaning service for the office space",
-        money: ['{year: 2015, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}', '{year: 2016, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}']//need a string
+        money: [{year: 2015, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}, {year: 2016, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}]
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
       });
@@ -274,7 +272,7 @@ var instantiateDefaultModel = function(username){
         category: "Insurance",
         name: "General Liability",
         description: "General liability insurance",
-        money: ['{year: 2015, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}', '{year: 2016, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}']//need a string
+        money: [{year: 2015, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}, {year: 2016, months: {"jan": 150, "feb": 150, "mar": 150, "apr": 150, "may": 150, "jun": 150, "jul": 150, "aug": 150, "sep": 150, "oct": 150, "nov": 150, "dec": 150}}]//need a string
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
       });
@@ -286,7 +284,7 @@ var instantiateDefaultModel = function(username){
         category: "Insurance",
         name: 'Property Insurance',
         description: 'Property Insurance',
-        money: ['{year: 2015, months: {"jan": 200, "feb": 200, "mar": 200, "apr": 200, "may": 200, "jun": 200, "jul": 200, "aug": 200, "sep": 200, "oct": 200, "nov": 200, "dec": 200}}', '{year: 2016, months: {"jan": 200, "feb": 200, "mar": 200, "apr": 200, "may": 200, "jun": 200, "jul": 200, "aug": 200, "sep": 200, "oct": 200, "nov": 200, "dec": 200}}']//need a string
+        money: [{year: 2015, months: {"jan": 200, "feb": 200, "mar": 200, "apr": 200, "may": 200, "jun": 200, "jul": 200, "aug": 200, "sep": 200, "oct": 200, "nov": 200, "dec": 200}}, {year: 2016, months: {"jan": 200, "feb": 200, "mar": 200, "apr": 200, "may": 200, "jun": 200, "jul": 200, "aug": 200, "sep": 200, "oct": 200, "nov": 200, "dec": 200}}]//need a string
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
       });
@@ -298,7 +296,7 @@ var instantiateDefaultModel = function(username){
         category: "Supplies",
         name: "Computers",
         description: "Laptops for new employees",
-        money: ['{year: 2015, months:{"jan": 2000, "feb": 2000, "apr": 2000}}', '{year: 2016, months:{"jan": 2000, "feb": 2000, "apr": 2000}}']//need a string
+        money: [{year: 2015, months:{"jan": 2000, "feb": 2000, "apr": 2000}}, {year: 2016, months:{"jan": 2000, "feb": 2000, "apr": 2000}}]//need a string
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
       });
@@ -310,7 +308,7 @@ var instantiateDefaultModel = function(username){
         category: "Supplies",
         name: "Servers",
         description: "Server stack for deployment",
-        money: ['{year: 2015, months:{"jan": 2000, "feb": 2000, "apr": 2000}}']
+        money: [{year: 2015, months:{"jan": 2000, "feb": 2000, "apr": 2000}}]
       }).save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
       });

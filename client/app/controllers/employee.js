@@ -1,6 +1,6 @@
 angular.module('mimo.employee', [])
-  .controller('employeeController', function ($scope, modelFactory){
-  $scope.employee = modelFactory.model.expenses.employees;
+  .controller('employeeController', function ($scope, dataFactory){
+  $scope.employee = dataFactory.model.expenses.employees;
 }).
   directive('d3Employee', ['$window', '$timeout', 'd3Service', 
     function($window, $timeout, d3Service) {

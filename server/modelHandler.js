@@ -294,9 +294,7 @@ var model = {
 
 var db = require('./db/mongoSchema.js');
 
-
 module.exports = {
-
   //******************************
   //GET's
   //******************************
@@ -305,14 +303,8 @@ module.exports = {
   getModel: function(req, res) {
     console.log('In the modelHandler');
     db.getModel(req, res);
-  },
-
-  //******************************
-  //UPDATE's
-  //******************************
-
-  updateEmployee: function(req, res) {
-    var id = req.data;
-    var updates = req.data;
   }
+
 }
+
+
