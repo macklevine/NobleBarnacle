@@ -1,4 +1,15 @@
-<h1 ng-click="printSmile()">Displaying G&A</h1>
-<!-- <div>{{general}}</div> -->
+<!-- 
+This is the G&A view.
+
+$scope.data holds the model data for G & A expenses
+
+the data="data" tag in the HTML creates a two way data binding
+between this view and the gernal.js conroller. You utilize it by binding the "data" variable to whatever object you want D3 to operate on. For example, if in the controller you want D3 to take in $scope.stuff and perform transformations to make it pretty and show up in the view then set the div below to the following...
+
+<div d3-general data="stuff"></div>
+
+Currently I've mapped the relevant data to $scope.data.
+The D3 svg will be nested inside the div tag. 
+ -->
+<h1>Displaying G&A</h1>
 <div d3-general data="data"></div>
-<!-- <div d3-general data='data'></div> -->
