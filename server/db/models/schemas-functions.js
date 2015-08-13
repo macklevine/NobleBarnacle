@@ -17,7 +17,7 @@ var modelSchema = mongoose.Schema({
     startupCosts: [{type: Schema.Types.ObjectId, ref: 'StartupCost'}]
   },
   debtsAndEquities: [{type: Schema.Types.ObjectId, ref: 'DebtAndEquity'}],
-  revenueSources: [{type: Schema.Types.ObjectId, ref: 'RevenueSource'}]
+  products: [{type: Schema.Types.ObjectId, ref: 'Product'}]
 });
 
 var benefitSchema = mongoose.Schema({
@@ -76,7 +76,7 @@ var debtAndEquitySchema = mongoose.Schema({
   payment: Number
 });
 
-var revenueSchema = mongoose.Schema({
+var productSchema = mongoose.Schema({
   _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
   years: [Number], //an array of numbers representing eaach year.
   productName: String,
@@ -106,7 +106,7 @@ var GAndA = mongoose.model("GAndA", gAndASchema);
 var Employee = mongoose.model("Employee", employeeSchema);
 var StartupCost = mongoose.model("StartupCost", startupCostSchema);
 var DebtAndEquity = mongoose.model("DebtAndEquity", debtAndEquitySchema);
-var RevenueSource = mongoose.model("RevenueSource", revenueSchema);
+var Product = mongoose.model("Product", productSchema);
 var Model = mongoose.model("Model", modelSchema);
 
 //Functions to add and delete items from an existing financial model are declared below (scaffolding)
@@ -114,10 +114,10 @@ var Model = mongoose.model("Model", modelSchema);
 var getModel = function(req, res){
   // username = req.body.username;
   Model.findOne({username: "mack"})
-    .populate("settings.benefits settings.taxes expenses.gAndA expenses.employees expenses.startupCosts debtsAndEquities revenueSources")
+    .populate("settings.benefits settings.taxes expenses.gAndA expenses.employees expenses.startupCosts debtsAndEquities products")
     .exec(function(err, model) {
       console.log('Model from the database', model);
-      res.send(200, model);
+      res.status(200).send(model);
     });
 };
 
@@ -129,7 +129,7 @@ exports.GAndA = GAndA;
 exports.Employee = Employee;
 exports.StartupCost = StartupCost;
 exports.DebtAndEquity = DebtAndEquity;
-exports.RevenueSource = RevenueSource;
+exports.Product = Product;
 exports.Model = Model;
 
 exports.getModel = getModel;
