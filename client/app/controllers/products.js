@@ -1,26 +1,32 @@
-angular.module('mimo.products', [])
-  .controller('productsController', function ($scope, dataFactory){
-  // $scope.products = dataFactory.model.products;
-  $scope.products = "Products Controller";
-});
-//Uncomment below code for data manipulation factory
 /*
-  .factory('productsFact', function(){
-    productsFact = {};
+Angular module for products within the financial model
+
+$scope.data -> contains the data related to products data for the
+                        financial model. Accessed from the dataFactory object
+                        without an extra HTTP request.
+
+RECALL: Within dataFactory.model you have access to the entire model here if you need
+        any of that information for analytics or visulaizations. We've only pulled in
+        the specific information for display. 
+*/
+
+angular.module('mimo.products', [])
+  .controller('productsController', function ($scope, dataFactory, productsFactory){
+  $scope.data = dataFactory.model.products;
+})
+  .factory('productsFactory', function(){
+    productsFactory = {};
       //place code for manipulation the products data here
 
-    return productsFact;
+    return productsFactory;
 })
-*/
-//Uncomment below code for custom D3 directive
-/*
-  .directive('d3Employee', ['$window', '$timeout', 'd3Service', 
+  .directive('d3Products', ['$window', '$timeout', 'd3Service', 
     function($window, $timeout, d3Service) {
       return {
         restrict: 'ACE',
-        //NOTE TO MYSELF: Replace this with the proper scoping to the data object..
-        // something like this... scope:{data:'='}
-        scope: true,
+        scope: {
+          data: "=" //this binds $scope.data to scope.data. Use scope.data inside D3
+        },
         //run as a link directive rather that the compile directive
         //this runs once the html/directives are compiiled and they will
         //be ready to go when the view is loaded.
@@ -32,4 +38,3 @@ angular.module('mimo.products', [])
           });
         }}
     }])
-*/
