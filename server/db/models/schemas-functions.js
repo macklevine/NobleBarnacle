@@ -78,25 +78,11 @@ var debtAndEquitySchema = mongoose.Schema({
 
 var productSchema = mongoose.Schema({
   _parentModel: {type: Schema.Types.ObjectId, ref: "Model"},
-  years: [Number], //an array of numbers representing eaach year.
   productName: String,
   pricePerUnit: Number,
   costOfProductionPerUnit: Number,
   comission: Number,
-  monthlyUnitSales: {
-    jan: Number,
-    feb: Number,
-    mar: Number,
-    apr: Number,
-    may: Number,
-    jun: Number,
-    jul: Number,
-    aug: Number,
-    sep: Number,
-    oct: Number,
-    nov: Number,
-    dec: Number
-  }
+  sales: [{}]
 });
 
 //constructors below.
