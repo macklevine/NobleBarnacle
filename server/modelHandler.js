@@ -1,4 +1,3 @@
-<<<<<<< HEAD:server/modelHandler.js
 //imitation general data that would be returned from the db
 var model = {
     username: "mack",
