@@ -9,7 +9,6 @@ RECALL: Within dataFactory.model you have access to the entire model here if you
         any of that information for analytics or visulaizations. We've only pulled in
         the specific information for display. 
 */
-
 angular.module('mimo.general', [])
   .controller('generalController', function ($scope, dataFactory, generalFactory){
     //store all the manipulated data on the $scope.data object
@@ -197,7 +196,8 @@ angular.module('mimo.general', [])
 
            var chart = d3.select(ele[0])
               .append('svg')
-             .attr('width', '1000%')
+             // .attr('width', '1000%')
+             .attr('width', width - 100)
              // .attr('height', height + margin.top + margin.bottom)
              .attr('height', height)
              .attr('class', 'chart');
