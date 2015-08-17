@@ -154,7 +154,7 @@ angular.module('mimo.employee', [])
             var chart = d3.select(ele[0])
               .append('svg')
               // .attr('width', '100%')
-              .attr('width', width - 100)
+              .attr('width', width - 200)
               // .attr('height', height + margin.top + margin.bottom)
               .attr('height', height)
               .attr('class', 'chart');
@@ -173,7 +173,7 @@ angular.module('mimo.employee', [])
 
             var mini = chart.append('g')
               .attr('transform', 'translate(' + margin.left + ',' + (mainHeight + 60) + ')')
-              .attr('width', width)
+              .attr('width', width - 200)
               .attr('height', miniHeight)
               .attr('class', 'mini');
 
