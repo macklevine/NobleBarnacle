@@ -97,6 +97,9 @@ angular.module('mimo.employee', [])
               return lanes;
             };
 
+
+            //function to determine which lane each item will go into.
+            //lanes are the position of each employee
             var whichLane = function(item, lanes){
               // console.log(item)
               // console.log(lanes)
@@ -106,12 +109,6 @@ angular.module('mimo.employee', [])
                 }
               }
             };
-            // var propNumber = function(general){
-            //   var obj = {};
-            //   for(var i = 0; i < general.length; i++){
-            //     obj[general[i].name] = 
-            //   }
-            // }
 
 
 
@@ -151,6 +148,8 @@ angular.module('mimo.employee', [])
             var y1 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, mainHeight]);
             var y2 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, miniHeight]);
 
+
+            //creates SVG element everything goes into
             var chart = d3.select(ele[0])
               .append('svg')
               // .attr('width', '100%')
@@ -165,12 +164,14 @@ angular.module('mimo.employee', [])
                 .attr('width', width)
                 .attr('height', mainHeight);
 
+                //creates main grouping element for larger lanes
             var main = chart.append('g')
               .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
               .attr('width', width)
               .attr('height', mainHeight)
               .attr('class', 'main');
 
+              //creates the grouping element for the mini slidable lanes
             var mini = chart.append('g')
               .attr('transform', 'translate(' + margin.left + ',' + (mainHeight + 60) + ')')
               .attr('width', width - 200)
@@ -187,6 +188,7 @@ angular.module('mimo.employee', [])
               .attr('y2', function(d) { return d3.round(y1(d.id)) + 0.5; })
               .attr('stroke', function(d) { return d.label === '' ? 'white' : 'lightgray' });
 
+              //adds text to each lane in tiny slidable display
             main.append('g').selectAll('.laneText')
               .data(lanes)
               .enter().append('text')
@@ -207,6 +209,7 @@ angular.module('mimo.employee', [])
               .attr('y2', function(d) { return d3.round(y2(d.id)) + 0.5; })
               .attr('stroke', function(d) { return d.label === '' ? 'white' : 'lightgray' });
 
+              //adds text to each lane in tiny slidable display
             mini.append('g').selectAll('.laneText')
               .data(lanes)
               .enter().append('text')
@@ -217,6 +220,7 @@ angular.module('mimo.employee', [])
               .attr('text-anchor', 'end')
               .attr('class', 'laneText');
 
+              //creates the axis on the bottom for date
             var x1DateAxis = d3.svg.axis()
               .scale(x1)
               .orient('bottom')
@@ -224,6 +228,7 @@ angular.module('mimo.employee', [])
               .tickFormat(d3.time.format('%a %d'))
               .tickSize(2, 0, 0);
 
+              //creates month axis on
             var xMonthAxis = d3.svg.axis()
               .scale(x)
               .orient('top')
@@ -396,16 +401,14 @@ angular.module('mimo.employee', [])
             }
 
             function classifier (item){
-              if(item === 1){
-                return 'one';
-              }else if( item === 2){
-                return 'two';
-              }else if( item === 3){
-                return 'three';
-              }else if( item === 0){
-                return 'zero';
-              }
-            }
+             if(item % 3 === 0){
+               return 'zero';
+             }else if( item % 2 === 0){
+               return 'one';
+             }else if( item % 1 === 0){
+               return 'two';
+             }
+           }
 
 
 
