@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
-var bluebird = require('bluebird');
 var Schema = mongoose.Schema;
+
+//for example values for each schema, take a look
+//at defaultInstantiator.js.
 
 var modelSchema = mongoose.Schema({
   username: {type: String, required: true, index: { unique: true }},
@@ -9,8 +11,7 @@ var modelSchema = mongoose.Schema({
   settings: {
     benefits: [{type: Schema.Types.ObjectId, ref: 'Benefit'}],
     taxes: [{type: Schema.Types.ObjectId, ref: 'Tax'}]
-  },
-  //wrap expenses in a key with array value of objects called 'years'
+  }, //these are arrays of foreign keys.
   expenses: {
     gAndA: [{type: Schema.Types.ObjectId, ref: 'GAndA'}],
     employees: [{type: Schema.Types.ObjectId, ref: 'Employee'}],
@@ -25,7 +26,7 @@ var benefitSchema = mongoose.Schema({
   name: String,
   dollarsPerMonth: Number, //each benefit has either a fixed dollars per month...
   percentageOfPay: Number, //...or a percentage of pay.
-  increasePerYear: Number
+  increasePerYear: Number //how much each benefit increases per year.
 });
 
 var taxSchema = mongoose.Schema({
@@ -40,7 +41,7 @@ var gAndASchema = mongoose.Schema({
   category: String,
   name: String,
   description: String,
-  money: [{}] //JSON strings representing year objects.
+  money: [{}] //An array of objects--mixed data type. Checkout http://mongoosejs.com/docs/schematypes.html
 });
 
 var employeeSchema = mongoose.Schema({
@@ -83,7 +84,7 @@ var productSchema = mongoose.Schema({
   costOfProductionPerUnit: Number,
   commission: Number,
   years: [Number],
-  sales: {}
+  sales: {} //mixed data type. Check out http://mongoosejs.com/docs/schematypes.html
 });
 
 //constructors below.
@@ -100,7 +101,7 @@ var Model = mongoose.model("Model", modelSchema);
 
 var getModel = function(req, res){
   // username = req.body.username;
-  Model.findOne({username: "mack"})
+  Model.findOne({username: "mack"}) //right now, "mack" is hard coded in. later, make it so that username value comes from req.body.username.
     .populate("settings.benefits settings.taxes expenses.gAndA expenses.employees expenses.startupCosts debtsAndEquities products")
     .exec(function(err, model) {
       console.log('Model from the database', model);
@@ -108,7 +109,7 @@ var getModel = function(req, res){
     });
 };
 
-//Trevor's requested functions are below:
+//Exports below.
 
 exports.Benefit = Benefit;
 exports.Tax = Tax;
@@ -120,37 +121,3 @@ exports.Product = Product;
 exports.Model = Model;
 
 exports.getModel = getModel;
-
-
-//add more of Trevor's functions:
-
-
-//the function for creating each user's default model is below.
-
-
-
-
-//start defining exports here.
-
-/*
-STARTUP COST SCHEMA
-  - the keys for describing the data associated with individual, one-time startup costs (printers, microwaves, etc.)
-  
-  type: indicates the thing being paid for.
-  cost: how much does it cost?
-  month: the month the item will be paid for/purchased i.e. the month the cost is incurred.
-
-*/
-
-/*
-EMPLOYEE SCHEMA
-  - the keys for describing the data associated with individual employee expenses
-
-  title: Employee title/position with the start-up
-  yearlySalary: yearly salary of employee
-  startDate: date the employee stared/expected to start. For MVP, just using a month
-
-  NTH:
-    - using start date of employee, prorate emplyee salary for remaining year expenses
-    - use actual date stamps for employee start date
-*/
