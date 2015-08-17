@@ -86,47 +86,9 @@ angular.module('mimo.products', [])
               })
               return data;
             }
-            var products = [
-              {
-                productName: "Product 1",
-                pricePerUnit: 10,
-                costOfProductionPerUnit: 3,
-                commission: .1,
-                years: [2015, 2016],
-                sales: {
-                  '2015': {
-                    jan: 100,
-                    feb: 150,
-                    mar: 200,
-                    apr: 250,
-                    may: 300,
-                    jun: 350,
-                    jul: 400,
-                    aug: 450,
-                    sep: 500,
-                    oct: 550,
-                    nov: 600,
-                    dec: 650
-                  },
-                  '2016': {
-                    jan: 700,
-                    feb: 750,
-                    mar: 800,
-                    apr: 850,
-                    may: 900,
-                    jun: 950,
-                    jul: 1000,
-                    aug: 1050,
-                    sep: 1100,
-                    oct: 1150,
-                    nov: 1200,
-                    dec: 1250
-                  }
-                }
-              }
-            ];
 
-            var data = prepProductData(products[0]);
+
+            var data = prepProductData(scope.data[0]);
 
             /*****************************************
             /* General Settings for chart
