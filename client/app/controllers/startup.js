@@ -95,7 +95,7 @@ angular.module('mimo.startup', [])
               return items;
             };
 
-            //set up the lanes
+            //set up the lanes, the lanes are the categories each item will go into
             var buildLanes = function(general) {
               var categories = getKeysInArray(general, 'name');
               var lanes = [];
@@ -108,6 +108,7 @@ angular.module('mimo.startup', [])
               return lanes;
             };
 
+           2
             var whichLane = function(item, lanes){
               // console.log(item)
               // console.log(lanes)
@@ -150,6 +151,8 @@ angular.module('mimo.startup', [])
             var y1 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, mainHeight]);
             var y2 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, miniHeight]);
 
+
+            //creates the SVG element everything will go into
             var chart = d3.select(ele[0])
               .append('svg')
               // .attr('width', '100%')
@@ -158,18 +161,20 @@ angular.module('mimo.startup', [])
               // .attr('height', height + margin.top + margin.bottom)
               .attr('class', 'chart');
 
+
             chart.append('defs').append('clipPath')
               .attr('id', 'clip')
               .append('rect')
                 .attr('width', width)
                 .attr('height', mainHeight);
-
+              //creates the main grouping element for the larger lanes
             var main = chart.append('g')
               .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
               .attr('width', width)
               .attr('height', mainHeight)
               .attr('class', 'main');
 
+              //creates the grouping element for the mini slidable lane
             var mini = chart.append('g')
               .attr('transform', 'translate(' + margin.left + ',' + (mainHeight + 60) + ')')
               .attr('width', width)
@@ -186,6 +191,7 @@ angular.module('mimo.startup', [])
               .attr('y2', function(d) { return d3.round(y1(d.id)) + 0.5; })
               .attr('stroke', function(d) { return d.label === '' ? 'white' : 'lightgray' });
 
+            // adds the text to each lane in the main display
             main.append('g').selectAll('.laneText')
               .data(lanes)
               .enter().append('text')
@@ -206,6 +212,7 @@ angular.module('mimo.startup', [])
               .attr('y2', function(d) { return d3.round(y2(d.id)) + 0.5; })
               .attr('stroke', function(d) { return d.label === '' ? 'white' : 'lightgray' });
 
+              //adds text to each lane in tiny slidable display
             mini.append('g').selectAll('.laneText')
               .data(lanes)
               .enter().append('text')
@@ -216,6 +223,7 @@ angular.module('mimo.startup', [])
               .attr('text-anchor', 'end')
               .attr('class', 'laneText');
 
+              //creates the axis on the bottom for date
             var x1DateAxis = d3.svg.axis()
               .scale(x1)
               .orient('bottom')
@@ -223,6 +231,7 @@ angular.module('mimo.startup', [])
               .tickFormat(d3.time.format('%a %d'))
               .tickSize(2, 0, 0);
 
+              //creates month axis on top of display
             var xMonthAxis = d3.svg.axis()
               .scale(x)
               .orient('top')
@@ -284,6 +293,7 @@ angular.module('mimo.startup', [])
               .extent([d3.time.month(now),d3.time.month.ceil(now)])
               .on("brush", display);
 
+            //creates the slidable tool on the mini display
             mini.append('g')
               .attr('class', 'x brush')
               .call(brush)
@@ -299,7 +309,7 @@ angular.module('mimo.startup', [])
               var rects, labels
                 , minExtent = d3.time.day(brush.extent()[0])
                 , maxExtent = d3.time.day(brush.extent()[1])
-                , visItems = items/*.filter(function (d) { return d.start < maxExtent && d.end > minExtent});*/
+                , visItems = items.filter(function (d) { return d.start < maxExtent && d.end > minExtent});
 
               mini.select('.brush').call(brush.extent([minExtent, maxExtent]));   
 
@@ -331,13 +341,14 @@ angular.module('mimo.startup', [])
                 .attr('width', function(d) { return x1(d.end) - x1(d.start); })
                 .attr('class', function(d) { return 'mainItem resizable ' + classifier(d.lane);  });
 
+              //creates the rectangles for both displays
               rects.enter().append('rect')
                 .attr('x', function(d) { return x1(d.start); })
                 .attr('y', function(d) { return (y1(d.lane) + .1 * y1(1) + 0.5) })
                 .attr('width', function(d) { return x1(d.end) - x1(d.start); })
                 .attr('height', function(d) { return .8 * y1(1)})
                 .attr('rx', '5px')
-                .attr('ry', '5px') // curently working on
+                .attr('ry', '5px')
                 .attr('class', function(d) { return 'mainItem resizable ' + classifier(d.lane)})
                 .on('click', editItem);
 
@@ -348,6 +359,7 @@ angular.module('mimo.startup', [])
                 .data(visItems, function (d) { return d.id; })
                 .attr('x', function(d) { return x1(Math.max(d.start, minExtent)) + 2; });
                     
+              //creates the text for each rectangle in the display
               labels.enter().append('text')
                 .text(function (d) { return 'Item\n\n\n\n Name: ' + d.id; })
                 .attr('x', function(d) { return x1(Math.max(d.start, minExtent)) + 2; })
@@ -395,15 +407,13 @@ angular.module('mimo.startup', [])
             }
 
             function classifier (item){
-              if(item === 1){
-                return 'one';
-              }else if( item === 2){
-                return 'two';
-              }else if( item === 3){
-                return 'three';
-              }else if( item === 0){
-                return 'zero';
-              }
+             if(item % 3 === 0){
+               return 'zero';
+             }else if( item % 2 === 0){
+               return 'one';
+             }else if( item % 1 === 0){
+               return 'two';
+             }
             }
 
           });

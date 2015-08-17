@@ -96,6 +96,7 @@ angular.module('mimo.general', [])
               return monthsAsIndices.sort().pop();
             };
 
+            //Build the items
             var buildItems = function(general, lanes){
               var items = [];
               var obj = categoryCounter(general);
@@ -123,6 +124,7 @@ angular.module('mimo.general', [])
               return items;
             };
 
+            //set up the lanes, the lanes are the categories each item will go into
             var buildLanes = function(general) {
               var categories = getKeysInArray(general, 'category');
               var lanes = [];
@@ -135,6 +137,8 @@ angular.module('mimo.general', [])
               return lanes;
             };
 
+             // Used to determine the item.lane property which is used to determine which lane
+            // the item should be placed in
             var whichLane = function(item, lanes){
               for(var i = 0; i < lanes.length; i++){
                 if(lanes[i].label === item.category){
@@ -143,6 +147,8 @@ angular.module('mimo.general', [])
               }
             };
 
+
+            //used to determine height and y placement of each rectangle within a category
             var categoryCounter = function(general){
               var obj = {};
               for(var i = 0; i < general.length; i++){
@@ -194,6 +200,7 @@ angular.module('mimo.general', [])
            var y1 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, mainHeight]);
            var y2 = d3.scale.linear().domain([ext[0], ext[1] + 1]).range([0, miniHeight]);
 
+           //creates the SVG element everything will go into
            var chart = d3.select(ele[0])
               .append('svg')
              // .attr('width', '1000%')
@@ -208,12 +215,14 @@ angular.module('mimo.general', [])
                .attr('width', width)
                .attr('height', mainHeight);
 
+               //creates the main grouping element for larger lanes
            var main = chart.append('g')
              .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
              .attr('width', width)
              .attr('height', mainHeight)
              .attr('class', 'main');
 
+             //creates the grouping element for the mini slidable lane
            var mini = chart.append('g')
              .attr('transform', 'translate(' + margin.left + ',' + (mainHeight + 60) + ')')
              .attr('width', width)
@@ -230,6 +239,7 @@ angular.module('mimo.general', [])
              .attr('y2', function(d) { return d3.round(y1(d.id)) + 0.5; })
              .attr('stroke', function(d) { return d.label === '' ? 'white' : 'lightgray' });
 
+             //adds the text to each lane in the main display
            main.append('g').selectAll('.laneText')
              .data(lanes)
              .enter().append('text')
@@ -250,6 +260,7 @@ angular.module('mimo.general', [])
              .attr('y2', function(d) { return d3.round(y2(d.id)) + 0.5; })
              .attr('stroke', function(d) { return d.label === '' ? 'white' : 'lightgray' });
 
+             //adds text to each lane in a tiny slidable display
            mini.append('g').selectAll('.laneText')
              .data(lanes)
              .enter().append('text')
@@ -260,6 +271,7 @@ angular.module('mimo.general', [])
              .attr('text-anchor', 'end')
              .attr('class', 'laneText');
 
+             //creates the axis on bottom for date
            var x1DateAxis = d3.svg.axis()
              .scale(x1)
              .orient('bottom')
@@ -267,6 +279,7 @@ angular.module('mimo.general', [])
              .tickFormat(d3.time.format('%a %d'))
              .tickSize(2, 0, 0);
 
+             //creates month axis on top of display
            var xMonthAxis = d3.svg.axis()
              .scale(x)
              .orient('top')
@@ -434,14 +447,12 @@ angular.module('mimo.general', [])
            }
 
            function classifier (item){
-             if(item === 1){
-               return 'one';
-             }else if( item === 2){
-               return 'two';
-             }else if( item === 3){
-               return 'three';
-             }else if( item === 0){
+             if(item % 3 === 0){
                return 'zero';
+             }else if( item % 2 === 0){
+               return 'one';
+             }else if( item % 1 === 0){
+               return 'two';
              }
            }
           });
