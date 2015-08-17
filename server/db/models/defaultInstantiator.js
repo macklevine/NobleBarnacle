@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 var constructor = require('./schemas-functions.js');
 
+//the function below returns the default model.
+
 var instantiateDefaultModel = function(username){
-  console.log("instantiate called");
-  //validate the username first.
-  //consider this: http://mongoosejs.com/docs/middleware.html
+  // console.log("instantiate called");
 
   var defaultModel = new constructor.Model({
     username: username,
@@ -14,7 +14,9 @@ var instantiateDefaultModel = function(username){
   }).save(function (err, model){
     if (err) {return err};
 
-    //TODO: revise startDate, endDate. review schemas...
+    //in the callback for saving the default model,
+    //we instantiate all of the employees, expenses,
+    //etc. and push their foreign keys to the model.
 
     var ceo = new constructor.Employee({
       _parentModel: model._id,
@@ -32,7 +34,7 @@ var instantiateDefaultModel = function(username){
       model.expenses.employees.push(employee);
     }).then(function(){
 
-      console.log("CTO started");
+      // console.log("CTO started");
 
       var cto = new constructor.Employee({
         _parentModel: model._id,
@@ -50,13 +52,13 @@ var instantiateDefaultModel = function(username){
 
       return cto.save(function(err, employee){
         model.expenses.employees.push(employee);
-        console.log("CTO pushed");
+        // console.log("CTO pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("dev started")
+      // console.log("dev started")
 
       var frontendDev = new constructor.Employee({
         _parentModel: model._id,
@@ -74,13 +76,13 @@ var instantiateDefaultModel = function(username){
 
       return frontendDev.save(function(err, employee){
         model.expenses.employees.push(employee);
-        console.log("dev pushed");
+        // console.log("dev pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("backend dev started");
+      // console.log("backend dev started");
 
       var backendDev = new constructor.Employee({
         _parentModel: model._id,
@@ -98,13 +100,13 @@ var instantiateDefaultModel = function(username){
 
       return backendDev.save(function(err, employee){
         model.expenses.employees.push(employee);
-        console.log("backend dev pushed");
+        // console.log("backend dev pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("healthcare started");
+      // console.log("healthcare started");
 
       var healthCare = new constructor.Benefit({
         _parentModel: model._id,
@@ -115,13 +117,13 @@ var instantiateDefaultModel = function(username){
 
       return healthCare.save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        console.log("healthcare pushed");
+        // console.log("healthcare pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("dental started");
+      // console.log("dental started");
       
       var dental = new constructor.Benefit({
         _parentModel: model._id,
@@ -132,13 +134,13 @@ var instantiateDefaultModel = function(username){
 
       return dental.save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        console.log("dental pushed");
+        // console.log("dental pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("disability started");
+      // console.log("disability started");
 
       var shortTermDisability = new constructor.Benefit({
         _parentModel: model._id,
@@ -149,13 +151,13 @@ var instantiateDefaultModel = function(username){
 
       return shortTermDisability.save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        console.log("disability pushed");
+        // console.log("disability pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("longterm disability started");
+      // console.log("longterm disability started");
 
       var longTermDisability = new constructor.Benefit({
         _parentModel: model._id,
@@ -166,13 +168,13 @@ var instantiateDefaultModel = function(username){
 
       return longTermDisability.save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        console.log("longterm disability pushed");
+        // console.log("longterm disability pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("life insurance started");
+      // console.log("life insurance started");
     
       var lifeInsurance = new constructor.Benefit({
         _parentModel: model._id,
@@ -183,13 +185,13 @@ var instantiateDefaultModel = function(username){
 
       return lifeInsurance.save(function(err, benefit){
         model.settings.benefits.push(benefit);
-        console.log("life insurance pushed");
+        // console.log("life insurance pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("unemployment started");
+      // console.log("unemployment started");
     
       var stateUnemploymentIns = new constructor.Tax({
         _parentModel: model._id,
@@ -200,13 +202,13 @@ var instantiateDefaultModel = function(username){
 
       return stateUnemploymentIns.save(function(err, tax){
         model.settings.taxes.push(tax);
-        console.log("unemployment pushed");
+        // console.log("unemployment pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("FICA started");
+      // console.log("FICA started");
 
       var employerFICA = new constructor.Tax({
         _parentModel: model._id,
@@ -217,13 +219,13 @@ var instantiateDefaultModel = function(username){
 
       return employerFICA.save(function(err, tax){
         model.settings.taxes.push(tax);
-        console.log("FICA pushed");
+        // console.log("FICA pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("medicare started");
+      // console.log("medicare started");
     
       var medicare = new constructor.Tax({
         _parentModel: model._id,
@@ -234,13 +236,13 @@ var instantiateDefaultModel = function(username){
 
       return medicare.save(function(err, tax){
         model.settings.taxes.push(tax);
-        console.log("medicare pushed");
+        // console.log("medicare pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("fed unemp started");
+      // console.log("fed unemp started");
     
       var federalUnemploymentIns = new constructor.Tax({
         _parentModel: model._id,
@@ -251,13 +253,13 @@ var instantiateDefaultModel = function(username){
 
       return federalUnemploymentIns.save(function(err, tax){
         model.settings.taxes.push(tax);
-        console.log("fed unemp pushed");
+        // console.log("fed unemp pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("worker's comp started");
+      // console.log("worker's comp started");
 
       var workersComp = new constructor.Tax({
         _parentModel: model._id,
@@ -268,13 +270,13 @@ var instantiateDefaultModel = function(username){
 
       return workersComp.save(function(err, tax){
         model.settings.taxes.push(tax);
-        console.log("worker's comp pushed");
+        // console.log("worker's comp pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("marketing started");
+      // console.log("marketing started");
     
       var radioAd = new constructor.GAndA({
         _parentModel: model._id,
@@ -286,13 +288,13 @@ var instantiateDefaultModel = function(username){
 
       return radioAd.save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        console.log("radio ad pushed");
+        // console.log("radio ad pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("branding started");
+      // console.log("branding started");
     
       var brandingDesign = new constructor.GAndA({
         _parentModel: model._id,
@@ -304,28 +306,31 @@ var instantiateDefaultModel = function(username){
 
       return brandingDesign.save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        console.log("branding pushed");
+        // console.log("branding pushed");
         return model.save();
       });
 
     }).then(function(){
+
+      // console.log("tradeshow started");
     
-      var tradeShow = new constructor.GAndA({   _parentModel: model._id,
-      money: [{year: 2015, months: {"jan": 2000, "feb": 2000, "apr":2000}}],
-      category: 'Marketing',   
-      name: 'Trade Show',
-      description: 'Traveling to a trade show in Las Vegas'
+      var tradeShow = new constructor.GAndA({
+        _parentModel: model._id,
+        money: [{year: 2015, months: {"jan": 2000, "feb": 2000, "apr":2000}}],
+        category: 'Marketing',   
+        name: 'Trade Show',
+        description: 'Traveling to a trade show in Las Vegas'
       });
 
       return tradeShow.save(function(err, ganda){   
         model.expenses.gAndA.push(ganda);
-        console.log("tradeshow pushed");
+        // console.log("tradeshow pushed");
         return model.save(); 
       });
 
     }).then(function(){
 
-      console.log("rent started");
+      // console.log("rent started");
     
       var rent = new constructor.GAndA({   _parentModel: model._id, 
         category: "Facilities and Equipment",   
@@ -336,13 +341,13 @@ var instantiateDefaultModel = function(username){
 
       return rent.save(function(err, ganda){ 
         model.expenses.gAndA.push(ganda);
-        console.log("rent pushed");
+        // console.log("rent pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("cell phones started");
+      // console.log("cell phones started");
 
       var cellPhones = new constructor.GAndA({   _parentModel:
       model._id,   
@@ -354,13 +359,13 @@ var instantiateDefaultModel = function(username){
 
       return cellPhones.save(function(err, ganda){   
         model.expenses.gAndA.push(ganda);
-        console.log("cell phone pushed");
+        // console.log("cell phone pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("cleaning started");
+      // console.log("cleaning started");
     
       var cleaning = new constructor.GAndA({
         _parentModel: model._id,
@@ -372,13 +377,13 @@ var instantiateDefaultModel = function(username){
 
       return cleaning.save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        console.log("cleaning pushed");
+        // console.log("cleaning pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("general liability started");
+      // console.log("general liability started");
     
       var insurance = new constructor.GAndA({
         _parentModel: model._id,
@@ -390,13 +395,13 @@ var instantiateDefaultModel = function(username){
 
       return insurance.save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        console.log("liability pushed");
+        // console.log("liability pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("property insurance started");
+      // console.log("property insurance started");
     
       var propertyInsurance = new constructor.GAndA({
         _parentModel: model._id,
@@ -408,13 +413,13 @@ var instantiateDefaultModel = function(username){
 
       return propertyInsurance.save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        console.log("property insurance pushed");
+        // console.log("property insurance pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("computer started");
+      // console.log("computer started");
     
       var computers = new constructor.GAndA({
         _parentModel: model._id,
@@ -426,13 +431,13 @@ var instantiateDefaultModel = function(username){
 
       return computers.save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        console.log("laptops pushed");
+        // console.log("laptops pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("servers started");
+      // console.log("servers started");
 
       var servers = new constructor.GAndA({
         _parentModel: model._id,
@@ -444,13 +449,13 @@ var instantiateDefaultModel = function(username){
 
       return servers.save(function(err, ganda){
         model.expenses.gAndA.push(ganda);
-        console.log("servers pushed");
+        // console.log("servers pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("equipment started");
+      // console.log("equipment started");
 
       var purchaseEquipment = new constructor.StartupCost({
         _parentModel: model._id,
@@ -460,13 +465,13 @@ var instantiateDefaultModel = function(username){
 
       return purchaseEquipment.save(function(err, cost){
         model.expenses.startupCosts.push(cost);
-        console.log("equipment pushed");
+        // console.log("equipment pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("equipment2 started");
+      // console.log("equipment2 started");
 
       var purchaseEquipment2 = new constructor.StartupCost({
         _parentModel: model._id,
@@ -476,13 +481,13 @@ var instantiateDefaultModel = function(username){
 
       return purchaseEquipment2.save(function(err, cost){
         model.expenses.startupCosts.push(cost);
-        console.log("equipment2 pushed");
+        // console.log("equipment2 pushed");
         return model.save();
       })
 
     }).then(function(){
 
-      console.log("loan1 started");
+      // console.log("loan1 started");
 
       var loan1 = new constructor.DebtAndEquity({
         _parentModel: model._id,
@@ -495,13 +500,13 @@ var instantiateDefaultModel = function(username){
 
       return loan1.save(function(err, debt){
         model.debtsAndEquities.push(debt);
-        console.log("loan 1 pushed");
+        // console.log("loan 1 pushed");
         return model.save();
       });
 
     }).then(function(){
 
-      console.log("product 1 started");
+      // console.log("product 1 started");
 
       var product1 = new constructor.Product({
         _parentModel: model._id,
@@ -544,8 +549,8 @@ var instantiateDefaultModel = function(username){
 
       return product1.save(function(err, product){
         model.products.push(product);
-        console.log("product 1 pushed");
-        console.log("model saved");
+        // console.log("product 1 pushed");
+        // console.log("model saved");
         return model.save();
       });
     });
