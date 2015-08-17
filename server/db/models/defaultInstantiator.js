@@ -509,42 +509,37 @@ var instantiateDefaultModel = function(username){
         pricePerUnit: 10,
         costOfProductionPerUnit: 3,
         commision: .1,
-        sales: [
-          {
-            year: 2015,
-            monthlySales: {
-              jan: 100,
-              feb: 150,
-              mar: 200,
-              apr: 250,
-              may: 300,
-              jun: 350,
-              jul: 400,
-              aug: 450,
-              sep: 500,
-              oct: 550,
-              nov: 600,
-              dec: 650
-            }
+        years: [2015, 2016],
+        sales: {
+          '2015': {
+            jan: 100,
+            feb: 150,
+            mar: 200,
+            apr: 250,
+            may: 300,
+            jun: 350,
+            jul: 400,
+            aug: 450,
+            sep: 500,
+            oct: 550,
+            nov: 600,
+            dec: 650
           },
-          {
-            year: 2016,
-            monthlySales: {
-              jan: 700,
-              feb: 750,
-              mar: 800,
-              apr: 850,
-              may: 900,
-              jun: 950,
-              jul: 1000,
-              aug: 1050,
-              sep: 1100,
-              oct: 1150,
-              nov: 1200,
-              dec: 1250
-            }
+          '2016': {
+            jan: 700,
+            feb: 750,
+            mar: 800,
+            apr: 850,
+            may: 900,
+            jun: 950,
+            jul: 1000,
+            aug: 1050,
+            sep: 1100,
+            oct: 1150,
+            nov: 1200,
+            dec: 1250
           }
-        ]
+        }
       });
 
       return product1.save(function(err, product){
