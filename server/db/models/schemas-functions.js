@@ -81,7 +81,7 @@ var productSchema = mongoose.Schema({
   productName: String,
   pricePerUnit: Number,
   costOfProductionPerUnit: Number,
-  comission: Number,
+  commission: Number,
   years: [Number],
   sales: {}
 });

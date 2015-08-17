@@ -508,7 +508,7 @@ var instantiateDefaultModel = function(username){
         productName: "Product 1",
         pricePerUnit: 10,
         costOfProductionPerUnit: 3,
-        commision: .1,
+        commission: 0.1,
         years: [2015, 2016],
         sales: {
           '2015': {
